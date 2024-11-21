@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "btwr-sl",
+  "version": "${version}",
+  "name": "BTWR: Shared Library",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/btwr-sl/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "btwr.lib.client.BTWRSLModClient"
+    ],
+    "main": [
+      "btwr.lib.BTWRSLMod"
+    ]
+  },
+  "mixins": [
+    "btwr-sl.mixins.json",
+    {
+      "config": "btwr-sl.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+
+  "custom": {
+    "loom:injected_interfaces":
+    {
+
+      "net/minecraft/class_2248": ["btwr/lib/added/BlockAdded"]
+
+    }
+  }
+
+}

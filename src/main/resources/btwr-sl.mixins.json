@@ -4,12 +4,7 @@
   "package": "btwr.lib.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BlockMixin",
-    "entity.PlayerEntityMixin",
-    "recipe.CraftingResultSlotMixin",
-    "recipe.ShapelessRecipeJsonBuilderMixin",
-    "recipe.ShapelessRecipeMixin",
-    "recipe.ShapelessRecipeSerializerMixin"
+    "BlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

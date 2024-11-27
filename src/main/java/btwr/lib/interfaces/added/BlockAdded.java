@@ -1,4 +1,4 @@
-package btwr.lib.added;
+package btwr.lib.interfaces.added;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;

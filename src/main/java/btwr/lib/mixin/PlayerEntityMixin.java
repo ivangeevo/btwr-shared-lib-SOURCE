@@ -1,6 +1,6 @@
 package btwr.lib.mixin;
 
-import btwr.lib.interfaces.PlayerEntityAdded;
+import btwr.lib.interfaces.added.PlayerEntityAdded;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

@@ -1,6 +1,6 @@
-package btwr.lib.mixin;
+package btwr.btwrds.lib.mixin;
 
-import btwr.lib.interfaces.added.BlockAdded;
+import btwr.btwrds.lib.interfaces.added.BlockAdded;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

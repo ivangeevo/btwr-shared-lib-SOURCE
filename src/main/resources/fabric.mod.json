@@ -11,10 +11,10 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "btwr.lib.client.BTWRSLModClient"
+      "btwr.btwrds.lib.client.BTWRSLModClient"
     ],
     "main": [
-      "btwr.lib.BTWRSLMod"
+      "btwr.btwrds.BTWRSLMod"
     ]
   },
   "mixins": [

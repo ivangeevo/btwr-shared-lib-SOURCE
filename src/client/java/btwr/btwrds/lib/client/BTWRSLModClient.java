@@ -1,4 +1,4 @@
-package btwr.lib.client;
+package btwr.btwrds.lib.client;
 
 import net.fabricmc.api.ClientModInitializer;
 

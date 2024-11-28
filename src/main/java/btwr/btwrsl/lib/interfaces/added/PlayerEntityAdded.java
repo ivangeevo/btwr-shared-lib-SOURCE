@@ -1,4 +1,4 @@
-package btwr.btwrds.lib.interfaces.added;
+package btwr.btwrsl.lib.interfaces.added;
 
 public interface PlayerEntityAdded {
 

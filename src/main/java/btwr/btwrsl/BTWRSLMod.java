@@ -1,4 +1,4 @@
-package btwr.btwrds;
+package btwr.btwrsl;
 
 import net.fabricmc.api.ModInitializer;
 

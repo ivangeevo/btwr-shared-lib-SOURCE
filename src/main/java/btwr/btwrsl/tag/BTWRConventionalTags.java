@@ -1,4 +1,4 @@
-package btwr.btwrds.tag;
+package btwr.btwrsl.tag;
 
 import net.fabricmc.fabric.impl.tag.convention.v2.TagRegistration;
 import net.minecraft.block.Block;

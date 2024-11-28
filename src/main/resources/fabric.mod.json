@@ -11,10 +11,10 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "btwr.btwrds.lib.client.BTWRSLModClient"
+      "btwr.btwrsl.lib.client.BTWRSLModClient"
     ],
     "main": [
-      "btwr.btwrds.BTWRSLMod"
+      "btwr.btwrsl.BTWRSLMod"
     ]
   },
   "mixins": [
@@ -33,8 +33,8 @@
   "custom": {
     "loom:injected_interfaces":
     {
-      "net/minecraft/class_2248": ["btwr/lib/interfaces/added/BlockAdded"],
-      "net/minecraft/class_1657": ["btwr/lib/interfaces/added/PlayerEntityAdded"]
+      "net/minecraft/class_2248": ["btwr/btwrsl/lib/interfaces/added/BlockAdded"],
+      "net/minecraft/class_1657": ["btwr/btwrsl/lib/interfaces/added/PlayerEntityAdded"]
     }
   }
 

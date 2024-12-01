@@ -98,4 +98,8 @@ publishing {
             url = uri('./maven')
         }
     }
+
+    loom {
+        accessWidenerPath = file("src/main/resources/btwr-sl.accesswidener")
+    }
 }

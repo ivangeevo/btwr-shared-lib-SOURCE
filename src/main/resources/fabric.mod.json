@@ -36,6 +36,7 @@
       "net/minecraft/class_2248": ["btwr/btwrsl/lib/interfaces/added/BlockAdded"],
       "net/minecraft/class_1657": ["btwr/btwrsl/lib/interfaces/added/PlayerEntityAdded"]
     }
-  }
+  },
 
+  "accessWidener" : "btwr-sl.accesswidener"
 }

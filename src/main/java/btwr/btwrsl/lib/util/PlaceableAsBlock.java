@@ -3,6 +3,7 @@ package btwr.btwrsl.lib.util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.*;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -60,7 +61,8 @@ public class PlaceableAsBlock {
                     world.setBlockState(placePos, blockState);
                     heldStack.decrement(1);
 
-                    // Indicate the interaction was successful
+                    // Play the block place sound
+                    world.playSound(null, placePos, blockState.getSoundGroup().getPlaceSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
             }
         }

@@ -17,9 +17,10 @@ public abstract class ItemMixin
     @Unique
     private static final PlaceableAsBlock item = PlaceableAsBlock.getInstance();
 
-    @Inject(method = "useOnBlock", at = @At("HEAD"))
+    @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void injectedUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir)
     {
         item.placeAsBlock(context);
+        cir.setReturnValue(ActionResult.SUCCESS);
     }
 }

@@ -20,7 +20,6 @@ public abstract class ItemMixin
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void injectedUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir)
     {
-        item.placeAsBlock(context);
-        cir.setReturnValue(ActionResult.SUCCESS);
+        cir.setReturnValue(item.placeAsBlock(context));
     }
 }

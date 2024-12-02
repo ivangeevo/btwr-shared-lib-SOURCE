@@ -35,12 +35,15 @@ public class StackDroppingManager
                              Entity entity, ItemStack tool)
     {
         if (world instanceof ServerWorld) {
-
-            // the mining direction
+            // the opposite direction
             Direction lookDirection = VectorUtils.getMiningDirection(entity, world, pos);
 
             if (isDroppingInDirectionBlock(state) && !StackDroppingManager.getInstance().isFullyBreakingTool(tool)) {
                 ItemUtils.ejectStackFromBlockTowardsFacing(world, (PlayerEntity) entity, pos, state, blockEntity, tool, lookDirection.getOpposite());
+            }
+            else {
+                Block.getDroppedStacks(state, (ServerWorld) world, pos, blockEntity, entity, tool).forEach(stack -> Block.dropStack(world, pos, stack));
+                state.onStacksDropped((ServerWorld)world, pos, tool, true);
             }
 
         }

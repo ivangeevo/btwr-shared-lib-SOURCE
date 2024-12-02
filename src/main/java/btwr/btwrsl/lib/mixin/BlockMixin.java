@@ -23,6 +23,7 @@ public abstract class BlockMixin implements BlockAdded
     private static void customDropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack tool, CallbackInfo ci)
     {
         StackDroppingManager.getInstance().onDropStacks(state, world, pos, blockEntity, entity, tool);
+        ci.cancel();
     }
 
     @Override

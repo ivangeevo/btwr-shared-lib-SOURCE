@@ -19,12 +19,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class BlockMixin implements BlockAdded
 {
 
+    @Inject(method = "dropStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;"))
+    private static void onDropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack tool, CallbackInfo ci)
+    {
+        StackDroppingManager.getInstance().onDirectionalDropStacks(state, world, pos, blockEntity, entity, tool, ci);
+    }
+
     // inject the directional drop check before the getDroppedStacks(normal drop) method call and cancel if it does so
     @Inject(method = "dropStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)V",
             at = @At(value = "HEAD"))
     private static void customDirectionalDropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity,
                                                     Entity entity, ItemStack tool, CallbackInfo ci) {
-        StackDroppingManager.getInstance().onDirectionalDropStacks(state, world, pos, blockEntity, entity, tool, ci);
     }
 
 

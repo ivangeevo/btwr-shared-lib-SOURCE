@@ -1,6 +1,4 @@
 
-## v0.19-SNAPSHOT
-- More testing with directional drop logic injection
 
 ## v0.18-SNAPSHOT
 - Testing improved directional drop logic injection

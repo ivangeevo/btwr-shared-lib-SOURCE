@@ -1,3 +1,6 @@
+## v0.10
+- Added Disabled Recipe type
+
 ## v0.4
 - Added PlaceableAsBlock logic.
 

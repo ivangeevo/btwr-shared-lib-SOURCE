@@ -88,20 +88,20 @@ public interface RecipeProviderUtils {
 
     class ID
     {
-        static Identifier ofMC(String item) { return Identifier.ofVanilla(item); }
+        public static Identifier ofMC(String item) { return Identifier.ofVanilla(item); }
         /** DS - Datapack Suite **/
-        static Identifier ofDS(String item) { return Identifier.of("btwr-ds", item); }
+        public static Identifier ofDS(String item) { return Identifier.of("btwr-ds", item); }
         /** BTWR: Core **/
-        static Identifier ofBTWR(String item) { return Identifier.of("btwr", item); }
+        public static Identifier ofBTWR(String item) { return Identifier.of("btwr", item); }
         /** BWT - Better With Time **/
-        static Identifier ofBWT(String item)
+        public static Identifier ofBWT(String item)
         {
             return Identifier.of("bwt", item);
         }
-        static Identifier ofTE(String item) { return Identifier.of("tough_environment", item); }
-        static Identifier ofST(String item) { return Identifier.of("sturdy_trees", item); }
-        static Identifier ofSS(String item) { return Identifier.of("self_sustainable", item); }
-        static Identifier ofVG(String item) { return Identifier.of("vegehenna", item); }
+        public static Identifier ofTE(String item) { return Identifier.of("tough_environment", item); }
+        public static Identifier ofST(String item) { return Identifier.of("sturdy_trees", item); }
+        public static Identifier ofSS(String item) { return Identifier.of("self_sustainable", item); }
+        public static Identifier ofVG(String item) { return Identifier.of("vegehenna", item); }
 
     }
 }

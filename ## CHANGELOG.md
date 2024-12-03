@@ -1,3 +1,7 @@
+
+## v0.14-SNAPSHOT
+- Improved code for RecipeProviderUtils class
+
 ## v0.13-SNAPSHOT
 - Added more methods to RecipeProviderUtils class
 

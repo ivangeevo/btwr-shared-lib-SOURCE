@@ -19,6 +19,10 @@ public interface RecipeProviderUtils {
         disableRecipe(exporter, "minecraft", recipeId);
     }
 
+    default void disableVanilla(RecipeExporter exporter, ItemConvertible item) {
+        disableRecipe(exporter, "minecraft", item);
+    }
+
     default void disableVanilla(RecipeExporter exporter, ItemConvertible item, String suffix) {
         disableRecipe(exporter, "minecraft", item, suffix);
     }
@@ -44,6 +48,12 @@ public interface RecipeProviderUtils {
      */
     default void disableRecipe(RecipeExporter exporter, String namespace, String recipeId) {
         exporter.accept(Identifier.of(namespace, recipeId), new DisabledRecipe(), null);
+    }
+
+    /** Disables a recipe by ItemConvertible **/
+    default void disableRecipe(RecipeExporter exporter, String namespace, ItemConvertible item) {
+        String path = Registries.ITEM.getId(item.asItem()).getPath();
+        disableRecipe(exporter, namespace, path);
     }
 
     /**

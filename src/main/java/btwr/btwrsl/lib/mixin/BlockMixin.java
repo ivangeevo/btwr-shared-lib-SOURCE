@@ -18,24 +18,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Block.class)
 public abstract class BlockMixin implements BlockAdded
 {
-    @Inject(method = "dropStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;" +
-            "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;" +
-            "Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)V", at = @At("RETURN"))
-    private static void customDropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack tool, CallbackInfo ci)
-    {
-        //StackDroppingManager.getInstance().onDirectionalDropStacks(state, world, pos, blockEntity, entity, tool);
-    }
 
     // inject the directional drop check before the getDroppedStacks(normal drop) method call and cancel if it does so
     @Inject(method = "dropStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;"),
-            cancellable = true)
+            at = @At(value = "HEAD"))
     private static void customDirectionalDropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity,
-                                                    Entity entity, ItemStack tool, CallbackInfo ci)
-    {
+                                                    Entity entity, ItemStack tool, CallbackInfo ci) {
         StackDroppingManager.getInstance().onDirectionalDropStacks(state, world, pos, blockEntity, entity, tool);
-        // Cancel the rest of the method
-        ci.cancel();
     }
 
 

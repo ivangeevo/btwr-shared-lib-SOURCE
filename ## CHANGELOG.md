@@ -1,3 +1,6 @@
+## v0.18-SNAPSHOT
+- Testing improved directional drop logic injection
+
 
 ## v0.17-SNAPSHOT
 - Added Item tag for AXES_CAN_BREAK_PLANKS

@@ -117,25 +117,81 @@ jar {
     }
 }
 
-// configure the maven publication
-publishing {
-    publications {
-        create("mavenJava", MavenPublication) {
-            artifactId = project.archives_base_name
-            from components.java
+tasks.register('gitPushArtifacts') {
+    // Ensure the publish task runs first
+    dependsOn 'publish'
+
+    doLast {
+        // Initialize a new git repository
+        exec {
+            workingDir 'maven' // Set the working directory to 'maven'
+            commandLine 'git', 'init'
         }
-    }
 
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-
-        maven {
-            // Set the custom directory for local publishing
-            url = uri('./maven')
+        // Go to the artifacts folder (use workingDir to change the directory)
+        exec {
+            workingDir 'maven' // Set the working directory to 'maven'
+            commandLine 'git', 'add', '.' // Run 'git add .' in the 'maven' folder
         }
-    }
 
-    loom {
-        accessWidenerPath = file("src/main/resources/btwr-sl.accesswidener")
+        // Commit changes with a message
+        exec {
+            workingDir 'maven' // Make sure we're in the correct directory
+            commandLine 'git', 'commit', '-m', '"update artifacts for next version"'
+        }
+
+        // Push the changes to the Maven repository (or master branch)
+        exec {
+            workingDir 'maven' // Stay in the 'maven' directory
+            commandLine 'git', 'push', 'maven', 'master'
+        }
     }
 }
+
+
+tasks.register('gitPushSource') {
+    doLast {
+        // Initialize a new git repository
+        exec {
+            commandLine 'git', 'init'
+        }
+
+        exec {
+            commandLine 'git', 'add', '.' // Run 'git add .'
+        }
+
+        // Commit changes with a message
+        exec {
+            commandLine 'git', 'commit', '-m', '"update source for next version"'
+        }
+
+        // Push the changes to the Maven repository (or master branch)
+        exec {
+            commandLine 'git', 'push', 'source', 'master'
+        }
+    }
+}
+
+
+// configure the maven publication
+    publishing {
+        publications {
+            create("mavenJava", MavenPublication) {
+                artifactId = project.archives_base_name
+                from components.java
+            }
+        }
+
+        // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+        repositories {
+
+            maven {
+                // Set the custom directory for local publishing
+                url = uri('./maven')
+            }
+        }
+
+        loom {
+            accessWidenerPath = file("src/main/resources/btwr-sl.accesswidener")
+        }
+    }

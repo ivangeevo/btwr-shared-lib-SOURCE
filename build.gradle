@@ -118,7 +118,8 @@ jar {
 }
 
 tasks.register('gitPushArtifacts') {
-    // Ensure the publish task runs first
+    // Ensure the build and then publish task run first
+    dependsOn 'build'
     dependsOn 'publish'
 
     doLast {

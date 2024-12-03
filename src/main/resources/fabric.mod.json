@@ -15,6 +15,9 @@
     ],
     "main": [
       "btwr.btwrsl.BTWRSLMod"
+    ],
+    "fabric-datagen": [
+      "btwr.btwrsl.BTWRSLDataGenerator"
     ]
   },
   "mixins": [

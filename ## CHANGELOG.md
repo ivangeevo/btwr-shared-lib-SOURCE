@@ -1,4 +1,9 @@
 
+## v0.17-SNAPSHOT
+- Added Item tag for AXES_CAN_BREAK_PLANKS
+- Added datagen & generated all tags that are exclusively adding vanilla things in this mod, and the rest that are BTWR
+exclusive items/block were left in the BTWR: core mod
+
 ## v0.14-SNAPSHOT
 - Improved code for RecipeProviderUtils class
 

@@ -71,17 +71,17 @@ public interface RecipeProviderUtils {
     }
 
     /** Helper method to extract wood type from an item's translation key **/
-    private String extractName(Item item) {
+    default String extractName(Item item) {
         String[] parts = item.getTranslationKey().split("\\.");
         return parts[parts.length - 1];
     }
 
-    private String extractName(Block block) {
+    default String extractName(Block block) {
         String[] parts = block.getTranslationKey().split("\\.");
         return parts[parts.length - 1];
     }
 
-    private String extractName(TagKey<?> tag) {
+    default String extractName(TagKey<?> tag) {
         String[] parts = tag.getTranslationKey().split("\\.");
         return parts[parts.length - 1];
     }

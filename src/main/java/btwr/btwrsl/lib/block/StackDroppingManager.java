@@ -3,6 +3,7 @@ package btwr.btwrsl.lib.block;
 import btwr.btwrsl.lib.util.utils.ItemUtils;
 import btwr.btwrsl.lib.util.utils.VectorUtils;
 import btwr.btwrsl.tag.BTWRConventionalTags;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.InfestedBlock;
 import net.minecraft.block.entity.BlockEntity;
@@ -31,18 +32,23 @@ public class StackDroppingManager
         return instance;
     }
 
-    public void onDirectionalDropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity,
-                                        Entity entity, ItemStack tool, CallbackInfo ci)
+    public void onDropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack tool)
     {
-        if (world instanceof ServerWorld) {
+        if (world instanceof ServerWorld)
+        {
             // the opposite direction
             Direction lookDirection = VectorUtils.getMiningDirection(entity, world, pos);
 
-            if (isDroppingInDirectionBlock(state) && !StackDroppingManager.getInstance().isFullyBreakingTool(tool)) {
+            if (isDroppingInDirectionBlock(state) && !isFullyBreakingTool(tool))
+            {
                 ItemUtils.ejectStackFromBlockTowardsFacing(world, (PlayerEntity) entity, pos, state, blockEntity, tool, lookDirection.getOpposite());
             }
+            else
+            {
+                Block.getDroppedStacks(state, (ServerWorld) world, pos, blockEntity, entity, tool).forEach(stack -> Block.dropStack(world, pos, stack));
+                state.onStacksDropped((ServerWorld)world, pos, tool, true);
+            }
 
-            ci.cancel();
         }
     }
 

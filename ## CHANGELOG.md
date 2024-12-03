@@ -1,3 +1,7 @@
+## v0.12
+-Reworked the directional dropping injection code to be less intrusive
+
+
 ## v0.11
 - Added RecipeProviderUtils class
 - Refactored the StackDroppingManager class to better inject its code without breaking the original implementation

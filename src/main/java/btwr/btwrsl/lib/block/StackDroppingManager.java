@@ -3,7 +3,6 @@ package btwr.btwrsl.lib.block;
 import btwr.btwrsl.lib.util.utils.ItemUtils;
 import btwr.btwrsl.lib.util.utils.VectorUtils;
 import btwr.btwrsl.tag.BTWRConventionalTags;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.InfestedBlock;
 import net.minecraft.block.entity.BlockEntity;
@@ -31,8 +30,8 @@ public class StackDroppingManager
         return instance;
     }
 
-    public void onDropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity,
-                             Entity entity, ItemStack tool)
+    public void onDirectionalDropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity,
+                                        Entity entity, ItemStack tool)
     {
         if (world instanceof ServerWorld) {
             // the opposite direction

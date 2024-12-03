@@ -1,7 +1,7 @@
 package btwr.btwrsl.lib.mixin;
 
 import btwr.btwrsl.lib.interfaces.added.BlockAdded;
-import btwr.btwrsl.lib.util.StackDroppingManager;
+import btwr.btwrsl.lib.block.StackDroppingManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

@@ -1,3 +1,7 @@
+## v0.11
+- Added RecipeProviderUtils class
+- Refactored the StackDroppingManager class to better inject its code without breaking the original implementation
+
 ## v0.10
 - Added Disabled Recipe type
 

@@ -1,4 +1,4 @@
-package btwr.btwrsl.lib.util;
+package btwr.btwrsl.lib.block;
 
 import btwr.btwrsl.lib.util.utils.ItemUtils;
 import btwr.btwrsl.lib.util.utils.VectorUtils;
@@ -40,10 +40,6 @@ public class StackDroppingManager
 
             if (isDroppingInDirectionBlock(state) && !StackDroppingManager.getInstance().isFullyBreakingTool(tool)) {
                 ItemUtils.ejectStackFromBlockTowardsFacing(world, (PlayerEntity) entity, pos, state, blockEntity, tool, lookDirection.getOpposite());
-            }
-            else {
-                Block.getDroppedStacks(state, (ServerWorld) world, pos, blockEntity, entity, tool).forEach(stack -> Block.dropStack(world, pos, stack));
-                state.onStacksDropped((ServerWorld)world, pos, tool, true);
             }
 
         }

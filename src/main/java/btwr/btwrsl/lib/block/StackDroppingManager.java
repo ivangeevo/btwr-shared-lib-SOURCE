@@ -14,6 +14,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static btwr.btwrsl.tag.BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS;
 import static btwr.btwrsl.tag.BTWRConventionalTags.Blocks.VANILLA_CONVERTING_BLOCKS;
@@ -31,7 +32,7 @@ public class StackDroppingManager
     }
 
     public void onDirectionalDropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity,
-                                        Entity entity, ItemStack tool)
+                                        Entity entity, ItemStack tool, CallbackInfo ci)
     {
         if (world instanceof ServerWorld) {
             // the opposite direction
@@ -41,6 +42,7 @@ public class StackDroppingManager
                 ItemUtils.ejectStackFromBlockTowardsFacing(world, (PlayerEntity) entity, pos, state, blockEntity, tool, lookDirection.getOpposite());
             }
 
+            ci.cancel();
         }
     }
 

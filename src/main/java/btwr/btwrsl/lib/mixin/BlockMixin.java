@@ -24,7 +24,7 @@ public abstract class BlockMixin implements BlockAdded
             at = @At(value = "HEAD"))
     private static void customDirectionalDropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity,
                                                     Entity entity, ItemStack tool, CallbackInfo ci) {
-        StackDroppingManager.getInstance().onDirectionalDropStacks(state, world, pos, blockEntity, entity, tool);
+        StackDroppingManager.getInstance().onDirectionalDropStacks(state, world, pos, blockEntity, entity, tool, ci);
     }
 
 

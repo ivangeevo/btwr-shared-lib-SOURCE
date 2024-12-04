@@ -24,7 +24,11 @@ public class BTWRConventionalTags
         // Combining Tag for Web like blocks ( Cobweb and Web Block from Animageddon)
         public static final TagKey<Block> WEB_BLOCKS = createTag("web_blocks");
 
+        public static final TagKey<Block> STONE = createTag("stone");
 
+
+        // existing conventional tags from fabric
+        public static final TagKey<Block> ORES = createTag("ores");
 
 
         private static TagKey<Block> createTag(String tagId) {
@@ -82,6 +86,7 @@ public class BTWRConventionalTags
         public static final TagKey<Item> COOKED_POTATO_FOODS = createTag("foods/cooked_potato");
         public static final TagKey<Item> COOKED_MEATS = createTag("foods/cooked_meats");
 
+        public static final TagKey<Item> COBBLESTONE_CRAFTING_MATERIALS = createTag("cobblestone_crafting_materials");
 
 
         /** Tag for items that should do knockback if the config for

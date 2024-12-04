@@ -48,6 +48,7 @@ public class BTWRConventionalTags
 
         public static final TagKey<Item> PRIMITIVE_CHISELS = createTag("primitive_chisels");
         public static final TagKey<Item> MODERN_CHISELS = createTag("modern_chisels");
+        public static final TagKey<Item> ADVANCED_CHISELS = createTag("advanced_chisels");
 
         public static final TagKey<Item> PRIMITIVE_PICKAXES = createTag("primitive_pickaxes");
         public static final TagKey<Item> MODERN_PICKAXES = createTag("modern_pickaxes");

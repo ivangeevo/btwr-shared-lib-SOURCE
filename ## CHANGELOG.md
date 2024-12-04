@@ -1,4 +1,5 @@
-
+## v0.22-SNAPSHOT
+- Added WEB_BLOCKS block tag for cobweb and web block from animageddon
 
 ## v0.18-SNAPSHOT
 - Testing improved directional drop logic injection

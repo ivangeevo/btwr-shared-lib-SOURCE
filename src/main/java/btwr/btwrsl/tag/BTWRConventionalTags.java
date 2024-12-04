@@ -53,6 +53,11 @@ public class BTWRConventionalTags
         public static final TagKey<Item> PRIMITIVE_PICKAXES = createTag("primitive_pickaxes");
         public static final TagKey<Item> MODERN_PICKAXES = createTag("modern_pickaxes");
         public static final TagKey<Item> ADVANCED_PICKAXES = createTag("advanced_pickaxes");
+        public static final TagKey<Item> PICKAXES_HARVEST_FULL_BLOCK = createTag("pickaxes_harvest_full_block");
+
+        public static final TagKey<Item> FULLY_MINES_STRATA_1 = createTag("fully_mines_strata_1");
+        public static final TagKey<Item> FULLY_MINES_STRATA_2 = createTag("fully_mines_strata_2");
+        public static final TagKey<Item> FULLY_MINES_STRATA_3 = createTag("fully_mines_strata_3");
 
         public static final TagKey<Item> PRIMITIVE_AXES = createTag("primitive_axes");
         public static final TagKey<Item> MODERN_AXES = createTag("modern_axes");

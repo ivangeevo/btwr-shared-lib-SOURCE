@@ -21,6 +21,10 @@ public class BTWRConventionalTags
         // Farmland viable blocks (can be planted on them)
         public static final TagKey<Block> FARMLAND_BLOCKS = createTag("farmland_blocks");
 
+        // Combining Tag for Web like blocks ( Cobweb and Web Block from Animageddon)
+        public static final TagKey<Block> WEB_BLOCKS = createTag("web_blocks");
+
+
 
 
         private static TagKey<Block> createTag(String tagId) {

@@ -63,5 +63,8 @@ public class BTWRSLBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.FARMLAND_BLOCKS)
                 .add(Blocks.FARMLAND);
 
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.WEB_BLOCKS)
+                .add(Blocks.COBWEB);
+
     }
 }

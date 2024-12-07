@@ -37,7 +37,10 @@
     "loom:injected_interfaces":
     {
       "net/minecraft/class_2248": ["btwr/btwrsl/lib/interfaces/added/BlockAdded"],
-      "net/minecraft/class_1657": ["btwr/btwrsl/lib/interfaces/added/PlayerEntityAdded"]
+      "net/minecraft/class_1657": ["btwr/btwrsl/lib/interfaces/added/PlayerEntityAdded"],
+      "net/minecraft/class_2450": ["btwr/btwrsl/lib/recipe/interfaces/ShapelessRecipeJsonBuilderAdded"],
+      "net/minecraft/class_1867": ["btwr/btwrsl/lib/recipe/interfaces/ShapelessRecipeAdded"]
+
     }
   },
 

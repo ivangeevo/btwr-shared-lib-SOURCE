@@ -1,3 +1,6 @@
+## v0.26-SNAPSHOT
+- Added Extended Shapeless Recipe with .additionalDrops method
+
 ## v0.22-SNAPSHOT
 - Added WEB_BLOCKS block tag for cobweb and web block from animageddon
 

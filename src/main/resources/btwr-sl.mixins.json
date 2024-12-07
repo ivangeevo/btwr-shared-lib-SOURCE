@@ -6,11 +6,7 @@
   "mixins": [
     "BlockMixin",
     "ItemMixin",
-    "PlayerEntityMixin",
-    "recipe.CraftingResultSlotMixin",
-    "recipe.ShapelessRecipeJsonBuilderMixin",
-    "recipe.ShapelessRecipeMixin",
-    "recipe.ShapelessRecipeSerializerMixin"
+    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

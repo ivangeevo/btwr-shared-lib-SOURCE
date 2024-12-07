@@ -1,3 +1,6 @@
+## v0.27-SNAPSHOT
+- Removed changes from previous version
+
 ## v0.26-SNAPSHOT
 - Added Extended Shapeless Recipe with .additionalDrops method
 

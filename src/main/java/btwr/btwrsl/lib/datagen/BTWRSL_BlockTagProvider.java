@@ -10,35 +10,29 @@ import net.minecraft.registry.tag.BlockTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class BTWRSLBlockTagProvider extends FabricTagProvider.BlockTagProvider {
+public class BTWRSL_BlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
 
-    public BTWRSLBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture)
-    {
+    public BTWRSL_BlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
-
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup arg)
-    {
+    protected void configure(RegistryWrapper.WrapperLookup arg) {
         addToModTags();
         addToVanillaTags();
         addToConventionalTags();
     }
 
-    private void addToVanillaTags()
-    {
-
+    private void addToVanillaTags() {
 
     }
 
-    private void addToModTags()
-    {
+    private void addToModTags() {
+
     }
 
-    private void addToConventionalTags()
-    {
+    private void addToConventionalTags() {
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.VANILLA_CONVERTING_BLOCKS)
                 .forceAddTag(BlockTags.BIRCH_LOGS)
                 .forceAddTag(BlockTags.SPRUCE_LOGS)

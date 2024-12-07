@@ -9,21 +9,19 @@ import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class BTWRSLItemTagProvider extends FabricTagProvider.ItemTagProvider
-{
-    public BTWRSLItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture)
-    {
+public class BTWRSL_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
+
+    public BTWRSL_ItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
         super(output, completableFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup arg)
-    {
+    protected void configure(RegistryWrapper.WrapperLookup arg) {
         addToConventionalTags();
     }
     
-    private void addToConventionalTags()
-    {
+    private void addToConventionalTags() {
+
         getOrCreateTagBuilder(BTWRConventionalTags.Items.STRING_TOOL_MATERIALS)
                 .add(Items.STRING);
 

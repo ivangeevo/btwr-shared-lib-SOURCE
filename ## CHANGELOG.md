@@ -1,3 +1,6 @@
+## v0.29-SNAPSHOT
+- Added translations for all BTWR conventional tags
+
 ## v0.27-SNAPSHOT
 - Removed changes from previous version
 

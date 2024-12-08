@@ -20,8 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import static btwr.btwrsl.tag.BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS;
 import static btwr.btwrsl.tag.BTWRConventionalTags.Blocks.VANILLA_CONVERTING_BLOCKS;
 
-public class StackDroppingManager
-{
+public class StackDroppingManager {
     private static final StackDroppingManager instance = new StackDroppingManager();
 
     // Private constructor to prevent instantiation
@@ -34,17 +33,13 @@ public class StackDroppingManager
 
     public void onDropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack tool)
     {
-        if (world instanceof ServerWorld)
-        {
+        if (world instanceof ServerWorld) {
             // the opposite direction
             Direction lookDirection = VectorUtils.getMiningDirection(entity, world, pos);
 
-            if (isDroppingInDirectionBlock(state) && !isFullyBreakingTool(tool))
-            {
+            if (isDroppingInDirectionBlock(state) && !isFullyBreakingTool(tool)) {
                 ItemUtils.ejectStackFromBlockTowardsFacing(world, (PlayerEntity) entity, pos, state, blockEntity, tool, lookDirection.getOpposite());
-            }
-            else
-            {
+            } else {
                 Block.getDroppedStacks(state, (ServerWorld) world, pos, blockEntity, entity, tool).forEach(stack -> Block.dropStack(world, pos, stack));
                 state.onStacksDropped((ServerWorld)world, pos, tool, true);
             }

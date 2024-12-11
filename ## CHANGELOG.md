@@ -1,5 +1,5 @@
 
-## v0.30-SNAPSHOT
+## v0.31-SNAPSHOT
 - Added ExtendedShapelessRecipe which allows adding new items to existing recipes to drop as side drops
 
 ## v0.29-SNAPSHOT

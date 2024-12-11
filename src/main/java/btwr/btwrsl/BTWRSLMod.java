@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 public class BTWRSLMod implements ModInitializer
 {
-    public static final String MOD_ID = "assets/btwr-sl";
+    public static final String MOD_ID = "btwr-sl";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     @Override

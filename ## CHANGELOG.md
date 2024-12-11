@@ -1,6 +1,8 @@
+## v0.32-SNAPSHOT
+- Added missing mixins for BlockAdded related functionality & Made hoe breaking logic work properly without needing BTWR:Core
 
 ## v0.31-SNAPSHOT
-- Added ExtendedShapelessRecipe which allows adding new items to existing recipes to drop as side drops
+- Added ExtendedShapelessRecipe which allows adding new items to existing shapeless recipes to drop as side drops
 
 ## v0.29-SNAPSHOT
 - Added translations for all BTWR conventional tags

@@ -93,7 +93,9 @@ public abstract class ShapelessRecipeSerializerMixin {
         if (ingredientsArray.length == 0) {
             return DataResult.error(() -> "No ingredients for custom shapeless recipe");
         } else {
-            return ingredientsArray.length > 9 ? DataResult.error(() -> "Too many ingredients for custom shapeless recipe") : DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY, ingredientsArray));
+            return ingredientsArray.length > 9
+                    ? DataResult.error(() -> "Too many ingredients for custom shapeless recipe")
+                    : DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY, ingredientsArray));
         }
     };
 

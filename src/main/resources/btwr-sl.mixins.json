@@ -4,9 +4,10 @@
   "package": "btwr.btwrsl.lib.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BlockMixin",
     "ItemMixin",
     "PlayerEntityMixin",
+    "block.BlockMixin",
+    "block.FarmlandBlockMixin",
     "recipe.CraftingResultSlotMixin",
     "recipe.ShapelessRecipeJsonBuilderMixin",
     "recipe.ShapelessRecipeMixin",

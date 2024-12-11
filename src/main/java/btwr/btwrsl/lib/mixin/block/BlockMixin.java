@@ -1,12 +1,16 @@
-package btwr.btwrsl.lib.mixin;
+package btwr.btwrsl.lib.mixin.block;
 
 import btwr.btwrsl.lib.interfaces.added.BlockAdded;
 import btwr.btwrsl.lib.block.StackDroppingManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.GrassBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -16,8 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Block.class)
-public abstract class BlockMixin implements BlockAdded
-{
+public abstract class BlockMixin implements BlockAdded {
 
     // modified logic for dropStacks so that it also includes directional dropping conditions
     @Inject(method = "dropStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;"), cancellable = true)
@@ -25,6 +28,16 @@ public abstract class BlockMixin implements BlockAdded
     {
         StackDroppingManager.getInstance().onDropStacks(state, world, pos, blockEntity, entity, tool);
         ci.cancel();
+    }
+
+    @Inject(method = "afterBreak", at = @At("HEAD"))
+    private void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci) {
+        if ((Block)(Object)this instanceof GrassBlock) {
+            if (tool.isIn(ItemTags.HOES)) {
+                world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 4, 0);
+            }
+
+        }
     }
 
 

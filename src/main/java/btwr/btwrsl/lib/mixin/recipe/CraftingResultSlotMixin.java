@@ -80,7 +80,7 @@ public abstract class CraftingResultSlotMixin {
         if (stack.isIn(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_SOUND)) {
             player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, higher);
         } else if (stack.isIn(BTWRConventionalTags.Items.ON_CRAFT_SLIME_SOUND)) {
-            player.playSound(SoundEvents.ENTITY_SLIME_ATTACK, 0.1F, lower);
+            player.playSound(SoundEvents.ENTITY_SLIME_ATTACK, 0.1F, higher);
         }
 
     }

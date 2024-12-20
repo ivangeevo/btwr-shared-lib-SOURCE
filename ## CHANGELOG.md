@@ -1,6 +1,8 @@
-## next
+## v0.34-SNAPSHOT (next)
 - Added shared conventional tag for meats viable for sandwich food.
 - Added conventional block tag name translations
+- Added crafting sound for items that are
+- Changed the sounds for crafting for Slime-like items to be louder
 
 ## v0.33-SNAPSHOT
 - Improved conditions for placement for PlaceableAsBlock items. They are now not placeable on leaves

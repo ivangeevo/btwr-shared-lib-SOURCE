@@ -95,6 +95,7 @@ public class BTWRSL_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .forceAddTag(ItemTags.PLANKS)
                 .add(Items.STICK);
 
+
         }
 
 }

@@ -1,3 +1,10 @@
+## next
+- Added shared conventional tag for meats viable for sandwich food.
+- Added conventional block tag name translations
+
+## v0.33-SNAPSHOT
+- Improved conditions for placement for PlaceableAsBlock items. They are now not placeable on leaves
+
 ## v0.32-SNAPSHOT
 - Added missing mixins for BlockAdded related functionality & Made hoe breaking logic work properly without needing BTWR:Core
 

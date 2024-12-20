@@ -1,5 +1,6 @@
-// 1.21.1	2024-12-05T00:24:42.1785032	BTWR: Shared Library/Tags for minecraft:item
+// 1.21.1	2024-12-20T10:35:12.1741617	BTWR: Shared Library/Tags for minecraft:item
 75a5ded858f75ed93bb1e2b05316b883714286e8 data\c\tags\item\primitive_hoes.json
+8111f664edb6bd7a1857e678d6c0c0e56fe2351a data\c\tags\item\foods\cooked_meats_for_sandwich.json
 ea3b0019da7bc909be5fa4844e21f5f8d28d09a7 data\c\tags\item\primitive_axes.json
 07f78e455947bc3a51e3ae0e043462b3fdce1a3e data\c\tags\item\axes_make_planks.json
 26c8d14d6dfc922b444a17c69a5e5647986317cd data\c\tags\item\advanced_pickaxes.json

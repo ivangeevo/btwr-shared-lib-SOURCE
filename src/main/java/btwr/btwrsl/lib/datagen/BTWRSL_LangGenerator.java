@@ -21,6 +21,15 @@ public class BTWRSL_LangGenerator extends FabricLanguageProvider {
     }
 
     protected void addTagNames(TranslationBuilder tb) {
+
+        // Blocks
+        addTagName(BTWRConventionalTags.Blocks.VANILLA_CONVERTING_BLOCKS, "Vanilla Converting Blocks", tb);
+        addTagName(BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS, "Modded Converting Blocks", tb);
+        addTagName(BTWRConventionalTags.Blocks.STUMP_BLOCKS, "Stump Blocks", tb);
+        addTagName(BTWRConventionalTags.Blocks.FARMLAND_BLOCKS, "Farmland Blocks", tb);
+        addTagName(BTWRConventionalTags.Blocks.WEB_BLOCKS, "Cobweb Blocks", tb);
+
+        // Items
         addTagName(BTWRConventionalTags.Items.PRIMITIVE_CHISELS, "Primitive Chisels", tb);
         addTagName(BTWRConventionalTags.Items.MODERN_CHISELS, "Modern Chisels", tb);
         addTagName(BTWRConventionalTags.Items.ADVANCED_CHISELS, "Advanced Chisels", tb);
@@ -50,14 +59,16 @@ public class BTWRSL_LangGenerator extends FabricLanguageProvider {
         addTagName(BTWRConventionalTags.Items.GEARS, "Gears", tb);
         addTagName(BTWRConventionalTags.Items.COOKED_EGG_FOODS, "Cooked Eggs", tb);
         addTagName(BTWRConventionalTags.Items.COOKED_POTATO_FOODS, "Cooked Potatoes", tb);
-        addTagName(BTWRConventionalTags.Items.COOKED_MEATS, "Cooked Meats", tb);
+        addTagName(BTWRConventionalTags.Items.COOKED_MEATS_FOR_SANDWICH, "Cooked Meats For Sandwich", tb);
         addTagName(BTWRConventionalTags.Items.COBBLESTONE_CRAFTING_MATERIALS, "Cobblestone Crafting Materials", tb);
         addTagName(BTWRConventionalTags.Items.DO_KNOCKBACK_ITEMS, "Items that do knockback", tb);
         addTagName(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_SOUND, "Makes Wooden Sound on Crafting", tb);
         addTagName(BTWRConventionalTags.Items.ON_CRAFT_SLIME_SOUND, "Makes Slime Sound on Crafting", tb);
     }
 
-    protected void addTagName(TagKey<Item> tagKey, String value, TranslationBuilder tb) {
+
+
+    protected void addTagName(TagKey<?> tagKey, String value, TranslationBuilder tb) {
         tb.add(tagKey, value);
     }
 

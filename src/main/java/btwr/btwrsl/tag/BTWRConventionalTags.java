@@ -90,7 +90,7 @@ public class BTWRConventionalTags
         public static final TagKey<Item> COOKED_EGG_FOODS = createTag("foods/cooked_egg");
 
         public static final TagKey<Item> COOKED_POTATO_FOODS = createTag("foods/cooked_potato");
-        public static final TagKey<Item> COOKED_MEATS = createTag("foods/cooked_meats");
+        public static final TagKey<Item> COOKED_MEATS_FOR_SANDWICH = createTag("foods/cooked_meats_for_sandwich");
 
         public static final TagKey<Item> COBBLESTONE_CRAFTING_MATERIALS = createTag("cobblestone_crafting_materials");
 

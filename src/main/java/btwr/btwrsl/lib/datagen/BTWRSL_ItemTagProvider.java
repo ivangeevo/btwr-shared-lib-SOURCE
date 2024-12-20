@@ -3,6 +3,7 @@ package btwr.btwrsl.lib.datagen;
 import btwr.btwrsl.tag.BTWRConventionalTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
@@ -27,6 +28,10 @@ public class BTWRSL_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
                 .add(Items.BAKED_POTATO);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.COOKED_MEATS_FOR_SANDWICH)
+                .forceAddTag(ConventionalItemTags.COOKED_MEAT_FOODS)
+                .forceAddTag(ConventionalItemTags.COOKED_FISH_FOODS);
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.DO_KNOCKBACK_ITEMS)
                 // All swords too

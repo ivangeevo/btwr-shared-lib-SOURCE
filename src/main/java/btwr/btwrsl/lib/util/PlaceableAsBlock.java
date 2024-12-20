@@ -2,7 +2,9 @@ package btwr.btwrsl.lib.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
@@ -89,7 +91,7 @@ public class PlaceableAsBlock {
                 BlockState blockBelowState = world.getBlockState(pos);
 
                 // Check if the block below can support a block on top of it
-                if (!blockBelowState.isSolidBlock(world, pos)) {
+                if (!blockBelowState.isSolidBlock(world, pos) || isLeavesBlock(blockBelowState)) {
                     return ActionResult.FAIL;
                 }
 
@@ -114,6 +116,10 @@ public class PlaceableAsBlock {
         }
 
         return ActionResult.PASS;
+    }
+
+    private boolean isLeavesBlock(BlockState state) {
+      return state.isIn(BlockTags.LEAVES) || state.getBlock() instanceof LeavesBlock;
     }
 
 }

@@ -106,7 +106,6 @@ public class BTWRConventionalTags
 
         public static final TagKey<Item> ON_CRAFT_SHEARS_CUT_SOUND = createTag("on_craft_shears_cut_sound");
 
-
         private static TagKey<Item> createTag(String tagId) {
             return TagRegistration.ITEM_TAG.registerC(tagId);
         }

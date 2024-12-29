@@ -1,4 +1,9 @@
-## v0.34-SNAPSHOT (next)
+## v0.35-SNAPSHOT(not-released, not published)
+- Added sounds to play on craft for tools (wooden, stone, metalic types)
+- Added new item tags for adding sounds to modded tools like mentioned above
+- Improved the crafting sounds for other misc items and added sound to play for items that get crafted with shears
+
+## v0.34-SNAPSHOT
 - Added shared conventional tag for meats viable for sandwich food.
 - Added conventional block tag name translations
 - Changed the sounds for crafting for Slime-like items to be louder

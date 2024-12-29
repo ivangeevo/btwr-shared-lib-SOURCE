@@ -77,10 +77,17 @@ public abstract class CraftingResultSlotMixin {
         float higher = 1.25F + (player.getWorld().random.nextFloat() * 0.25F);
         float lower = (player.getWorld().random.nextFloat() - player.getWorld().random.nextFloat()) * 0.2F + 0.6F;
 
-        if (stack.isIn(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_SOUND)) {
+        if (stack.isIn(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_SOUND))
+        {
             player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, higher);
-        } else if (stack.isIn(BTWRConventionalTags.Items.ON_CRAFT_SLIME_SOUND)) {
-            player.playSound(SoundEvents.ENTITY_SLIME_ATTACK, 0.1F, higher);
+        }
+        else if (stack.isIn(BTWRConventionalTags.Items.ON_CRAFT_SLIME_SOUND))
+        {
+            player.playSound(SoundEvents.ENTITY_SLIME_ATTACK, 0.5F, player.getWorld().random.nextFloat() * 0.01F + 0.09F);
+        }
+        else if (stack.isIn(BTWRConventionalTags.Items.ON_CRAFT_SHEARS_CUT_SOUND))
+        {
+            player.playSound(SoundEvents.ENTITY_SHEEP_SHEAR,0.8F, 1.0F);
         }
 
     }

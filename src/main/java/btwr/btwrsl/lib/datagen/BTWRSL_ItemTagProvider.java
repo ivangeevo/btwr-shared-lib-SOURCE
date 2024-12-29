@@ -45,7 +45,6 @@ public class BTWRSL_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.DIAMOND_AXE)
                 .add(Items.NETHERITE_AXE);
 
-
         getOrCreateTagBuilder(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES)
                 .add(Items.WOODEN_PICKAXE)
                 .add(Items.STONE_PICKAXE);
@@ -91,9 +90,65 @@ public class BTWRSL_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(BTWRConventionalTags.Items.SHEARS)
                 .add(Items.SHEARS);
 
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.WOODEN_TOOLS)
+                .add(Items.WOODEN_AXE)
+                .add(Items.WOODEN_PICKAXE)
+                .add(Items.WOODEN_SHOVEL)
+                .add(Items.WOODEN_SWORD)
+                .add(Items.WOODEN_HOE);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.STONE_TOOLS)
+                .add(Items.STONE_AXE)
+                .add(Items.STONE_PICKAXE)
+                .add(Items.STONE_SHOVEL)
+                .add(Items.STONE_SWORD)
+                .add(Items.STONE_HOE);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.IRON_TOOLS)
+                .add(Items.IRON_AXE)
+                .add(Items.IRON_PICKAXE)
+                .add(Items.IRON_SHOVEL)
+                .add(Items.IRON_SWORD)
+                .add(Items.IRON_HOE);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.GOLDEN_TOOLS)
+                .add(Items.GOLDEN_AXE)
+                .add(Items.GOLDEN_PICKAXE)
+                .add(Items.GOLDEN_SHOVEL)
+                .add(Items.GOLDEN_SWORD)
+                .add(Items.GOLDEN_HOE);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.DIAMOND_TOOLS)
+                .add(Items.DIAMOND_AXE)
+                .add(Items.DIAMOND_PICKAXE)
+                .add(Items.DIAMOND_SHOVEL)
+                .add(Items.DIAMOND_SWORD)
+                .add(Items.DIAMOND_HOE);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.NETHERITE_TOOLS)
+                .add(Items.NETHERITE_AXE)
+                .add(Items.NETHERITE_PICKAXE)
+                .add(Items.NETHERITE_SHOVEL)
+                .add(Items.NETHERITE_SWORD)
+                .add(Items.NETHERITE_HOE);
+
+        // Misc item crafting sound tags
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_SOUND)
                 .forceAddTag(ItemTags.PLANKS)
                 .add(Items.STICK);
+
+        // Tool item crafting sound tags
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_TOOL_SOUND)
+                .addTag(BTWRConventionalTags.Items.WOODEN_TOOLS);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_STONE_TOOL_SOUND)
+                .addTag(BTWRConventionalTags.Items.STONE_TOOLS);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_METALLIC_TOOL_SOUND)
+                .addTag(BTWRConventionalTags.Items.IRON_TOOLS)
+                .addTag(BTWRConventionalTags.Items.GOLDEN_TOOLS)
+                .addTag(BTWRConventionalTags.Items.DIAMOND_TOOLS)
+                .addTag(BTWRConventionalTags.Items.NETHERITE_TOOLS);
 
 
         }

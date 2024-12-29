@@ -3,7 +3,6 @@ package btwr.btwrsl.lib.datagen;
 import btwr.btwrsl.tag.BTWRConventionalTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
-import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.TagKey;
 
@@ -22,14 +21,14 @@ public class BTWRSL_LangGenerator extends FabricLanguageProvider {
 
     protected void addTagNames(TranslationBuilder tb) {
 
-        // Blocks
+        // Block Tags
         addTagName(BTWRConventionalTags.Blocks.VANILLA_CONVERTING_BLOCKS, "Vanilla Converting Blocks", tb);
         addTagName(BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS, "Modded Converting Blocks", tb);
         addTagName(BTWRConventionalTags.Blocks.STUMP_BLOCKS, "Stump Blocks", tb);
         addTagName(BTWRConventionalTags.Blocks.FARMLAND_BLOCKS, "Farmland Blocks", tb);
         addTagName(BTWRConventionalTags.Blocks.WEB_BLOCKS, "Cobweb Blocks", tb);
 
-        // Items
+        // Item Tags
         addTagName(BTWRConventionalTags.Items.PRIMITIVE_CHISELS, "Primitive Chisels", tb);
         addTagName(BTWRConventionalTags.Items.MODERN_CHISELS, "Modern Chisels", tb);
         addTagName(BTWRConventionalTags.Items.ADVANCED_CHISELS, "Advanced Chisels", tb);
@@ -62,11 +61,11 @@ public class BTWRSL_LangGenerator extends FabricLanguageProvider {
         addTagName(BTWRConventionalTags.Items.COOKED_MEATS_FOR_SANDWICH, "Cooked Meats For Sandwich", tb);
         addTagName(BTWRConventionalTags.Items.COBBLESTONE_CRAFTING_MATERIALS, "Cobblestone Crafting Materials", tb);
         addTagName(BTWRConventionalTags.Items.DO_KNOCKBACK_ITEMS, "Items that do knockback", tb);
-        addTagName(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_SOUND, "Makes Wooden Sound on Crafting", tb);
-        addTagName(BTWRConventionalTags.Items.ON_CRAFT_SLIME_SOUND, "Makes Slime Sound on Crafting", tb);
+        addTagName(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_SOUND, "Makes wooden sound on crafting", tb);
+        addTagName(BTWRConventionalTags.Items.ON_CRAFT_SLIME_SOUND, "Makes sime sound on crafting", tb);
+        addTagName(BTWRConventionalTags.Items.ON_CRAFT_SHEARS_CUT_SOUND, "Makes shears snipping sound On crafting", tb);
+
     }
-
-
 
     protected void addTagName(TagKey<?> tagKey, String value, TranslationBuilder tb) {
         tb.add(tagKey, value);

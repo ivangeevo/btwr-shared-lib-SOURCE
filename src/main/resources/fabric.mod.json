@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "btwr-sl",
+  "id": "btwr_sl",
   "version": "${version}",
   "name": "BTWR: Shared Library",
   "description": "",
   "authors": [],
   "contact": {},
   "license": "All-Rights-Reserved",
-  "icon": "assets/btwr-sl/icon.png",
+  "icon": "assets/btwr_sl/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "btwr.btwrsl.lib.client.BTWRSLModClient"
+      "btwr.btwr_sl.lib.client.BTWRSLModClient"
     ],
     "main": [
-      "btwr.btwrsl.BTWRSLMod"
+      "btwr.btwr_sl.BTWRSLMod"
     ],
     "fabric-datagen": [
-      "btwr.btwrsl.BTWRSLDataGenerator"
+      "btwr.btwr_sl.BTWRSLDataGenerator"
     ]
   },
   "mixins": [
-    "btwr-sl.mixins.json",
+    "btwr_sl.mixins.json",
     {
-      "config": "btwr-sl.client.mixins.json",
+      "config": "btwr_sl.client.mixins.json",
       "environment": "client"
     }
   ],
@@ -35,13 +35,13 @@
 
   "custom": {
     "loom:injected_interfaces": {
-      "net/minecraft/class_2248": ["btwr/btwrsl/lib/interfaces/added/BlockAdded"],
-      "net/minecraft/class_1657": ["btwr/btwrsl/lib/interfaces/added/PlayerEntityAdded"],
-      "net/minecraft/class_1867": ["btwr/btwrsl/lib/interfaces/added/recipe/ShapelessRecipeAdded"],
-      "net/minecraft/class_2450": ["btwr/btwrsl/lib/interfaces/added/recipe/ShapelessRecipeJsonBuilderAdded"]
+      "net/minecraft/class_2248": ["btwr/btwr_sl/lib/interfaces/added/BlockAdded"],
+      "net/minecraft/class_1657": ["btwr/btwr_sl/lib/interfaces/added/PlayerEntityAdded"],
+      "net/minecraft/class_1867": ["btwr/btwr_sl/lib/interfaces/added/recipe/ShapelessRecipeAdded"],
+      "net/minecraft/class_2450": ["btwr/btwr_sl/lib/interfaces/added/recipe/ShapelessRecipeJsonBuilderAdded"]
 
     }
   },
 
-  "accessWidener" : "btwr-sl.accesswidener"
+  "accessWidener" : "btwr_sl.accesswidener"
 }

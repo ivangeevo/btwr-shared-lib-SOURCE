@@ -22,7 +22,7 @@ loom {
             name "Data Generation"
             vmArg "-Dfabric-api.datagen"
             vmArg "-Dfabric-api.datagen.output-dir=${file(dataOutput)}"
-            vmArg "-Dfabric-api.datagen.modid=btwr-sl"
+            vmArg "-Dfabric-api.datagen.modid=btwr_sl"
 
             runDir "build/datagen"
         }
@@ -47,7 +47,7 @@ loom {
     splitEnvironmentSourceSets()
 
     mods {
-        "btwr-sl" {
+        "btwr_sl" {
             sourceSet sourceSets.main
             sourceSet sourceSets.client
         }
@@ -193,6 +193,6 @@ tasks.register('gitPushSource') {
         }
 
         loom {
-            accessWidenerPath = file("src/main/resources/btwr-sl.accesswidener")
+            accessWidenerPath = file("src/main/resources/btwr_sl.accesswidener")
         }
     }

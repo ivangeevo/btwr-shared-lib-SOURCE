@@ -60,10 +60,17 @@ public class BTWRSL_LangGenerator extends FabricLanguageProvider {
         addTagName(BTWRConventionalTags.Items.COOKED_POTATO_FOODS, "Cooked Potatoes", tb);
         addTagName(BTWRConventionalTags.Items.COOKED_MEATS_FOR_SANDWICH, "Cooked Meats For Sandwich", tb);
         addTagName(BTWRConventionalTags.Items.COBBLESTONE_CRAFTING_MATERIALS, "Cobblestone Crafting Materials", tb);
-        addTagName(BTWRConventionalTags.Items.DO_KNOCKBACK_ITEMS, "Items that do knockback", tb);
-        addTagName(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_SOUND, "Makes wooden sound on crafting", tb);
-        addTagName(BTWRConventionalTags.Items.ON_CRAFT_SLIME_SOUND, "Makes sime sound on crafting", tb);
-        addTagName(BTWRConventionalTags.Items.ON_CRAFT_SHEARS_CUT_SOUND, "Makes shears snipping sound On crafting", tb);
+        addTagName(BTWRConventionalTags.Items.DO_KNOCKBACK_ITEMS, "Items that can do knockback", tb);
+        addTagName(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_SOUND, "Wooden sound on crafting", tb);
+        addTagName(BTWRConventionalTags.Items.ON_CRAFT_SLIME_SOUND, "Slime sound on crafting", tb);
+        addTagName(BTWRConventionalTags.Items.ON_CRAFT_SHEARS_CUT_SOUND, "Shears snip sound on crafting", tb);
+        addTagName(BTWRConventionalTags.Items.WOODEN_TOOLS, "Wooden Tools", tb);
+        addTagName(BTWRConventionalTags.Items.STONE_TOOLS, "Stone Tools", tb);
+        addTagName(BTWRConventionalTags.Items.IRON_TOOLS, "Iron Tools", tb);
+        addTagName(BTWRConventionalTags.Items.GOLDEN_TOOLS, "Golden Tools", tb);
+        addTagName(BTWRConventionalTags.Items.DIAMOND_TOOLS, "Diamond Tools", tb);
+        addTagName(BTWRConventionalTags.Items.NETHERITE_TOOLS, "Netherite Tools", tb);
+
 
     }
 

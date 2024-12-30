@@ -1,4 +1,9 @@
-## v0.36-SNAPSHOT(not-released, not published)
+## v0.37-SNAPSHOT(not-released, not published)
++ Conventional item tags changes (same but fixes)
++ Fixed item tag translations to display properly
+
+
+## v0.36-SNAPSHOT
 + Conventional item tags changes
 
 ## v0.35-SNAPSHOT

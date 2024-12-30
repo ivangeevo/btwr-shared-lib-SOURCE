@@ -1,8 +1,8 @@
-// 1.21.1	2024-12-30T02:03:18.1309766	BTWR: Shared Library/Tags for minecraft:item
+// 1.21.1	2024-12-30T02:20:42.5860296	BTWR: Shared Library/Tags for minecraft:item
 75a5ded858f75ed93bb1e2b05316b883714286e8 data\c\tags\item\primitive_hoes.json
 7e1884b9378d526b59d8b3be6693b9e34d2d9977 data\c\tags\item\iron_tools.json
-3427b29d16ec216578bb2e29d165451dd0967e0f data\c\tags\item\wooden_hoes.json
-f6f12f08773884a17d83c377faf72c600813429f data\c\tags\item\on_craft_wooden_tool_sound.json
+3427b29d16ec216578bb2e29d165451dd0967e0f data\c\tags\item\wooden_tools.json
+51e8e470d2669ced2db19327354a3869e38909e6 data\c\tags\item\on_craft_wooden_tool_sound.json
 8111f664edb6bd7a1857e678d6c0c0e56fe2351a data\c\tags\item\foods\cooked_meats_for_sandwich.json
 962d4e8a7496ee754ae2408dea5047da034513b0 data\c\tags\item\diamond_tools.json
 ea3b0019da7bc909be5fa4844e21f5f8d28d09a7 data\c\tags\item\primitive_axes.json

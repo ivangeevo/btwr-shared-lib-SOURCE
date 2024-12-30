@@ -75,7 +75,7 @@ public class BTWRConventionalTags
         public static final TagKey<Item> MODERN_HOES = createTag("modern_hoes");
         public static final TagKey<Item> ADVANCED_HOES = createTag("advanced_hoes");
 
-        public static final TagKey<Item> WOODEN_TOOLS = createTag("wooden_hoes");
+        public static final TagKey<Item> WOODEN_TOOLS = createTag("wooden_tools");
         public static final TagKey<Item> STONE_TOOLS = createTag("stone_tools");
         public static final TagKey<Item> IRON_TOOLS = createTag("iron_tools");
         public static final TagKey<Item> GOLDEN_TOOLS = createTag("gold_tools");

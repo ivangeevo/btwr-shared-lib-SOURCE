@@ -1,4 +1,7 @@
-## v0.35-SNAPSHOT(not-released, not published)
+## v0.36-SNAPSHOT(not-released, not published)
++ Conventional item tags changes
+
+## v0.35-SNAPSHOT
 - Added sounds to play on craft for tools (wooden, stone, metalic types)
 - Added new item tags for adding sounds to modded tools like mentioned above
 - Improved the crafting sounds for other misc items and added sound to play for items that get crafted with shears

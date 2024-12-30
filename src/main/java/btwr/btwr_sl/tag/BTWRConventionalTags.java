@@ -75,6 +75,13 @@ public class BTWRConventionalTags
         public static final TagKey<Item> MODERN_HOES = createTag("modern_hoes");
         public static final TagKey<Item> ADVANCED_HOES = createTag("advanced_hoes");
 
+        public static final TagKey<Item> WOODEN_TOOLS = createTag("wooden_hoes");
+        public static final TagKey<Item> STONE_TOOLS = createTag("stone_tools");
+        public static final TagKey<Item> IRON_TOOLS = createTag("iron_tools");
+        public static final TagKey<Item> GOLDEN_TOOLS = createTag("gold_tools");
+        public static final TagKey<Item> DIAMOND_TOOLS = createTag("diamond_tools");
+        public static final TagKey<Item> NETHERITE_TOOLS = createTag("netherite_tools");
+
 
         public static final TagKey<Item> SPIT_CAMPFIRE_ITEMS = createTag("spit_campfire_items");
 
@@ -104,8 +111,8 @@ public class BTWRConventionalTags
         // On craft tool items
         public static final TagKey<Item> ON_CRAFT_WOODEN_TOOL_SOUND = createTag("on_craft_wooden_tool_sound");
         public static final TagKey<Item> ON_CRAFT_STONE_TOOL_SOUND = createTag("on_craft_stone_tool_sound");
-        /** Diamond tools also count as "metallic" for this tag. **/
-        public static final TagKey<Item> ON_CRAFT_METALLIC_TOOL_SOUND = createTag("on_craft_stone_tool_sound");
+        /** Diamond tools usually also count as "metallic" for this tag. **/
+        public static final TagKey<Item> ON_CRAFT_METALLIC_TOOL_SOUND = createTag("on_craft_metallic_tool_sound");
 
 
         // On craft misc items

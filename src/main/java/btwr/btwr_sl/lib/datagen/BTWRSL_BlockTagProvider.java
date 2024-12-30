@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 
@@ -59,6 +60,9 @@ public class BTWRSL_BlockTagProvider extends FabricTagProvider.BlockTagProvider 
 
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.WEB_BLOCKS)
                 .add(Blocks.COBWEB);
+
+
+
 
     }
 }

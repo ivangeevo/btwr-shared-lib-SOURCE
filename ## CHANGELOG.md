@@ -1,4 +1,7 @@
-## v0.37-SNAPSHOT(not-released, not published)
+## v0.38-SNAPSHOT(not-released, not published)
++ Added missing block tag for directional dropping blocks for oak logs
+
+## v0.37-SNAPSHOT
 + Conventional item tags changes (same but fixes)
 + Fixed item tag translations to display properly
 

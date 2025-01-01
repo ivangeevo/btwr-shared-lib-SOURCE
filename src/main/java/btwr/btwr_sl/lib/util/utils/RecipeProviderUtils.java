@@ -100,7 +100,7 @@ public interface RecipeProviderUtils {
     {
         public static Identifier ofMC(String item) { return Identifier.ofVanilla(item); }
         /** DS - Datapack Suite **/
-        public static Identifier ofDS(String item) { return Identifier.of("btwr-ds", item); }
+        public static Identifier ofDS(String item) { return Identifier.of("btwr_ds", item); }
         /** BTWR: Core **/
         public static Identifier ofBTWR(String item) { return Identifier.of("btwr", item); }
         /** BWT - Better With Time **/

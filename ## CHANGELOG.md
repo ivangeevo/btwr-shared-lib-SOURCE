@@ -1,5 +1,8 @@
-## v0.38-SNAPSHOT(not-released, not published)
-+ Added missing block tag for directional dropping blocks for oak logs
+## v0.39-SNAPSHOT
++ Changed the btwr-sl mod id to be btwr_sl in some places that had the old one.
+
+## v0.38-SNAPSHOT
++ Added missing block tag entry for directional dropping blocks for the oak log block
 
 ## v0.37-SNAPSHOT
 + Conventional item tags changes (same but fixes)

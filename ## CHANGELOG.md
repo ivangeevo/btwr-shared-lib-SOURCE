@@ -1,5 +1,9 @@
+## v0.40
++ Improved the code for the crafting sounds for items & made that a separate system.
++ Tried fixing mod version check failing problem on older versions by removing "SNAPSHOT" in the string that checks the version in the code.
+
 ## v0.39-SNAPSHOT
-+ Changed the btwr-sl mod id to be btwr_sl in some places that had the old one.
++ Changed the btwr-ds mod id to be btwr_ds in some places that had the old one.
 
 ## v0.38-SNAPSHOT
 + Added missing block tag entry for directional dropping blocks for the oak log block

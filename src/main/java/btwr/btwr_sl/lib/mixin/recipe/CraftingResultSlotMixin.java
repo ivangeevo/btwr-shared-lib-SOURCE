@@ -1,6 +1,7 @@
 package btwr.btwr_sl.lib.mixin.recipe;
 
 import btwr.btwr_sl.lib.interfaces.added.recipe.ShapelessRecipeAdded;
+import btwr.btwr_sl.lib.util.CraftingSoundManager;
 import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.RecipeInputInventory;
@@ -38,7 +39,8 @@ public abstract class CraftingResultSlotMixin {
         }
 
         if (player.getWorld().isClient) {
-            handleSoundOnCraft(stack, player);
+            //handleSoundOnCraft(stack, player);
+            CraftingSoundManager.playCraftingSound(stack, player);
         }
     }
 

@@ -1,6 +1,12 @@
+## v0.41
++ Added Shears to the IRON_TOOLS item tag, which in turn makes it make the proper metallic sound when crafted.
++ Improved the crafting sound code even more and made sure it works in shift-click item retrieval as well.
++ Moved the crafting sounds of tools/items to be added by BTWR: Core.
+
 ## v0.40
 + Improved the code for the crafting sounds for items & made that a separate system.
 + Tried fixing mod version check failing problem on older versions by removing "SNAPSHOT" in the string that checks the version in the code.
++ Updated to Fabric API 0.114.0
 
 ## v0.39-SNAPSHOT
 + Changed the btwr-ds mod id to be btwr_ds in some places that had the old one.
@@ -11,7 +17,6 @@
 ## v0.37-SNAPSHOT
 + Conventional item tags changes (same but fixes)
 + Fixed item tag translations to display properly
-
 
 ## v0.36-SNAPSHOT
 + Conventional item tags changes

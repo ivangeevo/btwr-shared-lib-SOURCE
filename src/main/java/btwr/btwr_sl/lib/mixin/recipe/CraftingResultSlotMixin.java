@@ -2,7 +2,6 @@ package btwr.btwr_sl.lib.mixin.recipe;
 
 import btwr.btwr_sl.lib.interfaces.added.recipe.ShapelessRecipeAdded;
 import btwr.btwr_sl.lib.util.CraftingSoundManager;
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
@@ -13,7 +12,6 @@ import net.minecraft.recipe.ShapelessRecipe;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.collection.DefaultedList;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -40,9 +38,11 @@ public abstract class CraftingResultSlotMixin {
 
         if (player.getWorld().isClient) {
             //handleSoundOnCraft(stack, player);
-            CraftingSoundManager.playCraftingSound(stack, player);
+            //CraftingSoundManager.playCraftingSound(stack, player);
         }
     }
+
+
 
     @Inject(method = "onTakeItem", at = @At("TAIL"))
     protected void setTickCraftLogic(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
@@ -65,33 +65,11 @@ public abstract class CraftingResultSlotMixin {
             DefaultedList<ItemStack> drops = ((ShapelessRecipeAdded) craftingRecipe).getAdditionalDrops();
             if (!drops.isEmpty()) {
                 for (ItemStack itemStack : drops) {
-                    player.dropStack( itemStack.copy() );
+                    player.dropStack(itemStack.copy());
                 }
             }
 
         }
-    }
-
-    // Plays a different sound depending on the item being crafted.
-    @Unique
-    private void handleSoundOnCraft(ItemStack stack, PlayerEntity player) {
-
-        float higher = 1.25F + (player.getWorld().random.nextFloat() * 0.25F);
-        float lower = (player.getWorld().random.nextFloat() - player.getWorld().random.nextFloat()) * 0.2F + 0.6F;
-
-        if (stack.isIn(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_SOUND))
-        {
-            player.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.1F, higher);
-        }
-        else if (stack.isIn(BTWRConventionalTags.Items.ON_CRAFT_SLIME_SOUND))
-        {
-            player.playSound(SoundEvents.ENTITY_SLIME_ATTACK, 0.5F, player.getWorld().random.nextFloat() * 0.01F + 0.09F);
-        }
-        else if (stack.isIn(BTWRConventionalTags.Items.ON_CRAFT_SHEARS_CUT_SOUND))
-        {
-            player.playSound(SoundEvents.ENTITY_SHEEP_SHEAR,0.8F, 1.0F);
-        }
-
     }
 
 }

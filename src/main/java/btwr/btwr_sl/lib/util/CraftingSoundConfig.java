@@ -27,6 +27,27 @@ public enum CraftingSoundConfig {
         0.8F,
         1.0F,
         0.0F
+    ),
+    WOODEN_TOOL_SOUND(
+            BTWRConventionalTags.Items.ON_CRAFT_WOODEN_TOOL_SOUND,
+            SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR,
+            0.1F,
+            1.25F,
+            0.25F
+    ),
+    STONE_TOOL_SOUND(
+            BTWRConventionalTags.Items.ON_CRAFT_STONE_TOOL_SOUND,
+            SoundEvents.BLOCK_ANVIL_LAND,
+            0.1F,
+            1.75F,
+            0.25F
+    ),
+    METALLIC_TOOL_SOUND(
+            BTWRConventionalTags.Items.ON_CRAFT_METALLIC_TOOL_SOUND,
+            SoundEvents.BLOCK_ANVIL_USE,
+            0.5F,
+            1.25F,
+            0.25F
     );
 
     private final TagKey<Item> tag;

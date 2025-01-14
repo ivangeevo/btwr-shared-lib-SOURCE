@@ -15,6 +15,11 @@ public class BTWRConventionalTags
         // Blocks that can convert on break and are NOT from vanilla
         public static final TagKey<Block> MODDED_CONVERTING_BLOCKS = createTag("modded_converting_blocks");
 
+        // Blocks are considered wooden but are special type/unaccounted for by vanilla tags
+        // Mods should add their blocks to this tag if they want them to work with the
+        // "Don't Spawn Mobs on Wood" config option from BTWR: Core
+        public static final TagKey<Block> WOODEN_MISC_BLOCKS  = createTag("wooden_misc_blocks");
+
         // Stump blocks grouped; initially used for Sturdy Tree's Stump blocks
         public static final TagKey<Block> STUMP_BLOCKS = createTag("stump_blocks");
 

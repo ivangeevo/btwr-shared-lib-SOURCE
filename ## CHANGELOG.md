@@ -1,3 +1,7 @@
+## v0.42
++ Added a common block tag "WOODEN_MISC_BLOCKS" for modded blocks that are considered "wooden"
++ Fixed a bug where the game would crash when (non-player) entities tried to destroy blocks and drop stacks
+
 ## v0.41
 + Added Shears to the IRON_TOOLS item tag, which in turn makes it make the proper metallic sound when crafted.
 + Improved the crafting sound code even more and made sure it works in shift-click item retrieval as well.

@@ -12,6 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.spongepowered.asm.mixin.Mixin;
@@ -60,4 +61,9 @@ public abstract class BlockMixin implements BlockAdded {
 
     @Override
     public void removeWeeds(World world, BlockPos pos) {}
+
+    @Override
+    public boolean isBlockAttachedToFacing(WorldAccess blockAccess, BlockPos pos, Direction direction) {
+        return false;
+    }
 }

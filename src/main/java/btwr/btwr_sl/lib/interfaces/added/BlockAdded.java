@@ -2,10 +2,10 @@ package btwr.btwr_sl.lib.interfaces.added;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-// version 1 = 18Nov 2024
 public interface BlockAdded
 {
 
@@ -28,5 +28,12 @@ public interface BlockAdded
     default int getWeedsGrowthLevel(WorldAccess blockAccess, BlockPos pos) { return 0; }
 
     default void removeWeeds(World world, BlockPos pos) {}
+
+    /**
+     * returns true if block is attached to a block in a particular direction.  Example: pumpkins attached to stems
+     */
+    default boolean isBlockAttachedToFacing(WorldAccess blockAccess, BlockPos pos, Direction direction) {
+        return false;
+    }
 
 }

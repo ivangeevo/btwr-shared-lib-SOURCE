@@ -1,3 +1,7 @@
+## v0.43
++ Added a Block method in the mod API to check if a another block is attached to the
+facing of a block ("isBlockAttachedToFacing").
+
 ## v0.42
 + Added a common block tag "WOODEN_MISC_BLOCKS" for modded blocks that are considered "wooden"
 + Fixed a bug where the game would crash when (non-player) entities tried to destroy blocks and drop stacks

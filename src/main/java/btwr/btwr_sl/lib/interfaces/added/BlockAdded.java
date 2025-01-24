@@ -20,6 +20,10 @@ public interface BlockAdded
      */
     default float getPlantGrowthOnMultiplier(World world, BlockPos pos, Block plantBlock) { return 0; }
 
+    default boolean getIsFertilizedForPlantGrowth(World world, BlockPos pos) {
+        return false;
+    }
+
     default boolean isBlockHydratedForPlantGrowthOn(World world, BlockPos pos) { return false; }
 
     /**

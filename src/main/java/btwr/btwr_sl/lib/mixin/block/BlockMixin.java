@@ -66,4 +66,9 @@ public abstract class BlockMixin implements BlockAdded {
     public boolean isBlockAttachedToFacing(WorldAccess blockAccess, BlockPos pos, Direction direction) {
         return false;
     }
+
+    @Override
+    public boolean getIsFertilizedForPlantGrowth(World world, BlockPos pos) {
+        return false;
+    }
 }

@@ -34,6 +34,12 @@ public class BTWRSL_BlockTagProvider extends FabricTagProvider.BlockTagProvider 
     }
 
     private void addToConventionalTags() {
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.SHEARS_EFFICIENT)
+                .forceAddTag(BlockTags.LEAVES)
+                .add(Blocks.VINE)
+                .add(Blocks.GLOW_LICHEN);
+
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.VANILLA_CONVERTING_BLOCKS)
                 .forceAddTag(BlockTags.OAK_LOGS)
                 .forceAddTag(BlockTags.BIRCH_LOGS)

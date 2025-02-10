@@ -1,3 +1,6 @@
+## v0.46
++ Added a SHEARS_EFFICIENT block tag for adding blocks that shear items can efficiently break.
+
 ## v0.45
 + Fixed cobblestone missing from the COBBLESTONE_CRAFTING_MATERIALS tag
 + Updated to Fabric API 0.115.0 & Fabric Loader 0.16.10

@@ -35,6 +35,8 @@ public class BTWRConventionalTags
         // existing conventional tags from fabric
         public static final TagKey<Block> ORES = createTag("ores");
 
+        public static final TagKey<Block> SHEARS_EFFICIENT = createTag("shears_efficient");
+
 
         private static TagKey<Block> createTag(String tagId) {
             return TagRegistration.BLOCK_TAG.registerC(tagId);

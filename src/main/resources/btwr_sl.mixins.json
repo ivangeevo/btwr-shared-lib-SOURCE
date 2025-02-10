@@ -6,6 +6,7 @@
   "mixins": [
     "ItemMixin",
     "PlayerEntityMixin",
+    "ShearsItemMixin",
     "block.BlockMixin",
     "block.FarmlandBlockMixin",
     "recipe.CraftingResultSlotMixin",

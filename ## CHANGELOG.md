@@ -1,3 +1,6 @@
+## v0.47
++ Added a missin mixin code for making shears actually break blocks efficiently
+
 ## v0.46
 + Added a SHEARS_EFFICIENT block tag for adding blocks that shear items can efficiently break.
 

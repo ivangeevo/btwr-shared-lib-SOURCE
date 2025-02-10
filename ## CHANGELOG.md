@@ -1,8 +1,12 @@
+## v0.45
++ Fixed cobblestone missing from the COBBLESTONE_CRAFTING_MATERIALS tag
++ Updated to Fabric API 0.115.0 & Fabric Loader 0.16.10
+
 ## v0.44
 + Added a Block method in the mod API to check if a block is fertilized for growing plants ("getIsFertilizedForPlantGrowth")
 
 ## v0.43
-+ Added a Block method in the mod API to check if a another block is attached to the facing of a block ("isBlockAttachedToFacing").
++ Added a Block method in the mod API to check if another block is attached to the facing of a block ("isBlockAttachedToFacing").
 
 ## v0.42
 + Added a common block tag "WOODEN_MISC_BLOCKS" for modded blocks that are considered "wooden"

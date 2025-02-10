@@ -26,6 +26,9 @@ public class BTWRSL_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(BTWRConventionalTags.Items.STRING_TOOL_MATERIALS)
                 .add(Items.STRING);
 
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.COBBLESTONE_CRAFTING_MATERIALS)
+                .add(Items.COBBLESTONE);
+
         getOrCreateTagBuilder(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
                 .add(Items.BAKED_POTATO);
 

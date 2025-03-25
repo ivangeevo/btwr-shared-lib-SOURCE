@@ -1,4 +1,6 @@
-
+## v0.49
++ Better world generation replacement logic that preserves blockstate properties of original block and apply them to the new one if possible
++ Updated the mod to Fabric API 0.115.3
 
 ## v0.48
 + Added a utility class 'BlockReplacementRegistry' for easy block replacement during(before) world gen applies the original block. This allows to set custom blocks during world generation.

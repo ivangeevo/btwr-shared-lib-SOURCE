@@ -25,9 +25,11 @@ public abstract class ProtoChunkMixin {
         Block replaced = BlockReplacementRegistry.getReplacementFor(original);
 
         if (original != replaced) {
-            state = replaced.getDefaultState();
+            // Copy properties from the original state
+            state = replaced.getStateWithProperties(state);
         }
 
         return chunkSection.setBlockState(x, y, z, state);
     }
 }
+

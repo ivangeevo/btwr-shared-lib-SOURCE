@@ -1,3 +1,9 @@
+
+
+## v0.48
++ Added a utility class 'BlockReplacementRegistry' for easy block replacement during(before) world gen applies the original block. This allows to set custom blocks during world generation.
++ Fixed a bug that made blocks drop directionally for mods that didn't support these blocks. (Will only work with Tough Environment and Sturdy Trees for now)
+
 ## v0.47
 + Added a missin mixin code for making shears actually break blocks efficiently
 

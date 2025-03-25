@@ -3,6 +3,7 @@ package btwr.btwr_sl.lib.block;
 import btwr.btwr_sl.lib.util.utils.ItemUtils;
 import btwr.btwr_sl.lib.util.utils.VectorUtils;
 import btwr.btwr_sl.tag.BTWRConventionalTags;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.InfestedBlock;
@@ -22,6 +23,10 @@ import static btwr.btwr_sl.tag.BTWRConventionalTags.Blocks.VANILLA_CONVERTING_BL
 public class StackDroppingManager {
     private static final StackDroppingManager instance = new StackDroppingManager();
 
+    // Directional dropping mod IDs
+    private static final String TOUGH_ENVIRONMENT_ID = "tough_environment";
+    private static final String STURDY_TREES_ID = "sturdy_trees";
+
     // Private constructor to prevent instantiation
     private StackDroppingManager() {}
 
@@ -36,7 +41,7 @@ public class StackDroppingManager {
             // the opposite direction
             Direction lookDirection = VectorUtils.getMiningDirection(entity, world, pos);
 
-            if (isDroppingInDirectionBlock(state) && !isFullyBreakingTool(tool)) {
+            if (isDroppingInDirectionBlock(state) && !isFullyBreakingTool(tool) && isModHavingDirectionalDropBlocks()) {
                 ItemUtils.ejectStackFromBlockTowardsFacing(world, entity, pos, state, blockEntity, tool, lookDirection.getOpposite());
             } else {
                 Block.getDroppedStacks(state, (ServerWorld) world, pos, blockEntity, entity, tool).forEach(stack -> Block.dropStack(world, pos, stack));
@@ -61,6 +66,12 @@ public class StackDroppingManager {
         }
 
         return (state.isIn(VANILLA_CONVERTING_BLOCKS) || state.isIn(MODDED_CONVERTING_BLOCKS));
+    }
+
+    private boolean isModHavingDirectionalDropBlocks() {
+        return FabricLoader.getInstance().isModLoaded(TOUGH_ENVIRONMENT_ID)
+                || FabricLoader.getInstance().isModLoaded(STURDY_TREES_ID)
+                ;
     }
 
 }

@@ -1,14 +1,13 @@
 package btwr.btwr_sl.lib.gui;
 
+import btwr.btwr_sl.BTWRSLMod;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.TreeMap;
 
 /**
  * Handles rendering of penalties, and their hierarchy
@@ -19,13 +18,15 @@ public class PenaltyDisplayManager {
      */
     private static final PenaltyDisplayManager INSTANCE = new PenaltyDisplayManager();
 
-    public static final int HEALTH_PRIORITY = 0;
-    public static final int GLOOM_PRIORITY = 1;
-    public static final int HUNGER_PRIORITY = 2;
+    public static final int HEALTH_PRIORITY = 10;
+    public static final int GLOOM_PRIORITY = 20;
+    public static final int HUNGER_PRIORITY = 30;
+
     /**
      * List of current penalties to be rendered
      */
-    private static HashMap<Integer,Penalty> penalties = new HashMap<>();
+    private static TreeMap<Integer,Penalty> penalties = new TreeMap<>();
+
     /**
      * Indicates if the hunger bar is currently rendered
      */
@@ -51,9 +52,12 @@ public class PenaltyDisplayManager {
         String get();
     }
 
+    /**
+     * Stores information on how and when to draw a penalty
+     */
     static public class Penalty {
         /**
-         * Determines rendering order, with higher values being closer to the hotbar
+         * Determines rendering order, with lower values being closer to the hotbar
          */
         protected int priority;
         /**
@@ -65,36 +69,59 @@ public class PenaltyDisplayManager {
          */
         protected PenaltyCondition condition;
 
+        /**
+         * Creates a penalty with variable text and conditions
+         * @param priority Order this penalty will be drawn
+         * @param display Variable text to draw
+         * @param condition Variable condition that must pass for this penalty to draw
+         */
         public Penalty(int priority, PenaltyString display, PenaltyCondition condition) {
             this.priority = priority;
             this.display = display;
             this.condition = condition;
         }
 
+        /**
+         * Creates a penalty with a static string and variable conditions
+         * @param priority Order this penalty will be drawn
+         * @param string Text to draw
+         * @param condition Variable condition that must pass for this penalty to draw
+         */
         public Penalty(int priority, String string, PenaltyCondition condition) {
             this.priority = priority;
             this.display = () -> string;
             this.condition = condition;
         }
 
+        /**
+         * Creates a penalty with a variable string that will always draw
+         * @param priority Order this penalty will be drawn
+         * @param display Variable text to draw
+         */
         public Penalty(int priority, PenaltyString display) {
             this.priority = priority;
             this.display = display;
             this.condition = () -> true;
         }
 
+        /**
+         * Gets the priority level for this penalty
+         */
         public int getPriority() {
             return this.priority;
         }
 
+        /**
+         * Gets current displayed text for this penalty
+         */
         public String getDisplay() {
             return this.display.get();
         }
     }
 
-    public static void render(DrawContext context, TextRenderer renderer) {
+    public void render(DrawContext context, TextRenderer renderer) {
         PlayerEntity player = MinecraftClient.getInstance().player;
-        renderPenalties(context, renderer, player);
+        this.renderPenalties(context, renderer, player);
     }
 
     /**
@@ -103,13 +130,13 @@ public class PenaltyDisplayManager {
      * @param renderer TextRenderer to use for drawing text
      * @param player PlayerEntity to get information from
      */
-    private static void renderPenalties(DrawContext context, TextRenderer renderer, PlayerEntity player) {
+    private void renderPenalties(DrawContext context, TextRenderer renderer, PlayerEntity player) {
         // Calculate the position of the hunger bar
         int hungerBarX = context.getScaledWindowWidth() / 2 + 91;  // Center of the hunger bar
         int hungerBarY = context.getScaledWindowHeight() - 39; // Hunger bar position vertically
 
         // Get y position to start drawing penalties
-        int textY = getTextY(player, hungerBarY);
+        int textY = this.getTextY(player, hungerBarY);
         int offsetY = 0;
 
         for (Penalty penalty : penalties.values()) {
@@ -120,7 +147,7 @@ public class PenaltyDisplayManager {
             int statusX = hungerBarX - renderer.getWidth(translatedText);
 
             // Render
-            if (penalty.condition.test() && !translatedText.equals(Text.of(""))) {
+            if (penalty.condition.test() && !translatedText.getString().isEmpty()) {
                 context.drawText(renderer, translatedText, statusX, textY - offsetY, 0xFFFFFFFF, true);
                 offsetY += 10;
             }
@@ -136,7 +163,7 @@ public class PenaltyDisplayManager {
      * @param hungerBarY Y position of the hunger bar
      * @return Calculated Y position
      */
-    private static int getTextY(PlayerEntity player, int hungerBarY) {
+    private int getTextY(PlayerEntity player, int hungerBarY) {
         // Get additional context
         boolean isRenderingAir = player.getAir() != player.getMaxAir();
         boolean isRenderingArmor = player.getArmor() > 0;
@@ -156,12 +183,47 @@ public class PenaltyDisplayManager {
         return textY;
     }
 
-    public static void setRenderingFood(boolean value) {
+    /**
+     * Sets indicator for whether food bar is rendering or not
+     */
+    public void setRenderingFood(boolean value) {
         isRenderingFood = value;
     }
 
-    public void addPenalty(Penalty penalty) {
-        int index = penalty.getPriority();
-        penalties.put(index, penalty);
+    /**
+     * Adds penalty to TreeMap
+     * @param newPenalty Penalty to add
+     */
+    public void addPenalty(Penalty newPenalty) {
+        // Get index and verify another key doesn't exist
+        int index = newPenalty.getPriority();
+        boolean hasKey = penalties.containsKey(index);
+
+        // If a key exists, continue bumping index until we reach an open key
+        while (hasKey) {
+            hasKey = penalties.containsKey(++index);
+        }
+        penalties.put(index, newPenalty);
+    }
+
+    /**
+     * Removes penalty from TreeMap
+     * @param newPenalty Penalty to remove
+     */
+    public void removePenalty(Penalty newPenalty) {
+        int index = newPenalty.getPriority();
+        removePenaltyAtIndex(index);
+    }
+
+    /**
+     * Removes penalty at index from TreeMap
+     * @param index Index to attempt removal at
+     */
+    public void removePenaltyAtIndex(int index) {
+        try {
+            penalties.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            BTWRSLMod.LOGGER.error("Could not remove penalty!", e.getCause());
+        }
     }
 }

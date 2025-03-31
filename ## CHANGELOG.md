@@ -1,3 +1,11 @@
+## v0.50
+### Penalty Display System (jeffyjamzhd)
+
++ Added a unified penalty registration system to standardize rendering across mods.
++ Introduced HUDInitializeListener for registering penalties via EventHUDInitialized.register(listener).
++ Added addPenalty(penalty) and removePenalty(penalty) methods for managing penalties dynamically.
++ Implemented priority-based rendering with condition lambdas for flexibility.
+
 ## v0.49
 + Better world generation replacement logic that preserves blockstate properties of original block and apply them to the new one if possible
 + Updated the mod to Fabric API 0.115.3

@@ -43,7 +43,7 @@ public class FOVManager {
      * from the total speed attribute value
      */
     @FunctionalInterface
-    interface ExclusionCondition {
+    public interface ExclusionCondition {
         boolean test();
     }
 
@@ -51,7 +51,7 @@ public class FOVManager {
      * Represents a mod namespace, and condition in which it's attributes
      * would be excluded from the total speed attribute value
      */
-    public class Namespace {
+    static public class Namespace {
         private ExclusionCondition condition;
         private String namespace;
 
@@ -59,7 +59,7 @@ public class FOVManager {
          * Constructor that always excludes a given namespace
          * @param namespace Mod namespace
          */
-        Namespace(String namespace) {
+        public Namespace(String namespace) {
             this.condition = () -> true;
             this.namespace = namespace;
         }
@@ -69,7 +69,7 @@ public class FOVManager {
          * @param condition Exclusion condition
          * @param namespace Mod namespace
          */
-        Namespace(ExclusionCondition condition, String namespace) {
+        public Namespace(ExclusionCondition condition, String namespace) {
             this.condition = condition;
             this.namespace = namespace;
         }
@@ -90,24 +90,21 @@ public class FOVManager {
         // Get attribute instance
         EntityAttributeInstance speedAttrib = player.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
         if (speedAttrib != null) {
-            // Get attribute values
-            double baseAttrib = player.getAttributeBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-            double filteredAttrib = getAttributeValueFiltered(speedAttrib);
-
             // Return modified attribute value
-            return value - filteredAttrib + baseAttrib;
+            return getAttributeValueFiltered(speedAttrib);
         }
         return value;
     }
 
     /**
-     * Gets the sum of attribute values based on what namespace they're from, and
-     * whether they pass the provided condition defined in the Namespace object
+     * Retrieves all attributes that are intended for exclusion from the
+     * attribute total, and reverses their operations, effectively removing
+     * their contributions to the total
      * @param attribute Attribute to filter
      * @return Attribute value with namespaces excluded
      */
     public float getAttributeValueFiltered(EntityAttributeInstance attribute) {
-        double baseValue = attribute.getBaseValue();
+        double currentValue = attribute.getValue();
 
         Map<EntityAttributeModifier.Operation, Set<EntityAttributeModifier>> operationToModifiers = Stream.of(
                 EntityAttributeModifier.Operation.values()).collect(
@@ -123,22 +120,20 @@ public class FOVManager {
 
         // Append all modifiers
         for (EntityAttributeModifier attributeModifier : operationToModifiers.get(EntityAttributeModifier.Operation.ADD_VALUE)) {
-            baseValue += attributeModifier.value();
+            currentValue -= attributeModifier.value();
         }
-
-        double baseValueCopy = baseValue;
 
         for (EntityAttributeModifier attributeModifier : operationToModifiers.get(
                 EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE)) {
-            baseValueCopy += baseValue * attributeModifier.value();
+            currentValue -= currentValue / attributeModifier.value();
         }
 
         for (EntityAttributeModifier attributeModifier : operationToModifiers.get(
                 EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)) {
-            baseValueCopy *= 1.0 + attributeModifier.value();
+            currentValue /= 1.0 + attributeModifier.value();
         }
 
-        return (float) attribute.getAttribute().value().clamp(baseValueCopy);
+        return (float) attribute.getAttribute().value().clamp(currentValue);
     }
 
     /**

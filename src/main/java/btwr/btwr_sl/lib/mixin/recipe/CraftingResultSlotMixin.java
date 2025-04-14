@@ -63,7 +63,7 @@ public abstract class CraftingResultSlotMixin {
         if (optional.isPresent() && (craftingRecipe = optional.get().value()) instanceof ShapelessRecipe) {
 
             DefaultedList<ItemStack> drops = ((ShapelessRecipeAdded) craftingRecipe).getAdditionalDrops();
-            if (!drops.isEmpty()) {
+            if (drops != null && !drops.isEmpty()) {
                 for (ItemStack itemStack : drops) {
                     player.dropStack(itemStack.copy());
                 }

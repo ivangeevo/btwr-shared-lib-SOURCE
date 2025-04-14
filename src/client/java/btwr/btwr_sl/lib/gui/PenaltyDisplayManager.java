@@ -1,6 +1,9 @@
 package btwr.btwr_sl.lib.gui;
 
 import btwr.btwr_sl.BTWRSLMod;
+import btwr.btwr_sl.lib.client.BTWRSLModClient;
+import btwr.btwr_sl.lib.config.BTWRSLSettings;
+import btwr.btwr_sl.lib.config.PenaltyDrawMode;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -22,6 +25,11 @@ public class PenaltyDisplayManager {
     public static final int HEALTH_PRIORITY = 10;
     public static final int GLOOM_PRIORITY = 20;
     public static final int HUNGER_PRIORITY = 30;
+
+    public static final byte RIGHT = 0x1;
+    public static final byte LEFT = 0x0;
+    public static final byte BOTTOM = 0x1;
+    public static final byte TOP = 0x0;
 
     /**
      * List of current penalties to be rendered
@@ -132,14 +140,25 @@ public class PenaltyDisplayManager {
      * @param player PlayerEntity to get information from
      */
     private void renderPenalties(DrawContext context, TextRenderer renderer, PlayerEntity player) {
+        // Determine if draw should be diverted
+        if (getDrawMode().isAnchor()) {
+            renderPenaltiesAnchored(context, renderer, player);
+            return;
+        }
+
         // Calculate the position of the hunger bar
         int hungerBarX = context.getScaledWindowWidth() / 2 + 91;  // Center of the hunger bar
         int hungerBarY = context.getScaledWindowHeight() - 39; // Hunger bar position vertically
+
+        // Add override if applicable
+        if (BTWRSLModClient.getSettings().isPenaltyOverridesEnabled())
+            hungerBarY -= BTWRSLModClient.getSettings().getRenderYOffset();
 
         // Get y position to start drawing penalties
         int textY = this.getTextY(player, hungerBarY);
         int offsetY = 0;
 
+        // Begin drawing
         for (Penalty penalty : penalties.values()) {
             // Get translated text
             Text translatedText = Text.translatable(penalty.getDisplay());
@@ -156,6 +175,36 @@ public class PenaltyDisplayManager {
 
         // Set render boolean to false in-case of HUD changes at runtime
         setRenderingFood(false);
+    }
+
+    private void renderPenaltiesAnchored(DrawContext context, TextRenderer renderer, PlayerEntity player) {
+        // Calculate anchor point
+        PenaltyDrawMode drawMode = getDrawMode();
+        int renderX = drawMode.getX(context);
+        int renderY = drawMode.getY(context);
+        int offsetY = 0;
+        int margin = getSettings().getRenderMargin();
+
+        // Add override if applicable
+        if (BTWRSLModClient.getSettings().isPenaltyOverridesEnabled())
+            renderY -= BTWRSLModClient.getSettings().getRenderYOffset();
+        renderY += drawMode.getYMargin(margin);
+
+        // Begin drawing
+        for (Penalty penalty : penalties.values()) {
+            // Get translated text
+            Text translatedText = Text.translatable(penalty.getDisplay());
+
+            // Right align text to hot-bar
+            int statusX = renderX - (drawMode.shouldAddX() ? renderer.getWidth(translatedText) : 0);
+            statusX += drawMode.getXMargin(margin);
+
+            // Render
+            if (penalty.condition.test() && !translatedText.getString().isEmpty()) {
+                context.drawText(renderer, translatedText, statusX, renderY - offsetY, 0xFFFFFFFF, true);
+                offsetY += drawMode.shouldFlipY() ? -10 : 10;
+            }
+        }
     }
 
     /**
@@ -189,7 +238,13 @@ public class PenaltyDisplayManager {
      */
     public void setRenderingFood(boolean value) {
         isRenderingFood = value;
-        if (FabricLoader.getInstance().isModLoaded("granular_hunger"))
+        if (
+                // Explicit compat checks here
+                FabricLoader.getInstance().isModLoaded("granular_hunger") ||
+                // Then the override
+                (BTWRSLModClient.getSettings().isPenaltyOverridesEnabled() &&
+                 BTWRSLModClient.getSettings().isHungerOffsetEnabled())
+        )
             isRenderingFood = true;
     }
 
@@ -228,5 +283,29 @@ public class PenaltyDisplayManager {
         } catch (IndexOutOfBoundsException e) {
             BTWRSLMod.LOGGER.error("Could not remove penalty!", e.getCause());
         }
+    }
+
+    /**
+     * Readability wrapper for settings getter
+     * @return Mod settings
+     */
+    private BTWRSLSettings getSettings() {
+        return BTWRSLModClient.getSettings();
+    }
+
+    /**
+     * Readability wrapper for draw mode
+     * @return Current draw mode
+     */
+    private PenaltyDrawMode getDrawMode() {
+        return BTWRSLModClient.getSettings().getDrawMode();
+    }
+
+    /**
+     * Readability wrapper for checking override
+     * @return Override state
+     */
+    private boolean isOverriding() {
+        return getSettings().isPenaltyOverridesEnabled();
     }
 }

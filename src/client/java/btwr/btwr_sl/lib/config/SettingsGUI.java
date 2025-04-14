@@ -18,34 +18,34 @@ public class SettingsGUI {
 
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
-        ConfigCategory general = builder.getOrCreateCategory(Text.translatable("config.btwrsl.category.penalties"));
+        ConfigCategory penalties = builder.getOrCreateCategory(Text.translatable("config.btwrsl.category.penalties"));
 
         /** Penalties Category **/
-        general.addEntry(entryBuilder
+        penalties.addEntry(entryBuilder
                 .startBooleanToggle(Text.translatable("config.btwrsl.penalty_override"), settingsCommon.doPenaltyDisplayOverride)
                 .setDefaultValue(false)
                 .setSaveConsumer(newValue -> settingsCommon.doPenaltyDisplayOverride = newValue)
                 .setTooltip(Text.translatable("config.btwrsl.tooltip.penalty_override"))
                 .build());
-        general.addEntry(entryBuilder
+        penalties.addEntry(entryBuilder
                 .startBooleanToggle(Text.translatable("config.btwrsl.hunger_override"), settingsCommon.doHungerOffsetOverride)
                 .setDefaultValue(true)
                 .setSaveConsumer(newValue -> settingsCommon.doHungerOffsetOverride = newValue)
                 .setTooltip(Text.translatable("config.btwrsl.tooltip.hunger_override"))
                 .build());
-        general.addEntry(entryBuilder
+        penalties.addEntry(entryBuilder
                 .startIntSlider(Text.translatable("config.btwrsl.render_y"), settingsCommon.renderYOffset, -100, 100)
                 .setDefaultValue(0)
                 .setSaveConsumer(newValue -> settingsCommon.renderYOffset = newValue)
                 .setTooltip(Text.translatable("config.btwrsl.tooltip.render_y"))
                 .build());
-        general.addEntry(entryBuilder
+        penalties.addEntry(entryBuilder
                 .startIntSlider(Text.translatable("config.btwrsl.draw_margin"), settingsCommon.renderMargin, 0, 32)
                 .setDefaultValue(8)
                 .setSaveConsumer(newValue -> settingsCommon.renderMargin = newValue)
                 .setTooltip(Text.translatable("config.btwrsl.tooltip.draw_margin"))
                 .build());
-        general.addEntry(entryBuilder
+        penalties.addEntry(entryBuilder
                 .startEnumSelector(Text.translatable("config.btwrsl.draw_mode"), PenaltyDrawMode.class, settingsCommon.drawMode)
                 .setDefaultValue(PenaltyDrawMode.BTW)
                 .setSaveConsumer(newValue -> settingsCommon.drawMode = newValue)

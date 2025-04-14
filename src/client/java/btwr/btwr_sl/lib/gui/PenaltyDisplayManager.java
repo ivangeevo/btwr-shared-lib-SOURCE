@@ -1,6 +1,7 @@
 package btwr.btwr_sl.lib.gui;
 
 import btwr.btwr_sl.BTWRSLMod;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -154,7 +155,7 @@ public class PenaltyDisplayManager {
         }
 
         // Set render boolean to false in-case of HUD changes at runtime
-        isRenderingFood = false;
+        setRenderingFood(false);
     }
 
     /**
@@ -188,6 +189,8 @@ public class PenaltyDisplayManager {
      */
     public void setRenderingFood(boolean value) {
         isRenderingFood = value;
+        if (FabricLoader.getInstance().isModLoaded("granular_hunger"))
+            isRenderingFood = true;
     }
 
     /**

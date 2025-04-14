@@ -76,17 +76,17 @@ public class BTWRSL_LangGenerator extends FabricLanguageProvider {
         // Config
         addConfigTitle("config", "BTWR: Shared Library Config", tb);
         addConfigCategory("penalties", "Penalties", tb);
-        addConfigEntry("penalty_override", "Penalty Display Override", tb);
         addConfigEntry("hunger_override", "Hunger Display Override", tb);
+        addConfigEntry("render_x", "X Offset", tb);
         addConfigEntry("render_y", "Y Offset", tb);
         addConfigEntry("draw_margin", "Draw Margin", tb);
         addConfigEntry("draw_mode", "Draw Mode", tb);
-        addConfigTooltip("penalty_override",
-                "Whether certain checks in the penalty\ndisplay should be forfeited.", tb);
         addConfigTooltip("hunger_override",
                 "Forces the penalty display to think the hunger\n" +
                         "bar is being rendered. Does nothing\n" +
                         "if the hunger bar is actually rendered.", tb);
+        addConfigTooltip("render_x",
+                "Horizontally offsets the penalty rendering by the given amount", tb);
         addConfigTooltip("render_y",
                 "Vertically offsets the penalty rendering by the given amount", tb);
         addConfigTooltip("draw_margin",

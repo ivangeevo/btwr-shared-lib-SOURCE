@@ -22,16 +22,16 @@ public class SettingsGUI {
 
         /** Penalties Category **/
         penalties.addEntry(entryBuilder
-                .startBooleanToggle(Text.translatable("config.btwrsl.penalty_override"), settingsCommon.doPenaltyDisplayOverride)
-                .setDefaultValue(false)
-                .setSaveConsumer(newValue -> settingsCommon.doPenaltyDisplayOverride = newValue)
-                .setTooltip(Text.translatable("config.btwrsl.tooltip.penalty_override"))
-                .build());
-        penalties.addEntry(entryBuilder
                 .startBooleanToggle(Text.translatable("config.btwrsl.hunger_override"), settingsCommon.doHungerOffsetOverride)
                 .setDefaultValue(true)
                 .setSaveConsumer(newValue -> settingsCommon.doHungerOffsetOverride = newValue)
                 .setTooltip(Text.translatable("config.btwrsl.tooltip.hunger_override"))
+                .build());
+        penalties.addEntry(entryBuilder
+                .startIntSlider(Text.translatable("config.btwrsl.render_x"), settingsCommon.renderXOffset, -100, 100)
+                .setDefaultValue(0)
+                .setSaveConsumer(newValue -> settingsCommon.renderXOffset = newValue)
+                .setTooltip(Text.translatable("config.btwrsl.tooltip.render_x"))
                 .build());
         penalties.addEntry(entryBuilder
                 .startIntSlider(Text.translatable("config.btwrsl.render_y"), settingsCommon.renderYOffset, -100, 100)

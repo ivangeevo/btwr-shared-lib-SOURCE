@@ -151,8 +151,8 @@ public class PenaltyDisplayManager {
         int hungerBarY = context.getScaledWindowHeight() - 39; // Hunger bar position vertically
 
         // Add override if applicable
-        if (BTWRSLModClient.getSettings().isPenaltyOverridesEnabled())
-            hungerBarY -= BTWRSLModClient.getSettings().getRenderYOffset();
+        hungerBarX += getSettings().getRenderXOffset();
+        hungerBarY -= getSettings().getRenderYOffset();
 
         // Get y position to start drawing penalties
         int textY = this.getTextY(player, hungerBarY);
@@ -185,9 +185,10 @@ public class PenaltyDisplayManager {
         int offsetY = 0;
         int margin = getSettings().getRenderMargin();
 
-        // Add override if applicable
-        if (BTWRSLModClient.getSettings().isPenaltyOverridesEnabled())
-            renderY -= BTWRSLModClient.getSettings().getRenderYOffset();
+        // Add offsets if applicable
+        renderX += getSettings().getRenderXOffset();
+        renderX += drawMode.getXMargin(margin);
+        renderY -= getSettings().getRenderYOffset();
         renderY += drawMode.getYMargin(margin);
 
         // Begin drawing
@@ -197,7 +198,6 @@ public class PenaltyDisplayManager {
 
             // Right align text to hot-bar
             int statusX = renderX - (drawMode.shouldAddX() ? renderer.getWidth(translatedText) : 0);
-            statusX += drawMode.getXMargin(margin);
 
             // Render
             if (penalty.condition.test() && !translatedText.getString().isEmpty()) {
@@ -241,9 +241,7 @@ public class PenaltyDisplayManager {
         if (
                 // Explicit compat checks here
                 FabricLoader.getInstance().isModLoaded("granular_hunger") ||
-                // Then the override
-                (BTWRSLModClient.getSettings().isPenaltyOverridesEnabled() &&
-                 BTWRSLModClient.getSettings().isHungerOffsetEnabled())
+                BTWRSLModClient.getSettings().isHungerOffsetEnabled()
         )
             isRenderingFood = true;
     }
@@ -299,13 +297,5 @@ public class PenaltyDisplayManager {
      */
     private PenaltyDrawMode getDrawMode() {
         return BTWRSLModClient.getSettings().getDrawMode();
-    }
-
-    /**
-     * Readability wrapper for checking override
-     * @return Override state
-     */
-    private boolean isOverriding() {
-        return getSettings().isPenaltyOverridesEnabled();
     }
 }

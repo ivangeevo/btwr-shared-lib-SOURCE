@@ -1,4 +1,19 @@
 {
+  "config.btwrsl.draw_margin": "Draw Margin",
+  "config.btwrsl.draw_mode": "Draw Mode",
+  "config.btwrsl.draw_mode.anchor.BOTTOM_LEFT": "Bottom Left",
+  "config.btwrsl.draw_mode.anchor.BOTTOM_RIGHT": "Bottom Right",
+  "config.btwrsl.draw_mode.anchor.BTW": "BTW",
+  "config.btwrsl.draw_mode.anchor.TOP_LEFT": "Top Left",
+  "config.btwrsl.draw_mode.anchor.TOP_RIGHT": "Top Right",
+  "config.btwrsl.hunger_override": "Hunger Display Override",
+  "config.btwrsl.render_x": "X Offset",
+  "config.btwrsl.render_y": "Y Offset",
+  "config.btwrsl.tooltip.draw_margin": "Padding to add when drawing penalties to the screen.\nHas no effect when draw mode is \"BTW\"",
+  "config.btwrsl.tooltip.draw_mode": "Determines how penalties are drawn to the screen.\n\"BTW\" emulates Better Than Wolves rendering",
+  "config.btwrsl.tooltip.hunger_override": "Forces the penalty display to think the hunger\nbar is being rendered. Does nothing\nif the hunger bar is actually rendered.",
+  "config.btwrsl.tooltip.render_x": "Horizontally offsets the penalty rendering by the given amount",
+  "config.btwrsl.tooltip.render_y": "Vertically offsets the penalty rendering by the given amount",
   "tag.block.c.farmland_blocks": "Farmland Blocks",
   "tag.block.c.modded_converting_blocks": "Modded Converting Blocks",
   "tag.block.c.stump_blocks": "Stump Blocks",
@@ -44,5 +59,7 @@
   "tag.item.c.spit_campfire_items": "Spit Campfire Items",
   "tag.item.c.stone_tools": "Stone Tools",
   "tag.item.c.string_tool_materials": "String Tool Materials",
-  "tag.item.c.wooden_tools": "Wooden Tools"
+  "tag.item.c.wooden_tools": "Wooden Tools",
+  "title.btwrsl.categorypenalties": "Penalties",
+  "title.btwrsl.config": "BTWR: Shared Library Config"
 }

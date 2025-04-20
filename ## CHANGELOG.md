@@ -1,3 +1,7 @@
+## v0.51
++ Add config options and added compatibility for PenaltyDisplayManager (jeffyjamzhd)
++ Fix game breaking error with CraftingResultSlotMixin (jeffyjamzhd)
+
 ## v0.50
 ### Penalty Display System (jeffyjamzhd)
 

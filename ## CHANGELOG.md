@@ -3,7 +3,11 @@
 + Fix game breaking error with CraftingResultSlotMixin (jeffyjamzhd)
 
 ## v0.50
+
+
 ### Penalty Display System (jeffyjamzhd)
+
+
 
 + Added a unified penalty registration system to standardize rendering across mods.
 + Introduced HUDInitializeListener for registering penalties via EventHUDInitialized.register(listener).

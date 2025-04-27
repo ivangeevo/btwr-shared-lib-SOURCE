@@ -1,3 +1,6 @@
+## v0.52(next)
++ Moved the modification to how hoes work to the BTWR: Core mod
+
 ## v0.51
 + Add config options and added compatibility for PenaltyDisplayManager (jeffyjamzhd)
 + Fix game breaking error with CraftingResultSlotMixin (jeffyjamzhd)

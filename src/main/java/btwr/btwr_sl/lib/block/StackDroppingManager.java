@@ -9,7 +9,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.InfestedBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
@@ -30,8 +29,7 @@ public class StackDroppingManager {
     // Private constructor to prevent instantiation
     private StackDroppingManager() {}
 
-    public static StackDroppingManager getInstance()
-    {
+    public static StackDroppingManager getInstance() {
         return instance;
     }
 

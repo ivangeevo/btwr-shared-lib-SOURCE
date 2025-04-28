@@ -31,6 +31,16 @@ public abstract class BlockMixin implements BlockAdded {
         ci.cancel();
     }
 
+    @Inject(method = "afterBreak", at = @At("HEAD"))
+    private void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci) {
+        if ((Block)(Object)this instanceof GrassBlock) {
+            if (tool.isIn(ItemTags.HOES)) {
+                world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 4, 0);
+            }
+
+        }
+    }
+
     @Override
     public void notifyOfFullStagePlantGrowthOn(World world, BlockPos pos, Block plantBlock) {}
 

@@ -1,3 +1,7 @@
+## v0.53(dev)
++ Cleanup old hoe functionality changes in favor of moving them to BTWR: Core version 0.31
++ Updated the mod to Fabric API 0.115.6 & Fabric Loader 0.16.13
+
 ## v0.52
 + Added a new common block tag "FARMLAND_VIABLE_DIRT" that defines which (dirt) blocks can be converted to farmland when broken with BTWR:Core's alternative hoe usage mechanic.
 + Added a new common block tag "FARMLAND_VIABLE_GRASS" that defines which (grass) blocks can be converted to dirt on hoe left click break (same as above functionality)

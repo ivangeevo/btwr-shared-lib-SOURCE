@@ -240,7 +240,7 @@ public class PenaltyDisplayManager {
         isRenderingFood = value;
         if (
                 // Explicit compat checks here
-                FabricLoader.getInstance().isModLoaded("granular_hunger") ||
+                FabricLoader.getInstance().isModLoaded("granular-hunger") ||
                 BTWRSLModClient.getSettings().isHungerOffsetEnabled()
         )
             isRenderingFood = true;

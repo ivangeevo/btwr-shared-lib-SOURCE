@@ -1,4 +1,8 @@
-## v0.53(dev)
+## v0.54(dev)
++ Fixed a bug with the mod compatibility check for "Granular Hunger" where it's mod id was wrongly entered, and it's compat modifications weren't applying. (ivangeevo)
+
+
+## v0.53
 + Cleanup old hoe functionality changes in favor of moving them to BTWR: Core version 0.31
 + Updated the mod to Fabric API 0.115.6 & Fabric Loader 0.16.13
 

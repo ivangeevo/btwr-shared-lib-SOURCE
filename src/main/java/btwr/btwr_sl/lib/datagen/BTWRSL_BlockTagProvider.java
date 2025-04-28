@@ -35,6 +35,12 @@ public class BTWRSL_BlockTagProvider extends FabricTagProvider.BlockTagProvider 
 
     private void addToConventionalTags() {
 
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.FARMLAND_VIABLE_DIRT)
+                .add(Blocks.DIRT);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.FARMLAND_VIABLE_GRASS)
+                .add(Blocks.GRASS_BLOCK);
+
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.SHEARS_EFFICIENT)
                 .forceAddTag(BlockTags.LEAVES)
                 .add(Blocks.VINE)

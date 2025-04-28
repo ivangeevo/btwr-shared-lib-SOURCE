@@ -1,3 +1,7 @@
+## v0.52(dev)
++ Added a new common block tag "FARMLAND_VIABLE_DIRT" that defines which (dirt) blocks can be converted to farmland when broken with BTWR:Core's alternative hoe usage mechanic.
++ Added a new common block tag "FARMLAND_VIABLE_GRASS" that defines which (grass) blocks can be converted to dirt on hoe left click break (same as above functionality)
+
 ## v0.51
 + Add config options and added compatibility for PenaltyDisplayManager (jeffyjamzhd)
 + Fix game breaking error with CraftingResultSlotMixin (jeffyjamzhd)

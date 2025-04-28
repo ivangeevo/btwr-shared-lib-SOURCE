@@ -26,6 +26,12 @@ public class BTWRConventionalTags
         // Farmland viable blocks (can be planted on them)
         public static final TagKey<Block> FARMLAND_BLOCKS = createTag("farmland_blocks");
 
+        // Dirt blocks that can be converted to farmland (via BTWR: Core's alternative hoe mechanic or another mod's)
+        public static final TagKey<Block> FARMLAND_VIABLE_DIRT = createTag("farmland_viable_dirt");
+
+        // Grass blocks that can be converted to dirt on hoe left click break
+        public static final TagKey<Block> FARMLAND_VIABLE_GRASS = createTag("farmland_viable_grass");
+
         // Combining Tag for Web like blocks ( Cobweb and Web Block from Animageddon)
         public static final TagKey<Block> WEB_BLOCKS = createTag("web_blocks");
 

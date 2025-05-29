@@ -1,8 +1,9 @@
 ## v0.54(dev)
++ Added a new item tag for items that should only stack up to 16
 
 
 ## v0.53
-+ Cleanup old hoe functionality changes in favor of moving them to BTWR: Core version 0.31
++ Cleanup old hoe functionality changes and moved them to be only a mod pack change
 + Updated the mod to Fabric API 0.115.6 & Fabric Loader 0.16.13
 
 ## v0.52

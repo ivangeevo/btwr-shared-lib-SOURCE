@@ -135,6 +135,8 @@ public class BTWRConventionalTags
 
         public static final TagKey<Item> ON_CRAFT_SHEARS_CUT_SOUND = createTag("on_craft_shears_cut_sound");
 
+        public static final TagKey<Item> ON_CRAFT_FIZZ_SOUND = createTag("on_craft_fizz_sound");
+
         // Special
 
         // Items that stack maximum to 16

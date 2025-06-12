@@ -28,6 +28,13 @@ public enum CraftingSoundConfig {
         1.0F,
         0.0F
     ),
+    FIZZ_SOUND(
+            BTWRConventionalTags.Items.ON_CRAFT_FIZZ_SOUND,
+            SoundEvents.BLOCK_FIRE_EXTINGUISH,
+            0.25F,
+            2.5F,
+            0.2F
+    ),
     WOODEN_TOOL_SOUND(
             BTWRConventionalTags.Items.ON_CRAFT_WOODEN_TOOL_SOUND,
             SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR,

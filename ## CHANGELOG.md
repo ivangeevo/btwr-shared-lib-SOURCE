@@ -1,3 +1,8 @@
+## v0.55(dev)
++ Added a new sound in the CraftingSoundConfig "FIZZ_SOUND", which is essentially the "Fire Extinguish" sound but tweaked with pitch and volume
++ Removed the item tag for items that can only stack up to 16 because it wasn't applying properly.
++ Updated the mod to Fabric API 0.116.1
+
 ## v0.54
 + Added a new item tag for items that can only stack up to 16
 + Updated the mod to Fabric API 0.116.0 & Fabric Loader 0.16.14

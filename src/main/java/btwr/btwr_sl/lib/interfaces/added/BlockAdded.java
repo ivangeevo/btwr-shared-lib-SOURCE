@@ -18,7 +18,7 @@ public interface BlockAdded
     /**
      * This is used by old style non-daily plant growth
      */
-    default float getPlantGrowthOnMultiplier(World world, BlockPos pos, Block plantBlock) { return 0; }
+    default float getPlantGrowthOnMultiplier(World world, BlockPos pos, Block plantBlock) { return 1F; }
 
     default boolean getIsFertilizedForPlantGrowth(World world, BlockPos pos) {
         return false;

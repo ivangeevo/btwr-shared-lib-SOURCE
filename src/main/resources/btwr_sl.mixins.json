@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ItemMixin",
-    "ItemStackMixin",
     "PlayerEntityMixin",
     "ProtoChunkMixin",
     "ShearsItemMixin",

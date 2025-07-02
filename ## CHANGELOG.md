@@ -1,3 +1,6 @@
+## v0.56(dev)
++ Added a hook methods for the HungerPlayerManager to add multiplier
+
 ## v0.55
 + Added a new sound in the CraftingSoundConfig "FIZZ_SOUND", which is essentially the "Fire Extinguish" sound but tweaked with pitch and volume
 + Removed the item tag for items that can only stack up to 16 because it wasn't applying properly.

@@ -26,6 +26,9 @@ public class BTWRConventionalTags
         // Farmland viable blocks (can be planted on them)
         public static final TagKey<Block> FARMLAND_BLOCKS = createTag("farmland_blocks");
 
+        // Farmland-like blocks that do not require moisture to grow plants
+        public static final TagKey<Block> ALWAYS_FERTILE_SOIL = createTag("always_fertile_soil");
+
         // Dirt blocks that can be converted to farmland (via BTWR: Core's alternative hoe mechanic or another mod's)
         public static final TagKey<Block> FARMLAND_VIABLE_DIRT = createTag("farmland_viable_dirt");
 

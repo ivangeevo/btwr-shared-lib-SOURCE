@@ -1,5 +1,6 @@
 ## v0.56(dev)
-+ Added a hook methods for the HungerPlayerManager to add multiplier
++ Added a common block tag "ALWAYS_FERTILE_SOIL" that targets farmland-like blocks that can grow plants without requiring moisture.
++ Updated the mod to Fabric API 0.116.4
 
 ## v0.55
 + Added a new sound in the CraftingSoundConfig "FIZZ_SOUND", which is essentially the "Fire Extinguish" sound but tweaked with pitch and volume

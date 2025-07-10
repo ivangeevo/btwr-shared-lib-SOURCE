@@ -1,4 +1,4 @@
-## v0.56(dev)
+## v0.56
 + Added a common block tag "ALWAYS_FERTILE_SOIL" that targets farmland-like blocks that can grow plants without requiring moisture.
 + Updated the mod to Fabric API 0.116.4
 

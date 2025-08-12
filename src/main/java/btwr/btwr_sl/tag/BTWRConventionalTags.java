@@ -46,6 +46,12 @@ public class BTWRConventionalTags
 
         public static final TagKey<Block> SHEARS_EFFICIENT = createTag("shears_efficient");
 
+        // Tags for blocks that loosen neighbors when broken with improper tool; mainly used in Tough Environment
+        public static final TagKey<Block> LOOSEN_ON_IMPROPER_BREAK = createTag("loosen_on_improper_break");
+
+        public static final TagKey<Block> LOOSEN_ON_IMPROPER_BREAK_SLABS = createTag("loosen_on_improper_break_slabs");
+
+
 
         private static TagKey<Block> createTag(String tagId) {
             return TagRegistration.BLOCK_TAG.registerC(tagId);

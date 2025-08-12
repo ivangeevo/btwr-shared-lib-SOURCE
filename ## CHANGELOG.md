@@ -1,3 +1,6 @@
+## v0.57
++ Added the following common block tags: "LOOSEN_ON_IMPROPER_BREAK" & "LOOSEN_ON_IMPROPER_BREAK_SLABS" for blocks that would loosen neighbors when broken with an improper tool. This is mainly used in Tough Environment to change neighbouring blocks to Loose Dirt.
+
 ## v0.56
 + Added a common block tag "ALWAYS_FERTILE_SOIL" that targets farmland-like blocks that can grow plants without requiring moisture.
 + Updated the mod to Fabric API 0.116.4

@@ -73,8 +73,10 @@ public class BTWRSL_BlockTagProvider extends FabricTagProvider.BlockTagProvider 
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.WEB_BLOCKS)
                 .add(Blocks.COBWEB);
 
-
-
-
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.LOOSEN_ON_IMPROPER_BREAK)
+                .add(Blocks.DIRT)
+                .add(Blocks.GRASS_BLOCK)
+                .add(Blocks.PODZOL)
+                .add(Blocks.COARSE_DIRT);
     }
 }

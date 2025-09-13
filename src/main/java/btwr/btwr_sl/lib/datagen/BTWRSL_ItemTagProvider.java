@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -15,6 +16,8 @@ public class BTWRSL_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
     public BTWRSL_ItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
         super(output, completableFuture);
     }
+
+    private final Identifier BWT_BATTLE_AXE = Identifier.of("bwt", "netherite_battle_axe");
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
@@ -132,6 +135,14 @@ public class BTWRSL_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.NETHERITE_SHOVEL)
                 .add(Items.NETHERITE_SWORD)
                 .add(Items.NETHERITE_HOE);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_SOUND)
+                .forceAddTag(ItemTags.PLANKS)
+                .add(Items.STICK);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.DAMAGE_ON_CRAFTING)
+                .forceAddTag(ItemTags.AXES)
+                .forceAddTag(ConventionalItemTags.SHEAR_TOOLS);
     }
 
 }

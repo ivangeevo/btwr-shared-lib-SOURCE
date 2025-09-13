@@ -9,8 +9,15 @@ import net.minecraft.world.World;
 
 public class CraftingSoundManager {
 
-    public static void playCraftingSound(ItemStack stack, PlayerEntity player) {
-        World world = player.getWorld();
+    private static final CraftingSoundManager INSTANCE = new CraftingSoundManager();
+
+    private CraftingSoundManager() {}
+
+    public static CraftingSoundManager getInstance() {
+        return INSTANCE;
+    }
+
+    public void playCraftingSound(ItemStack stack, World world, PlayerEntity player) {
         BlockPos thisPos = player.getBlockPos();
         SoundEvent sound = null;
         float volume = 0.1F;

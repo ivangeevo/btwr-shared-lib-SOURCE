@@ -1,3 +1,7 @@
+## v0.58
++ Added remainder logic that damages certain item stacks when used in crafting instead of consuming them (shears and axes)
++ Updated the mod to Fabric API 0.116.6 & Fabric Loader 0.17.2
+
 ## v0.57
 + Added the following common block tags: "LOOSEN_ON_IMPROPER_BREAK" & "LOOSEN_ON_IMPROPER_BREAK_SLABS" for blocks that would loosen neighbors when broken with an improper tool. This is mainly used in Tough Environment to change neighbouring blocks to Loose Dirt.
 

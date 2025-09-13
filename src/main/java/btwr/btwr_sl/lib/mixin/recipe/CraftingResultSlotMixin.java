@@ -28,7 +28,6 @@ public abstract class CraftingResultSlotMixin {
     
     @Shadow @Final private RecipeInputInventory input;
 
-
     @Inject(method = "onTakeItem", at = @At("HEAD"))
     protected void setSecondaryDropsAndCraftSound(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
         MinecraftServer server = player.getWorld().getServer();
@@ -57,7 +56,9 @@ public abstract class CraftingResultSlotMixin {
         CraftingRecipeInput.Positioned positioned = this.input.createPositionedRecipeInput();
         CraftingRecipeInput craftingRecipeInput = positioned.input();
 
-        Optional<RecipeEntry<CraftingRecipe>> optional = server.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingRecipeInput, player.getWorld());
+        Optional<RecipeEntry<CraftingRecipe>> optional = server.getRecipeManager()
+                .getFirstMatch(RecipeType.CRAFTING, craftingRecipeInput, player.getWorld());
+
         CraftingRecipe craftingRecipe;
 
         if (optional.isPresent() && (craftingRecipe = optional.get().value()) instanceof ShapelessRecipe) {

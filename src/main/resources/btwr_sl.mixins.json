@@ -10,10 +10,7 @@
     "ShearsItemMixin",
     "block.BlockMixin",
     "block.FarmlandBlockMixin",
-    "recipe.CraftingResultSlotMixin",
-    "recipe.ShapelessRecipeJsonBuilderMixin",
-    "recipe.ShapelessRecipeMixin",
-    "recipe.ShapelessRecipeSerializerMixin"
+    "recipe.CraftingResultSlotMixin"
   ],
   "injectors": {
     "defaultRequire": 1

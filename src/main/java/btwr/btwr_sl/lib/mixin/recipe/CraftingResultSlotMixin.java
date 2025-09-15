@@ -1,14 +1,10 @@
 package btwr.btwr_sl.lib.mixin.recipe;
 
-import btwr.btwr_sl.lib.interfaces.added.recipe.ShapelessRecipeAdded;
-import btwr.btwr_sl.lib.util.CraftingSoundManager;
+import btwr.btwr_sl.lib.recipe.ToolCraftingShapelessRecipe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.CraftingRecipe;
-import net.minecraft.recipe.RecipeEntry;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.ShapelessRecipe;
+import net.minecraft.recipe.*;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.server.MinecraftServer;
@@ -34,14 +30,7 @@ public abstract class CraftingResultSlotMixin {
         if (server != null) {
             dropAdditionalItemsOnTake(server, player);
         }
-
-        if (player.getWorld().isClient) {
-            //handleSoundOnCraft(stack, player);
-            //CraftingSoundManager.playCraftingSound(stack, player);
-        }
     }
-
-
 
     @Inject(method = "onTakeItem", at = @At("TAIL"))
     protected void setTickCraftLogic(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
@@ -61,9 +50,9 @@ public abstract class CraftingResultSlotMixin {
 
         CraftingRecipe craftingRecipe;
 
-        if (optional.isPresent() && (craftingRecipe = optional.get().value()) instanceof ShapelessRecipe) {
+        if (optional.isPresent() && (craftingRecipe = optional.get().value()) instanceof ToolCraftingShapelessRecipe) {
 
-            DefaultedList<ItemStack> drops = ((ShapelessRecipeAdded) craftingRecipe).getAdditionalDrops();
+            DefaultedList<ItemStack> drops = ((ToolCraftingShapelessRecipe) craftingRecipe).getAdditionalDrops();
             if (drops != null && !drops.isEmpty()) {
                 for (ItemStack itemStack : drops) {
                     player.dropStack(itemStack.copy());

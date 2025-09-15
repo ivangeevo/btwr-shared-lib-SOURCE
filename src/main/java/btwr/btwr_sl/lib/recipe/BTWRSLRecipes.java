@@ -10,8 +10,17 @@ public class BTWRSLRecipes {
     public static final DisabledRecipe.Serializer DISABLED_RECIPE_SERIALIZER = new DisabledRecipe.Serializer();
     public static final RecipeType<DisabledRecipe> DISABLED_RECIPE_TYPE = new RecipeType<>() {};
 
+
     public static void init() {
         Registry.register(Registries.RECIPE_TYPE, Identifier.of(BTWRSLMod.MOD_ID, "disabled"), DISABLED_RECIPE_TYPE);
         Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(BTWRSLMod.MOD_ID,"disabled"), DISABLED_RECIPE_SERIALIZER);
+
+        // Extended shapeless recipe
+        Registry.register(Registries.RECIPE_TYPE,
+                Identifier.of(BTWRSLMod.MOD_ID, ToolCraftingShapelessRecipe.Type.ID),
+                ToolCraftingShapelessRecipe.Type.INSTANCE);
+        Registry.register(Registries.RECIPE_SERIALIZER,
+                Identifier.of(BTWRSLMod.MOD_ID, ToolCraftingShapelessRecipe.Serializer.ID),
+                ToolCraftingShapelessRecipe.Serializer.INSTANCE);
     }
 }

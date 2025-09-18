@@ -1,5 +1,6 @@
 package btwr.btwr_sl.lib.mixin.recipe;
 
+import btwr.btwr_sl.lib.recipe.BTWRSLRecipes;
 import btwr.btwr_sl.lib.recipe.TestShapelessRecipe;
 import btwr.btwr_sl.lib.recipe.old.AdditionalDropsShapelessRecipe;
 import net.minecraft.entity.player.PlayerEntity;
@@ -45,7 +46,7 @@ public abstract class CraftingResultSlotMixin {
         CraftingRecipeInput craftingRecipeInput = positioned.input();
 
         Optional<RecipeEntry<TestShapelessRecipe>> optional = server.getRecipeManager()
-                .getFirstMatch(TestShapelessRecipe.Type.INSTANCE, craftingRecipeInput, player.getWorld());
+                .getFirstMatch(BTWRSLRecipes.TEST_SHAPELESS_RECIPE_TYPE, craftingRecipeInput, player.getWorld());
 
         if (optional.isEmpty()) return;
 

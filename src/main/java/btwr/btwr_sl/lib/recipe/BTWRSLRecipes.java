@@ -12,15 +12,13 @@ public class BTWRSLRecipes {
     public static final DisabledRecipe.Serializer DISABLED_RECIPE_SERIALIZER = new DisabledRecipe.Serializer();
     public static final RecipeType<DisabledRecipe> DISABLED_RECIPE_TYPE = new RecipeType<>() {};
 
-    public static final TestShapelessRecipe.Serializer TEST_SHAPELESS_RECIPE_SERIALIZER = new TestShapelessRecipe.Serializer();
     public static final RecipeType<TestShapelessRecipe> TEST_SHAPELESS_RECIPE_TYPE = new RecipeType<>() {};
+    public static final TestShapelessRecipe.Serializer TEST_SHAPELESS_RECIPE_SERIALIZER = new TestShapelessRecipe.Serializer();
 
-    public static void init() {
+    public static void register() {
         registerRecipe("disabled", DISABLED_RECIPE_TYPE, DISABLED_RECIPE_SERIALIZER);
-
         // Test shapeless recipe
         registerRecipe("test_crafting_shapeless", TEST_SHAPELESS_RECIPE_TYPE, TEST_SHAPELESS_RECIPE_SERIALIZER);
-
     }
 
     private static void registerRecipe(String path, RecipeType<?> type, RecipeSerializer<?> serializer) {

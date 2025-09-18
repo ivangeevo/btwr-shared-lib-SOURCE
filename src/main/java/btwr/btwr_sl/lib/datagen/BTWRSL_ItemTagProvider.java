@@ -17,8 +17,6 @@ public class BTWRSL_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
         super(output, completableFuture);
     }
 
-    private final Identifier BWT_BATTLE_AXE = Identifier.of("bwt", "netherite_battle_axe");
-
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
         addToConventionalTags();

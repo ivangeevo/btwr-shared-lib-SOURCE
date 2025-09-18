@@ -18,7 +18,7 @@ public class BTWRSLMod implements ModInitializer
 
     @Override
     public void onInitialize() {
-        BTWRSLRecipes.init();
+        BTWRSLRecipes.register();
         INSTANCE = this;
     }
 }

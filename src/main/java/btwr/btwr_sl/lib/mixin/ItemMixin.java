@@ -31,6 +31,7 @@ public abstract class ItemMixin implements FabricItem {
         CraftingSoundManager.getInstance().playCraftingSound(stack, world, player);
     }
 
+    /**
     // Add remainder logic that damages certain item stacks when used in crafting
     @Override
     public ItemStack getRecipeRemainder(ItemStack stack) {
@@ -48,6 +49,7 @@ public abstract class ItemMixin implements FabricItem {
 
         return ItemStack.EMPTY;
     }
+     **/
 
     @Unique
     private boolean isValidAxeItem(ItemStack stack) {

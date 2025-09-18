@@ -1,7 +1,6 @@
-package btwr.btwr_sl.lib.interfaces.added.recipe;
+package btwr.btwr_sl.lib.recipe.old;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.collection.DefaultedList;
 
 public interface AdditionalDropsRecipe {

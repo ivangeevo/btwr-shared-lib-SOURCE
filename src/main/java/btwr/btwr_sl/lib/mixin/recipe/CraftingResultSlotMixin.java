@@ -1,6 +1,7 @@
 package btwr.btwr_sl.lib.mixin.recipe;
 
-import btwr.btwr_sl.lib.recipe.ToolCraftingShapelessRecipe;
+import btwr.btwr_sl.lib.recipe.TestShapelessRecipe;
+import btwr.btwr_sl.lib.recipe.old.AdditionalDropsShapelessRecipe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
@@ -25,7 +26,7 @@ public abstract class CraftingResultSlotMixin {
     @Shadow @Final private RecipeInputInventory input;
 
     @Inject(method = "onTakeItem", at = @At("HEAD"))
-    protected void setSecondaryDropsAndCraftSound(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
+    protected void setAdditionalDrops(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
         MinecraftServer server = player.getWorld().getServer();
         if (server != null) {
             dropAdditionalItemsOnTake(server, player);
@@ -37,30 +38,27 @@ public abstract class CraftingResultSlotMixin {
         player.setTimesCraftedThisTick(player.timesCraftedThisTick() + 1);
     }
 
-        // ---------- Class specific methods ---------- //
-
-    // Method to create the secondary optional drop.
+    // Method to create the additional drops when taking(crafting) an item
     @Unique
     private void dropAdditionalItemsOnTake(MinecraftServer server, PlayerEntity player) {
         CraftingRecipeInput.Positioned positioned = this.input.createPositionedRecipeInput();
         CraftingRecipeInput craftingRecipeInput = positioned.input();
 
-        Optional<RecipeEntry<CraftingRecipe>> optional = server.getRecipeManager()
-                .getFirstMatch(RecipeType.CRAFTING, craftingRecipeInput, player.getWorld());
+        Optional<RecipeEntry<TestShapelessRecipe>> optional = server.getRecipeManager()
+                .getFirstMatch(TestShapelessRecipe.Type.INSTANCE, craftingRecipeInput, player.getWorld());
 
-        CraftingRecipe craftingRecipe;
+        if (optional.isEmpty()) return;
 
-        if (optional.isPresent() && (craftingRecipe = optional.get().value()) instanceof ToolCraftingShapelessRecipe) {
-
-            DefaultedList<ItemStack> drops = ((ToolCraftingShapelessRecipe) craftingRecipe).getAdditionalDrops();
-            if (drops != null && !drops.isEmpty()) {
-                for (ItemStack itemStack : drops) {
-                    player.dropStack(itemStack.copy());
-                }
+        /**
+        DefaultedList<ItemStack> drops = optional.get().value().getAdditionalDrops();
+        if (drops != null && !drops.isEmpty()) {
+            for (ItemStack itemStack : drops) {
+                player.dropStack(itemStack.copy());
             }
-
         }
+         **/
     }
+
 
 }
 

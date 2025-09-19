@@ -1,6 +1,7 @@
 package btwr.btwr_sl.lib.recipe;
 
 import btwr.btwr_sl.BTWRSLMod;
+import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.Registries;
@@ -12,7 +13,7 @@ public class BTWRSLRecipes {
     public static final DisabledRecipe.Serializer DISABLED_RECIPE_SERIALIZER = new DisabledRecipe.Serializer();
     public static final RecipeType<DisabledRecipe> DISABLED_RECIPE_TYPE = new RecipeType<>() {};
 
-    public static final RecipeType<TestShapelessRecipe> TEST_SHAPELESS_RECIPE_TYPE = new RecipeType<>() {};
+    public static final RecipeType<CraftingRecipe> TEST_SHAPELESS_RECIPE_TYPE = new RecipeType<>() {};
     public static final TestShapelessRecipe.Serializer TEST_SHAPELESS_RECIPE_SERIALIZER = new TestShapelessRecipe.Serializer();
 
     public static void register() {

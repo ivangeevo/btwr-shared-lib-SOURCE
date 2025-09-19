@@ -7,17 +7,14 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.ShapelessRecipe;
+import net.minecraft.recipe.*;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.util.collection.DefaultedList;
 
 import java.util.List;
 
-public class OGToolCraftingShapelessRecipe extends ShapelessRecipe implements AdditionalDropsRecipe, DamageOnCraftingRecipe {
+public class ToolCraftingShapelessRecipe extends ShapelessRecipe implements AdditionalDropsRecipe, DamageOnCraftingRecipe {
 
     /** Tool to craft the recipe with **/
     final Ingredient tool;
@@ -28,7 +25,7 @@ public class OGToolCraftingShapelessRecipe extends ShapelessRecipe implements Ad
     /** List of itemstacks to drop in addition to the result **/
     final DefaultedList<ItemStack> additionalDrops;
 
-    public OGToolCraftingShapelessRecipe(
+    public ToolCraftingShapelessRecipe(
             String group,
             CraftingRecipeCategory category,
             ItemStack result,
@@ -41,11 +38,6 @@ public class OGToolCraftingShapelessRecipe extends ShapelessRecipe implements Ad
         this.tool = tool;
         this.toolDamage = toolDamage;
         this.additionalDrops = additionalDrops;
-    }
-
-    @Override
-    public RecipeType<?> getType() {
-        return Type.INSTANCE;
     }
 
     @Override
@@ -96,24 +88,18 @@ public class OGToolCraftingShapelessRecipe extends ShapelessRecipe implements Ad
         return remainders;
     }
 
-    public static class Type implements RecipeType<OGToolCraftingShapelessRecipe> {
-        public static final OGToolCraftingShapelessRecipe.Type INSTANCE = new Type();
-        public static final String ID = "tool_crafting_shapeless";
-    }
+    public static class Serializer implements RecipeSerializer<ToolCraftingShapelessRecipe> {
+        public static final ToolCraftingShapelessRecipe.Serializer INSTANCE = new Serializer();
 
-    public static class Serializer implements RecipeSerializer<OGToolCraftingShapelessRecipe> {
-        public static final OGToolCraftingShapelessRecipe.Serializer INSTANCE = new Serializer();
-        public static final String ID = "tool_crafting_shapeless";
-
-        private static final MapCodec<OGToolCraftingShapelessRecipe> CODEC = RecordCodecBuilder.mapCodec((instance) ->
+        private static final MapCodec<ToolCraftingShapelessRecipe> CODEC = RecordCodecBuilder.mapCodec((instance) ->
                 instance.group(
                         Codec.STRING
                                 .optionalFieldOf("group", "")
-                                .forGetter(OGToolCraftingShapelessRecipe::getGroup),
+                                .forGetter(ToolCraftingShapelessRecipe::getGroup),
                         CraftingRecipeCategory.CODEC
                                 .fieldOf("category")
                                 .orElse(CraftingRecipeCategory.MISC)
-                                .forGetter(OGToolCraftingShapelessRecipe::getCategory),
+                                .forGetter(ToolCraftingShapelessRecipe::getCategory),
                         ItemStack.VALIDATED_CODEC
                                 .fieldOf("result")
                                 .forGetter((recipe) -> recipe.getResult(null)),
@@ -121,19 +107,19 @@ public class OGToolCraftingShapelessRecipe extends ShapelessRecipe implements Ad
                                 .listOf()
                                 .fieldOf("ingredients")
                                 .flatXmap(Serializer::validateIngredients, DataResult::success)
-                                .forGetter(OGToolCraftingShapelessRecipe::getIngredients),
+                                .forGetter(ToolCraftingShapelessRecipe::getIngredients),
                         Ingredient.DISALLOW_EMPTY_CODEC
                                 .fieldOf("tool")
-                                .forGetter(OGToolCraftingShapelessRecipe::getTool),
+                                .forGetter(ToolCraftingShapelessRecipe::getTool),
                         Codec.INT
                                 .fieldOf("tool_damage")
-                                .forGetter(OGToolCraftingShapelessRecipe::getToolDamage),
+                                .forGetter(ToolCraftingShapelessRecipe::getToolDamage),
                         ItemStack.OPTIONAL_CODEC
                                 .listOf()
                                 .fieldOf("additional_drops")
                                 .flatXmap(Serializer::validateAdditionalDrops, DataResult::success)
-                                .forGetter(OGToolCraftingShapelessRecipe::getAdditionalDrops)
-                ).apply(instance, OGToolCraftingShapelessRecipe::new)
+                                .forGetter(ToolCraftingShapelessRecipe::getAdditionalDrops)
+                ).apply(instance, ToolCraftingShapelessRecipe::new)
         );
 
         private static DataResult<DefaultedList<Ingredient>> validateIngredients(List<Ingredient> ingredients) {
@@ -158,21 +144,21 @@ public class OGToolCraftingShapelessRecipe extends ShapelessRecipe implements Ad
             return DataResult.success(DefaultedList.copyOf(ItemStack.EMPTY, filtered));
         }
 
-        public static final PacketCodec<RegistryByteBuf, OGToolCraftingShapelessRecipe> PACKET_CODEC = PacketCodec.ofStatic(
-                OGToolCraftingShapelessRecipe.Serializer::write, OGToolCraftingShapelessRecipe.Serializer::read
+        public static final PacketCodec<RegistryByteBuf, ToolCraftingShapelessRecipe> PACKET_CODEC = PacketCodec.ofStatic(
+                ToolCraftingShapelessRecipe.Serializer::write, ToolCraftingShapelessRecipe.Serializer::read
         );
 
         @Override
-        public MapCodec<OGToolCraftingShapelessRecipe> codec() {
+        public MapCodec<ToolCraftingShapelessRecipe> codec() {
             return CODEC;
         }
 
         @Override
-        public PacketCodec<RegistryByteBuf, OGToolCraftingShapelessRecipe> packetCodec() {
+        public PacketCodec<RegistryByteBuf, ToolCraftingShapelessRecipe> packetCodec() {
             return PACKET_CODEC;
         }
 
-        private static OGToolCraftingShapelessRecipe read(RegistryByteBuf buf) {
+        private static ToolCraftingShapelessRecipe read(RegistryByteBuf buf) {
             String string = buf.readString();
             CraftingRecipeCategory craftingRecipeCategory = buf.readEnumConstant(CraftingRecipeCategory.class);
             // Read the result
@@ -195,10 +181,10 @@ public class OGToolCraftingShapelessRecipe extends ShapelessRecipe implements Ad
                 additionalDropsList.set(i, ItemStack.PACKET_CODEC.decode(buf));
             }
 
-            return new OGToolCraftingShapelessRecipe(string, craftingRecipeCategory, resultStack, ingredientsList, tool, toolDamage, additionalDropsList);
+            return new ToolCraftingShapelessRecipe(string, craftingRecipeCategory, resultStack, ingredientsList, tool, toolDamage, additionalDropsList);
         }
 
-        private static void write(RegistryByteBuf buf, OGToolCraftingShapelessRecipe recipe) {
+        private static void write(RegistryByteBuf buf, ToolCraftingShapelessRecipe recipe) {
             buf.writeString(recipe.getGroup());
             buf.writeEnumConstant(recipe.getCategory());
 
@@ -223,4 +209,5 @@ public class OGToolCraftingShapelessRecipe extends ShapelessRecipe implements Ad
         }
 
     }
+
 }

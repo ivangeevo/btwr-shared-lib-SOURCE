@@ -45,7 +45,7 @@ public abstract class CraftingResultSlotMixin {
         CraftingRecipeInput.Positioned positioned = this.input.createPositionedRecipeInput();
         CraftingRecipeInput craftingRecipeInput = positioned.input();
 
-        Optional<RecipeEntry<TestShapelessRecipe>> optional = server.getRecipeManager()
+        Optional<RecipeEntry<CraftingRecipe>> optional = server.getRecipeManager()
                 .getFirstMatch(BTWRSLRecipes.TEST_SHAPELESS_RECIPE_TYPE, craftingRecipeInput, player.getWorld());
 
         if (optional.isEmpty()) return;

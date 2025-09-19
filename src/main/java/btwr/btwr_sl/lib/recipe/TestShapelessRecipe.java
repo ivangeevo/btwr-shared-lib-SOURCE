@@ -18,7 +18,6 @@ import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.ShapelessRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -38,14 +37,6 @@ public class TestShapelessRecipe extends ShapelessRecipe {
         return BTWRSLRecipes.TEST_SHAPELESS_RECIPE_SERIALIZER;
     }
 
-    @Override
-    public RecipeType<?> getType() {
-        return BTWRSLRecipes.TEST_SHAPELESS_RECIPE_TYPE;
-    }
-
-    public ItemStack getResult() {
-        return getResult(null);
-    }
 
     public static class Serializer implements RecipeSerializer<TestShapelessRecipe> {
         private static final MapCodec<TestShapelessRecipe> CODEC = RecordCodecBuilder.mapCodec(
@@ -59,7 +50,7 @@ public class TestShapelessRecipe extends ShapelessRecipe {
                                 .forGetter(ShapelessRecipe::getCategory),
                         ItemStack.VALIDATED_CODEC
                                 .fieldOf("result")
-                                .forGetter(TestShapelessRecipe::getResult),
+                                .forGetter(r -> r.getResult(null)),
                         Ingredient.DISALLOW_EMPTY_CODEC
                                 .listOf()
                                 .fieldOf("ingredients")
@@ -109,7 +100,7 @@ public class TestShapelessRecipe extends ShapelessRecipe {
             for (Ingredient ingredient : recipe.getIngredients()) {
                 Ingredient.PACKET_CODEC.encode(buf, ingredient);
             }
-            ItemStack.PACKET_CODEC.encode(buf, recipe.getResult());
+            ItemStack.PACKET_CODEC.encode(buf, recipe.getResult(null));
         }
     }
 
@@ -142,8 +133,11 @@ public class TestShapelessRecipe extends ShapelessRecipe {
                     new ItemStack(accessor.getOutput(), accessor.getCount()),
                     accessor.getInputs()
             );
-            exporter.accept(recipeId, shapelessRecipe, builder.build(recipeId.withPrefixedPath("recipes/" + accessor.getCategory().getName() + "/")));
+            exporter.accept(recipeId, shapelessRecipe, builder.build(recipeId.withPrefixedPath("recipes/" + accessor.getCategory().getName() + "/"))
+            );
         }
     }
+
+
 }
 

@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-18T15:50:39.2925828	BTWR: Shared Library/Tags for minecraft:item
+// 1.21.1	2025-09-20T13:14:27.799199	BTWR: Shared Library/Tags for minecraft:item
 6bb01ece43dc060b7f6e508c68ea0179c30e853f data\c\tags\item\string_tool_materials.json
 b358f0793e10b2a95c926f1bcbb11ed64eb38dc9 data\c\tags\item\do_knockback_items.json
 8111f664edb6bd7a1857e678d6c0c0e56fe2351a data\c\tags\item\foods\cooked_meats_for_sandwich.json
@@ -11,8 +11,8 @@ b358f0793e10b2a95c926f1bcbb11ed64eb38dc9 data\c\tags\item\do_knockback_items.jso
 4335448a6fec2df81d53e2315275ecaec36295d6 data\c\tags\item\foods\cooked_potato.json
 8c8483b22f9bfb5742b707a148f0a80ff1e41a45 data\c\tags\item\netherite_tools.json
 b31830ae479746387baf1a491673336dc674d3e3 data\c\tags\item\damage_on_crafting.json
-962d4e8a7496ee754ae2408dea5047da034513b0 data\c\tags\item\diamond_tools.json
 90363f2da36d5aeb18de7ad51b99324ca5e99a4c data\c\tags\item\gold_tools.json
+962d4e8a7496ee754ae2408dea5047da034513b0 data\c\tags\item\diamond_tools.json
 4299a3aeb550dac5d1182404571c32a720c12c01 data\c\tags\item\cobblestone_crafting_materials.json
 58d0707e0ce8a59d9dd59f257e9ec0d345a5bbbb data\c\tags\item\primitive_pickaxes.json
 a351493cc31b2b96eb142674fad6662ecb952d64 data\c\tags\item\modern_hoes.json

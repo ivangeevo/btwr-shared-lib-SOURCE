@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import org.jetbrains.annotations.Nullable;
 
-public class ToolCraftingShapelessRecipeJsonBuilder implements CraftingRecipeJsonBuilder {
+public class CraftingWithToolShapelessRecipeJsonBuilder implements CraftingRecipeJsonBuilder {
     private final RecipeCategory category;
     private final Item output;
     private final int count;
@@ -35,29 +35,29 @@ public class ToolCraftingShapelessRecipeJsonBuilder implements CraftingRecipeJso
     @Nullable
     private String group;
 
-    public ToolCraftingShapelessRecipeJsonBuilder(RecipeCategory category, ItemConvertible output, int count) {
+    public CraftingWithToolShapelessRecipeJsonBuilder(RecipeCategory category, ItemConvertible output, int count) {
         this.category = category;
         this.output = output.asItem();
         this.count = count;
     }
 
-    public static ToolCraftingShapelessRecipeJsonBuilder create(RecipeCategory category, ItemConvertible output) {
-        return new ToolCraftingShapelessRecipeJsonBuilder(category, output, 1);
+    public static CraftingWithToolShapelessRecipeJsonBuilder create(RecipeCategory category, ItemConvertible output) {
+        return new CraftingWithToolShapelessRecipeJsonBuilder(category, output, 1);
     }
 
-    public static ToolCraftingShapelessRecipeJsonBuilder create(RecipeCategory category, ItemConvertible output, int count) {
-        return new ToolCraftingShapelessRecipeJsonBuilder(category, output, count);
+    public static CraftingWithToolShapelessRecipeJsonBuilder create(RecipeCategory category, ItemConvertible output, int count) {
+        return new CraftingWithToolShapelessRecipeJsonBuilder(category, output, count);
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder input(TagKey<Item> tag) {
+    public CraftingWithToolShapelessRecipeJsonBuilder input(TagKey<Item> tag) {
         return this.input(Ingredient.fromTag(tag));
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder input(ItemConvertible itemProvider) {
+    public CraftingWithToolShapelessRecipeJsonBuilder input(ItemConvertible itemProvider) {
         return this.input(itemProvider, 1);
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder input(ItemConvertible itemProvider, int size) {
+    public CraftingWithToolShapelessRecipeJsonBuilder input(ItemConvertible itemProvider, int size) {
         for(int i = 0; i < size; ++i) {
             this.input(Ingredient.ofItems(itemProvider));
         }
@@ -65,11 +65,11 @@ public class ToolCraftingShapelessRecipeJsonBuilder implements CraftingRecipeJso
         return this;
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder input(Ingredient ingredient) {
+    public CraftingWithToolShapelessRecipeJsonBuilder input(Ingredient ingredient) {
         return this.input(ingredient, 1);
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder input(Ingredient ingredient, int size) {
+    public CraftingWithToolShapelessRecipeJsonBuilder input(Ingredient ingredient, int size) {
         for(int i = 0; i < size; ++i) {
             this.inputs.add(ingredient);
         }
@@ -77,55 +77,54 @@ public class ToolCraftingShapelessRecipeJsonBuilder implements CraftingRecipeJso
         return this;
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder toolInput(TagKey<Item> tag) {
+    public CraftingWithToolShapelessRecipeJsonBuilder toolInput(TagKey<Item> tag) {
         return this.toolInput(tag, 0);
     }
-    public ToolCraftingShapelessRecipeJsonBuilder toolInput(TagKey<Item> tag, int damage) {
-        this.toolDamage = damage;
-        return this.toolInput(Ingredient.fromTag(tag));
+    public CraftingWithToolShapelessRecipeJsonBuilder toolInput(TagKey<Item> tag, int damage) {
+        return this.toolInput(Ingredient.fromTag(tag), damage);
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder toolInput(ItemConvertible itemProvider) {
+    public CraftingWithToolShapelessRecipeJsonBuilder toolInput(ItemConvertible itemProvider) {
         return this.toolInput(itemProvider, 0);
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder toolInput(ItemConvertible itemProvider, int damage) {
+    public CraftingWithToolShapelessRecipeJsonBuilder toolInput(ItemConvertible itemProvider, int damage) {
         this.toolInput(Ingredient.ofItems(itemProvider), damage);
         return this;
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder toolInput(Ingredient ingredient) {
+    public CraftingWithToolShapelessRecipeJsonBuilder toolInput(Ingredient ingredient) {
         return this.toolInput(ingredient, 0);
     }
 
     /** A tool is essentially an input; Allows adding damage **/
-    public ToolCraftingShapelessRecipeJsonBuilder toolInput(Ingredient ingredient, int damage) {
+    public CraftingWithToolShapelessRecipeJsonBuilder toolInput(Ingredient ingredient, int damage) {
         this.inputs.add(ingredient);
         this.tool = ingredient;
         this.toolDamage = damage;
         return this;
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder additionalDrop(ItemConvertible itemProvider) {
+    public CraftingWithToolShapelessRecipeJsonBuilder additionalDrop(ItemConvertible itemProvider) {
         return this.additionalDrop(itemProvider, 1);
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder additionalDrop(ItemConvertible itemProvider, int count) {
+    public CraftingWithToolShapelessRecipeJsonBuilder additionalDrop(ItemConvertible itemProvider, int count) {
         this.additionalDrops.add(new ItemStack(itemProvider, count));
         return this;
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder additionalDrop(ItemStack stack) {
+    public CraftingWithToolShapelessRecipeJsonBuilder additionalDrop(ItemStack stack) {
         this.additionalDrops.add(stack.copy());
         return this;
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder criterion(String string, AdvancementCriterion<?> advancementCriterion) {
+    public CraftingWithToolShapelessRecipeJsonBuilder criterion(String string, AdvancementCriterion<?> advancementCriterion) {
         this.advancementBuilder.put(string, advancementCriterion);
         return this;
     }
 
-    public ToolCraftingShapelessRecipeJsonBuilder group(@Nullable String string) {
+    public CraftingWithToolShapelessRecipeJsonBuilder group(@Nullable String string) {
         this.group = string;
         return this;
     }
@@ -143,7 +142,7 @@ public class ToolCraftingShapelessRecipeJsonBuilder implements CraftingRecipeJso
                 .rewards(Builder.recipe(recipeId)).criteriaMerger(CriterionMerger.OR);
         Objects.requireNonNull(builder);
         this.advancementBuilder.forEach(builder::criterion);
-        ToolCraftingShapelessRecipe recipe = new ToolCraftingShapelessRecipe(
+        CraftingWithToolShapelessRecipe recipe = new CraftingWithToolShapelessRecipe(
                 Objects.requireNonNullElse(this.group, ""),
                 CraftingRecipeJsonBuilder.toCraftingCategory(this.category),
                 new ItemStack(this.output, this.count),

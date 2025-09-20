@@ -4,6 +4,7 @@
   "package": "btwr.btwr_sl.lib.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "CraftingScreenHandlerMixin",
     "ItemMixin",
     "PlayerEntityMixin",
     "ProtoChunkMixin",

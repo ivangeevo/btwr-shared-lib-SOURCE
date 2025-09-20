@@ -146,9 +146,9 @@ public class BTWRConventionalTags
 
         public static final TagKey<Item> ON_CRAFT_FIZZ_SOUND = createTag("on_craft_fizz_sound");
 
-        /** Items that have added remainder logic to get damaged by 1 when used in crafting **/
+        /** Items that have added remainder logic to get damaged when used in crafting
+         * <p> This is used mostly in the CraftingWithToolShapelessRecipe</p>**/
         public static final TagKey<Item> DAMAGE_ON_CRAFTING = createTag("damage_on_crafting");
-
 
         private static TagKey<Item> createTag(String tagId) {
             return TagRegistration.ITEM_TAG.registerC(tagId);

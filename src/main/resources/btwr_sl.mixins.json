@@ -12,8 +12,7 @@
     "accessors.ShapelessRecipeJsonBuilderAccessorMixin",
     "block.BlockMixin",
     "block.FarmlandBlockMixin",
-    "recipe.CraftingResultSlotMixin",
-    "recipe.RecipeManagerMixin"
+    "recipe.CraftingResultSlotMixin"
   ],
   "injectors": {
     "defaultRequire": 1

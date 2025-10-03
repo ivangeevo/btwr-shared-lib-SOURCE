@@ -138,8 +138,13 @@ public class BTWRSL_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .forceAddTag(ItemTags.PLANKS)
                 .add(Items.STICK);
 
-        getOrCreateTagBuilder(BTWRConventionalTags.Items.DAMAGE_ON_CRAFTING)
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.CRAFTING_WITH_TOOLS_ITEMS)
                 .forceAddTag(ItemTags.AXES)
+                .forceAddTag(ConventionalItemTags.SHEAR_TOOLS);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.DAMAGE_ON_CRAFTING_TOOLS)
+                .addTag(BTWRConventionalTags.Items.PRIMITIVE_AXES)
+                .add(Items.IRON_AXE)
                 .forceAddTag(ConventionalItemTags.SHEAR_TOOLS);
     }
 

@@ -52,12 +52,16 @@ public class TestShapelessRecipe extends ShapelessRecipe {
 
         for (int i = 0; i < defaultedList.size(); i++) {
             ItemStack stack = input.getStackInSlot(i);
-            if (stack.isIn(BTWRConventionalTags.Items.DAMAGE_ON_CRAFTING)) {
-                if (stack.getDamage() < stack.getMaxDamage() - 1) {
-                    ItemStack moreDamaged = stack.copy();
-                    moreDamaged.setDamage(stack.getDamage() + 1);
-                    defaultedList.set(i, moreDamaged);
+            if (stack.isIn(BTWRConventionalTags.Items.CRAFTING_WITH_TOOLS_ITEMS)) {
+                ItemStack copiedStack = stack.copy();
+
+                if (stack.isIn(BTWRConventionalTags.Items.DAMAGE_ON_CRAFTING_TOOLS)) {
+                    if (stack.getDamage() < stack.getMaxDamage() - 1) {
+                        copiedStack.setDamage(stack.getDamage() + 1);
+                    }
                 }
+
+                defaultedList.set(i, copiedStack);
             }
         }
 

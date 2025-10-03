@@ -1,7 +1,7 @@
 package btwr.btwr_sl.lib.recipe;
 
 import btwr.btwr_sl.BTWRSLMod;
-import net.minecraft.recipe.CraftingRecipe;
+import btwr.btwr_sl.lib.recipe.old.OGCraftingWithToolShapelessRecipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.Registries;

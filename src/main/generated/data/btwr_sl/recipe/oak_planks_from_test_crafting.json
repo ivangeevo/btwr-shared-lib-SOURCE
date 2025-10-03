@@ -1,5 +1,11 @@
 {
-  "type": "btwr_sl:test_crafting_shapeless",
+  "type": "btwr_sl:crafting_shapeless_with_tool",
+  "additional_drops": [
+    {
+      "count": 4,
+      "id": "minecraft:coal_ore"
+    }
+  ],
   "category": "misc",
   "ingredients": [
     {

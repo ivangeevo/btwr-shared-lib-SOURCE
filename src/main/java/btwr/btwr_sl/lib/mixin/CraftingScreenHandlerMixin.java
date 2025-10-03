@@ -44,12 +44,12 @@ public abstract class CraftingScreenHandlerMixin {
         CraftingRecipeInput input = craftingInventory.createRecipeInput();
         ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
 
-        Optional<RecipeEntry<TestShapelessRecipe>> match = server.getRecipeManager()
-                .getFirstMatch(BTWRSLRecipes.TEST_SHAPELESS_RECIPE_TYPE, input, world);
+        Optional<RecipeEntry<CraftingWithToolShapelessRecipe>> match = server.getRecipeManager()
+                .getFirstMatch(BTWRSLRecipes.CRAFTING_WITH_TOOL_SHAPELESS_RECIPE_TYPE, input, world);
 
         if (match.isPresent()) {
-            RecipeEntry<TestShapelessRecipe> recipeEntry = match.get();
-            TestShapelessRecipe matchedRecipe = recipeEntry.value();
+            RecipeEntry<CraftingWithToolShapelessRecipe> recipeEntry = match.get();
+            CraftingWithToolShapelessRecipe matchedRecipe = recipeEntry.value();
 
             if (resultInventory.shouldCraftRecipe(world, serverPlayer, recipeEntry)) {
                 ItemStack result = matchedRecipe.craft(input, world.getRegistryManager());

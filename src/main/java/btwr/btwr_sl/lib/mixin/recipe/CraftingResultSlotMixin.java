@@ -2,6 +2,7 @@ package btwr.btwr_sl.lib.mixin.recipe;
 
 import btwr.btwr_sl.lib.recipe.BTWRSLRecipes;
 import btwr.btwr_sl.lib.recipe.CraftingWithToolShapelessRecipe;
+import btwr.btwr_sl.lib.recipe.old.OGCraftingWithToolShapelessRecipe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
@@ -47,7 +48,7 @@ public abstract class CraftingResultSlotMixin {
         CraftingRecipeInput craftingRecipeInput = positioned.input();
         int i = positioned.left();
         int j = positioned.top();
-        DefaultedList<ItemStack> defaultedList = player.getWorld().getRecipeManager().getRemainingStacks(BTWRSLRecipes.TEST_SHAPELESS_RECIPE_TYPE, craftingRecipeInput, player.getWorld());
+        DefaultedList<ItemStack> defaultedList = player.getWorld().getRecipeManager().getRemainingStacks(BTWRSLRecipes.CRAFTING_WITH_TOOL_SHAPELESS_RECIPE_TYPE, craftingRecipeInput, player.getWorld());
 
         for (int k = 0; k < craftingRecipeInput.getHeight(); k++) {
             for (int l = 0; l < craftingRecipeInput.getWidth(); l++) {

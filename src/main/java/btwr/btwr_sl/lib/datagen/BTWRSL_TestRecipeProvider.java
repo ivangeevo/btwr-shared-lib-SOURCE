@@ -1,6 +1,7 @@
 package btwr.btwr_sl.lib.datagen;
 
 import btwr.btwr_sl.BTWRSLMod;
+import btwr.btwr_sl.lib.recipe.CraftingWithToolShapelessRecipe;
 import btwr.btwr_sl.lib.recipe.TestShapelessRecipe;
 import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -22,7 +23,8 @@ public class BTWRSL_TestRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(RecipeExporter exporter) {
 
-        TestShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.OAK_PLANKS, 4)
+        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.OAK_PLANKS, 4)
+                .additionalDrop(Items.COAL_ORE, 4)
                 .input(Items.OAK_LOG)
                 .input(BTWRConventionalTags.Items.AXES_MAKE_PLANKS)
                 .criterion("has_oak_log", conditionsFromItem(Items.OAK_LOG))

@@ -1,5 +1,7 @@
 ## v0.59
 + Added a new type of recipe "TOOL_SHAPELESS_CRAFTING" that handles shapeless crafting with tools. They can have additional drops and damage a tool on crafting specified. This is mainly used for recipes like crafting logs with different axes or leather with shears, etc.
++ Added two new item tags "CRAFTING_WITH_TOOLS_ITEMS" & "DAMAGE_ON_CRAFTING_TOOLS" to be used for specifying which tools can be used in the new Tool Crafting Recipe.
++ Removed old mixin modifications to recipe remainder which caused incompatibilities and bugs with other recipes like "repair_item". Recipe remainder for damaging tools is now handled in the ToolCraftingShapelessRecipe instead.
 
 ## v0.58
 + Added remainder logic that damages certain item stacks when used in crafting instead of consuming them (shears and axes)

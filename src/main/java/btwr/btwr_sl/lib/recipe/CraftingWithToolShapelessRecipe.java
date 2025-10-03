@@ -2,6 +2,7 @@ package btwr.btwr_sl.lib.recipe;
 
 import btwr.btwr_sl.lib.mixin.accessors.ShapelessRecipeJsonBuilderAccessorMixin;
 import btwr.btwr_sl.lib.recipe.capability.AdditionalDropsRecipe;
+import btwr.btwr_sl.lib.recipe.capability.CraftingWithToolRecipe;
 import btwr.btwr_sl.tag.BTWRConventionalTags;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
@@ -31,13 +32,17 @@ import net.minecraft.util.collection.DefaultedList;
 import java.util.List;
 import java.util.Objects;
 
-public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements AdditionalDropsRecipe {
+public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements AdditionalDropsRecipe, CraftingWithToolRecipe {
+
+    /** Damage to apply to the tool used in crafting **/
+    final int toolDamage;
 
     /** List of stacks to drop in addition to the result **/
     final DefaultedList<ItemStack> additionalDrops;
 
-    public CraftingWithToolShapelessRecipe(String group, CraftingRecipeCategory category, ItemStack result, DefaultedList<Ingredient> ingredients, DefaultedList<ItemStack> additionalDrops) {
+    public CraftingWithToolShapelessRecipe(String group, CraftingRecipeCategory category, ItemStack result, DefaultedList<Ingredient> ingredients, int toolDamage, DefaultedList<ItemStack> additionalDrops) {
         super(group, category, result, ingredients);
+        this.toolDamage = toolDamage;
         this.additionalDrops = additionalDrops;
     }
 
@@ -49,6 +54,11 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
     @Override
     public RecipeSerializer<?> getSerializer() {
         return BTWRSLRecipes.CRAFTING_WITH_TOOL_SHAPELESS_RECIPE_SERIALIZER;
+    }
+
+    @Override
+    public int getToolDamage() {
+        return this.toolDamage;
     }
 
     @Override
@@ -70,8 +80,8 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
                 ItemStack copiedStack = stack.copy();
 
                 if (stack.isIn(BTWRConventionalTags.Items.DAMAGE_ON_CRAFTING_TOOLS)) {
-                    if (stack.getDamage() < stack.getMaxDamage() - 1) {
-                        copiedStack.setDamage(stack.getDamage() + 1);
+                    if (stack.getDamage() < stack.getMaxDamage() - this.getToolDamage()) {
+                        copiedStack.setDamage(stack.getDamage() + this.getToolDamage());
                     }
                 }
 
@@ -100,6 +110,9 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
                                         .fieldOf("ingredients")
                                         .flatXmap(Serializer::validateIngredients, DataResult::success)
                                         .forGetter(ShapelessRecipe::getIngredients),
+                                Codec.INT
+                                        .fieldOf("tool_damage")
+                                        .forGetter(CraftingWithToolRecipe::getToolDamage),
                                 ItemStack.OPTIONAL_CODEC
                                         .listOf()
                                         .fieldOf("additional_drops")
@@ -152,13 +165,16 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
             defaultedList.replaceAll(empty -> Ingredient.PACKET_CODEC.decode(buf));
             ItemStack itemStack = ItemStack.PACKET_CODEC.decode(buf);
 
+            // Tool damage
+            int toolDamage = buf.readVarInt();
+
             // Additional drops
             int additionalDropsCount = buf.readVarInt();
             DefaultedList<ItemStack> additionalDropsList = DefaultedList.ofSize(additionalDropsCount, ItemStack.EMPTY);
             for (int d = 0; d < additionalDropsCount; d++) {
                 additionalDropsList.set(d, ItemStack.PACKET_CODEC.decode(buf));
             }
-            return new CraftingWithToolShapelessRecipe(string, craftingRecipeCategory, itemStack, defaultedList, additionalDropsList);
+            return new CraftingWithToolShapelessRecipe(string, craftingRecipeCategory, itemStack, defaultedList, toolDamage, additionalDropsList);
         }
 
         private static void write(RegistryByteBuf buf, CraftingWithToolShapelessRecipe recipe) {
@@ -172,6 +188,9 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
 
             ItemStack.PACKET_CODEC.encode(buf, recipe.getResult());
 
+            // Tool damage
+            buf.writeVarInt(recipe.getToolDamage());
+
             // Additional drops
             buf.writeVarInt(recipe.getAdditionalDrops().size());
             for (ItemStack stack : recipe.getAdditionalDrops()) {
@@ -181,6 +200,9 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
     }
 
     public static class JsonBuilder extends ShapelessRecipeJsonBuilder {
+
+        /** The damage to apply on tool crafting if present **/
+        private int toolDamage = 0;
 
         private final DefaultedList<ItemStack> additionalDrops = DefaultedList.of();
 
@@ -194,6 +216,16 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
 
         public static JsonBuilder create(RecipeCategory category, ItemConvertible output, int count) {
             return new JsonBuilder(category, output, count);
+        }
+
+        /** Add tool damage if the tool used in crafting supports it **/
+        public JsonBuilder withToolDamage() {
+            return this.withToolDamage(1);
+        }
+
+        public JsonBuilder withToolDamage(int damage) {
+            this.toolDamage = damage;
+            return this;
         }
 
         public JsonBuilder additionalDrop(ItemConvertible itemProvider) {
@@ -225,6 +257,7 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
                     CraftingRecipeJsonBuilder.toCraftingCategory(accessor.getCategory()),
                     new ItemStack(accessor.getOutput(), accessor.getCount()),
                     accessor.getInputs(),
+                    this.toolDamage,
                     this.additionalDrops
             );
             exporter.accept(recipeId, recipe, builder.build(recipeId.withPrefixedPath("recipes/" + accessor.getCategory().getName() + "/")));

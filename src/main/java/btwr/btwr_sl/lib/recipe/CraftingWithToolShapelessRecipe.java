@@ -1,19 +1,17 @@
-package btwr.btwr_sl.lib.recipe.old;
+package btwr.btwr_sl.lib.recipe;
 
-import btwr.btwr_sl.lib.mixin.accessors.ShapelessRecipeJsonBuilderAccessorMixin;
-import btwr.btwr_sl.lib.recipe.BTWRSLRecipes;
-import btwr.btwr_sl.lib.recipe.TestShapelessRecipe;
+import btwr.btwr_sl.lib.recipe.capability.AdditionalDropsRecipe;
+import btwr.btwr_sl.lib.recipe.capability.CraftingWithToolRecipe;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancement.Advancement;
+import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.AdvancementRequirements;
-import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.RecipeUnlockedCriterion;
 import net.minecraft.data.server.recipe.CraftingRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
@@ -25,14 +23,14 @@ import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements AdditionalDropsRecipe, CraftingWithToolRecipe {
-
-    /** Tool to craft the recipe with **/
-    final Ingredient tool;
 
     /** Damage to apply to the tool if possible **/
     final int toolDamage;
@@ -45,12 +43,10 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
             CraftingRecipeCategory category,
             ItemStack result,
             DefaultedList<Ingredient> ingredients,
-            Ingredient tool,
             int toolDamage,
             DefaultedList<ItemStack> additionalDrops
     ) {
         super(group, category, result, ingredients);
-        this.tool = tool;
         this.toolDamage = toolDamage;
         this.additionalDrops = additionalDrops;
     }
@@ -68,11 +64,6 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
     @Override
     public DefaultedList<ItemStack> getAdditionalDrops() {
         return this.additionalDrops;
-    }
-
-    @Override
-    public Ingredient getTool() {
-        return this.tool;
     }
 
     @Override
@@ -98,9 +89,6 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
                                 .fieldOf("ingredients")
                                 .flatXmap(Serializer::validateIngredients, DataResult::success)
                                 .forGetter(CraftingWithToolShapelessRecipe::getIngredients),
-                        Ingredient.DISALLOW_EMPTY_CODEC
-                                .fieldOf("tool")
-                                .forGetter(CraftingWithToolShapelessRecipe::getTool),
                         Codec.INT
                                 .fieldOf("tool_damage")
                                 .forGetter(CraftingWithToolShapelessRecipe::getToolDamage),
@@ -161,8 +149,7 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
             for (int i = 0; i < ingredientsCount; i++) {
                 ingredientsList.set(i, Ingredient.PACKET_CODEC.decode(buf));
             }
-            // Tool + tool damage
-            Ingredient tool = Ingredient.PACKET_CODEC.decode(buf);
+            // Tool damage
             int toolDamage = buf.readVarInt();
 
             // Additional drops
@@ -173,7 +160,7 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
             }
 
             return new CraftingWithToolShapelessRecipe(
-                    string, craftingRecipeCategory, resultStack, ingredientsList, tool, toolDamage, additionalDropsList
+                    string, craftingRecipeCategory, resultStack, ingredientsList, toolDamage, additionalDropsList
             );
         }
 
@@ -190,8 +177,7 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
                 Ingredient.PACKET_CODEC.encode(buf, ingredient);
             }
 
-            // Tool + tool damage
-            Ingredient.PACKET_CODEC.encode(buf, recipe.getTool());
+            // Tool damage
             buf.writeVarInt(recipe.getToolDamage());
 
             // Additional drops
@@ -203,92 +189,120 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
 
     }
 
-    public static class JsonBuilder extends ShapelessRecipeJsonBuilder {
-        /** An ingredient that holds a tool placed as input **/
-        private Ingredient tool = null;
+    public static class JsonBuilder implements CraftingRecipeJsonBuilder {
+        private final RecipeCategory category;
+        private final Item output;
+        private final int count;
+        private final DefaultedList<Ingredient> inputs = DefaultedList.of();
+        private final Map<String, AdvancementCriterion<?>> advancementBuilder = new LinkedHashMap<>();
+        @Nullable
+        private String group;
+
         /** The damage to apply on tool crafting if present **/
         private int toolDamage = 0;
+
         private final DefaultedList<ItemStack> additionalDrops = DefaultedList.of();
 
         public JsonBuilder(RecipeCategory category, ItemConvertible output, int count) {
-            super(category, output, count);
+            this.category = category;
+            this.output = output.asItem();
+            this.count = count;
         }
 
-        public static CraftingWithToolShapelessRecipe.JsonBuilder create(RecipeCategory category, ItemConvertible output) {
-            return CraftingWithToolShapelessRecipe.JsonBuilder.create(category, output, 1);
+        public static JsonBuilder create(RecipeCategory category, ItemConvertible output) {
+            return new JsonBuilder(category, output, 1);
         }
 
-        public static CraftingWithToolShapelessRecipe.JsonBuilder create(RecipeCategory category, ItemConvertible output, int count) {
-            return new CraftingWithToolShapelessRecipe.JsonBuilder(category, output, count);
+        public static JsonBuilder create(RecipeCategory category, ItemConvertible output, int count) {
+            return new JsonBuilder(category, output, count);
         }
 
-        public CraftingWithToolShapelessRecipe.JsonBuilder toolInput(TagKey<Item> tag) {
-            return this.toolInput(tag, 0);
-        }
-        public CraftingWithToolShapelessRecipe.JsonBuilder toolInput(TagKey<Item> tag, int damage) {
-            return this.toolInput(Ingredient.fromTag(tag), damage);
+        public JsonBuilder input(TagKey<Item> tag) {
+            return this.input(Ingredient.fromTag(tag));
         }
 
-        public CraftingWithToolShapelessRecipe.JsonBuilder toolInput(ItemConvertible itemProvider) {
-            return this.toolInput(itemProvider, 0);
+        public JsonBuilder input(ItemConvertible itemProvider) {
+            return this.input(itemProvider, 1);
         }
 
-        public CraftingWithToolShapelessRecipe.JsonBuilder toolInput(ItemConvertible itemProvider, int damage) {
-            this.toolInput(Ingredient.ofItems(itemProvider), damage);
+        public JsonBuilder input(ItemConvertible itemProvider, int size) {
+            for (int i = 0; i < size; i++) {
+                this.input(Ingredient.ofItems(itemProvider));
+            }
+
             return this;
         }
 
-        public CraftingWithToolShapelessRecipe.JsonBuilder toolInput(Ingredient ingredient) {
-            return this.toolInput(ingredient, 0);
+        public JsonBuilder input(Ingredient ingredient) {
+            return this.input(ingredient, 1);
         }
 
-        /** A tool is essentially an input; Allows adding damage **/
-        public CraftingWithToolShapelessRecipe.JsonBuilder toolInput(Ingredient ingredient, int damage) {
-            ShapelessRecipeJsonBuilderAccessorMixin accessor = (ShapelessRecipeJsonBuilderAccessorMixin) this;
+        public JsonBuilder input(Ingredient ingredient, int size) {
+            for (int i = 0; i < size; i++) {
+                this.inputs.add(ingredient);
+            }
 
-            accessor.getInputs().add(ingredient);
-            this.tool = ingredient;
+            return this;
+        }
+
+        public JsonBuilder criterion(String string, AdvancementCriterion<?> advancementCriterion) {
+            this.advancementBuilder.put(string, advancementCriterion);
+            return this;
+        }
+
+        public JsonBuilder group(@Nullable String string) {
+            this.group = string;
+            return this;
+        }
+
+        public JsonBuilder withToolDamage(int damage) {
             this.toolDamage = damage;
             return this;
         }
 
-        public CraftingWithToolShapelessRecipe.JsonBuilder additionalDrop(ItemConvertible itemProvider) {
+        public JsonBuilder additionalDrop(ItemConvertible itemProvider) {
             return this.additionalDrop(itemProvider, 1);
         }
 
-        public CraftingWithToolShapelessRecipe.JsonBuilder additionalDrop(ItemConvertible itemProvider, int count) {
+        public JsonBuilder additionalDrop(ItemConvertible itemProvider, int count) {
             this.additionalDrops.add(new ItemStack(itemProvider, count));
             return this;
         }
 
-        public CraftingWithToolShapelessRecipe.JsonBuilder additionalDrop(ItemStack stack) {
+        public JsonBuilder additionalDrop(ItemStack stack) {
             this.additionalDrops.add(stack.copy());
             return this;
         }
 
         @Override
-        public void offerTo(RecipeExporter exporter, Identifier recipeId) {
-            ShapelessRecipeJsonBuilderAccessorMixin accessor = (ShapelessRecipeJsonBuilderAccessorMixin) this;
+        public Item getOutputItem() {
+            return this.output;
+        }
 
-            accessor.accessValidate(recipeId);
+        @Override
+        public void offerTo(RecipeExporter exporter, Identifier recipeId) {
+            this.validate(recipeId);
             Advancement.Builder builder = exporter.getAdvancementBuilder()
                     .criterion("has_the_recipe", RecipeUnlockedCriterion.create(recipeId))
-                    .rewards(AdvancementRewards.Builder.recipe(recipeId))
+                    .rewards(net.minecraft.advancement.AdvancementRewards.Builder.recipe(recipeId))
                     .criteriaMerger(AdvancementRequirements.CriterionMerger.OR);
-            accessor.getAdvancementBuilder().forEach(builder::criterion);
+            this.advancementBuilder.forEach(builder::criterion);
             CraftingWithToolShapelessRecipe recipe = new CraftingWithToolShapelessRecipe(
-                    Objects.requireNonNullElse(accessor.getGroup(), ""),
-                    CraftingRecipeJsonBuilder.toCraftingCategory(accessor.getCategory()),
-                    new ItemStack(accessor.getOutput(), accessor.getCount()),
-                    accessor.getInputs(),
-                    this.tool,
+                    Objects.requireNonNullElse(this.group, ""),
+                    CraftingRecipeJsonBuilder.toCraftingCategory(this.category),
+                    new ItemStack(this.output, this.count),
+                    this.inputs,
                     this.toolDamage,
                     this.additionalDrops
             );
-            exporter.accept(recipeId, recipe, builder.build(recipeId.withPrefixedPath("recipes/" + accessor.getCategory().getName() + "/"))
-            );
+            exporter.accept(recipeId, recipe, builder.build(recipeId.withPrefixedPath("recipes/" + this.category.getName() + "/")));
+        }
+
+        private void validate(Identifier recipeId) {
+            if (this.advancementBuilder.isEmpty()) {
+                throw new IllegalStateException("No way of obtaining recipe " + recipeId);
+            }
         }
     }
-
 
 }

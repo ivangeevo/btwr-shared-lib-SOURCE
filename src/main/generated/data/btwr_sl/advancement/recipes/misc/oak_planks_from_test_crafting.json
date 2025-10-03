@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "btwr_sl:oak_planks_from_crafting_with_tool"
+        "recipe": "btwr_sl:oak_planks_from_test_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "btwr_sl:oak_planks_from_crafting_with_tool"
+      "btwr_sl:oak_planks_from_test_crafting"
     ]
   }
 }

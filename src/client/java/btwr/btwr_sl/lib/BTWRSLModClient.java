@@ -1,4 +1,4 @@
-package btwr.btwr_sl.lib.client;
+package btwr.btwr_sl.lib;
 
 import btwr.btwr_sl.BTWRSLMod;
 import btwr.btwr_sl.lib.config.BTWRSLSettings;

@@ -1,7 +1,7 @@
 package btwr.btwr_sl.lib.gui;
 
 import btwr.btwr_sl.BTWRSLMod;
-import btwr.btwr_sl.lib.client.BTWRSLModClient;
+import btwr.btwr_sl.lib.BTWRSLModClient;
 import btwr.btwr_sl.lib.config.BTWRSLSettings;
 import btwr.btwr_sl.lib.config.PenaltyDrawMode;
 import net.fabricmc.loader.api.FabricLoader;

@@ -10,18 +10,11 @@
   "icon": "assets/btwr_sl/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "btwr.btwr_sl.lib.client.BTWRSLModClient"
-    ],
-    "main": [
-      "btwr.btwr_sl.BTWRSLMod"
-    ],
-    "fabric-datagen": [
-      "btwr.btwr_sl.BTWRSLDataGenerator"
-    ],
-    "modmenu": [
-      "btwr.btwr_sl.lib.config.BTWRSLConfig"
-    ]
+    "client": ["btwr.btwr_sl.lib.BTWRSLModClient"],
+    "main": ["btwr.btwr_sl.BTWRSLMod"],
+    "fabric-datagen": ["btwr.btwr_sl.BTWRSLDataGenerator"],
+    "modmenu": ["btwr.btwr_sl.lib.config.BTWRSLConfig"],
+    "emi": ["btwr.btwr_sl.lib.emi.BTWRSLEmiPlugin"]
   },
   "mixins": [
     "btwr_sl.mixins.json",
@@ -35,12 +28,13 @@
     "fabric": "*",
     "minecraft": "${minecraft_version}"
   },
-
+  "suggests": {
+    "emi": ">=1.1.22+1.21.1+fabric"
+  },
   "custom": {
     "loom:injected_interfaces": {
       "net/minecraft/class_2248": ["btwr/btwr_sl/lib/interfaces/added/BlockAdded"],
       "net/minecraft/class_1657": ["btwr/btwr_sl/lib/interfaces/added/PlayerEntityAdded"]
-
     }
   },
 

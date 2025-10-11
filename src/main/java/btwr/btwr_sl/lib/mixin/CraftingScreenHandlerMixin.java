@@ -1,8 +1,7 @@
 package btwr.btwr_sl.lib.mixin;
 
 import btwr.btwr_sl.lib.recipe.BTWRSLRecipes;
-import btwr.btwr_sl.lib.recipe.CraftingWithToolShapelessRecipe;
-import btwr.btwr_sl.lib.recipe.TestShapelessRecipe;
+import btwr.btwr_sl.lib.recipe.ExtendedShapelessRecipe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.RecipeInputInventory;
@@ -44,12 +43,12 @@ public abstract class CraftingScreenHandlerMixin {
         CraftingRecipeInput input = craftingInventory.createRecipeInput();
         ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
 
-        Optional<RecipeEntry<CraftingWithToolShapelessRecipe>> match = server.getRecipeManager()
-                .getFirstMatch(BTWRSLRecipes.CRAFTING_WITH_TOOL_SHAPELESS_RECIPE_TYPE, input, world);
+        Optional<RecipeEntry<ExtendedShapelessRecipe>> match = server.getRecipeManager()
+                .getFirstMatch(BTWRSLRecipes.EXTENDED_SHAPELESS_RECIPE_TYPE, input, world);
 
         if (match.isPresent()) {
-            RecipeEntry<CraftingWithToolShapelessRecipe> recipeEntry = match.get();
-            CraftingWithToolShapelessRecipe matchedRecipe = recipeEntry.value();
+            RecipeEntry<ExtendedShapelessRecipe> recipeEntry = match.get();
+            ExtendedShapelessRecipe matchedRecipe = recipeEntry.value();
 
             if (resultInventory.shouldCraftRecipe(world, serverPlayer, recipeEntry)) {
                 ItemStack result = matchedRecipe.craft(input, world.getRegistryManager());

@@ -1,6 +1,6 @@
 package btwr.btwr_sl.lib.config;
 
-import btwr.btwr_sl.lib.client.BTWRSLModClient;
+import btwr.btwr_sl.lib.BTWRSLModClient;
 import net.minecraft.client.gui.screen.Screen;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;

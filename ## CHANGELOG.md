@@ -1,3 +1,7 @@
+## v0.60
++ Renamed the CraftingWithTool Recipe to ExtendedShapelessRecipe to better represent what it does
++ Added EMI support for extended shapeless recipes to properly show up and also show what additional drops there are if present
+
 ## v0.59
 + Added a new type of recipe "TOOL_SHAPELESS_CRAFTING" that handles shapeless crafting with tools. They can have additional drops and damage a tool on crafting specified. This is mainly used for recipes like crafting logs with different axes or leather with shears, etc.
 + Added two new item tags "CRAFTING_WITH_TOOLS_ITEMS" & "DAMAGE_ON_CRAFTING_TOOLS" to be used for specifying which tools can be used in the new Tool Crafting Recipe.

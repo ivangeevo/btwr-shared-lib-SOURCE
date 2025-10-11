@@ -1,7 +1,6 @@
 package btwr.btwr_sl.lib.recipe;
 
 import btwr.btwr_sl.BTWRSLMod;
-import btwr.btwr_sl.lib.recipe.old.OGCraftingWithToolShapelessRecipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.Registries;
@@ -13,21 +12,15 @@ public class BTWRSLRecipes {
     public static final DisabledRecipe.Serializer DISABLED_RECIPE_SERIALIZER = new DisabledRecipe.Serializer();
     public static final RecipeType<DisabledRecipe> DISABLED_RECIPE_TYPE = new RecipeType<>() {};
 
-    public static final TestShapelessRecipe.Serializer TEST_SHAPELESS_RECIPE_SERIALIZER = new TestShapelessRecipe.Serializer();
-    public static final RecipeType<TestShapelessRecipe> TEST_SHAPELESS_RECIPE_TYPE = new RecipeType<>() {};
-
-    public static final CraftingWithToolShapelessRecipe.Serializer CRAFTING_WITH_TOOL_SHAPELESS_RECIPE_SERIALIZER = new CraftingWithToolShapelessRecipe.Serializer();
-    public static final RecipeType<CraftingWithToolShapelessRecipe> CRAFTING_WITH_TOOL_SHAPELESS_RECIPE_TYPE = new RecipeType<>() {};
+    public static final ExtendedShapelessRecipe.Serializer EXTENDED_SHAPELESS_RECIPE_SERIALIZER = new ExtendedShapelessRecipe.Serializer();
+    public static final RecipeType<ExtendedShapelessRecipe> EXTENDED_SHAPELESS_RECIPE_TYPE = new RecipeType<>() {};
 
     public static void register() {
         // Disabled recipe used for disabling existing recipes
         registerRecipe("disabled", DISABLED_RECIPE_TYPE, DISABLED_RECIPE_SERIALIZER);
 
-        // Test recipe
-        registerRecipe("test_crafting_shapeless", TEST_SHAPELESS_RECIPE_TYPE, TEST_SHAPELESS_RECIPE_SERIALIZER);
-
-        // Crafting with tools in shapeless recipes
-        registerRecipe("crafting_shapeless_with_tool", CRAFTING_WITH_TOOL_SHAPELESS_RECIPE_TYPE, CRAFTING_WITH_TOOL_SHAPELESS_RECIPE_SERIALIZER);
+        // Extended shapeless recipe
+        registerRecipe("crafting_shapeless_extended", EXTENDED_SHAPELESS_RECIPE_TYPE, EXTENDED_SHAPELESS_RECIPE_SERIALIZER);
     }
 
     private static void registerRecipe(String path, RecipeType<?> type, RecipeSerializer<?> serializer) {

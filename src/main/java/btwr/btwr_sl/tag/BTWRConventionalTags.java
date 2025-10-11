@@ -4,6 +4,7 @@ import net.fabricmc.fabric.impl.tag.convention.v2.TagRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
 
 public class BTWRConventionalTags
 {
@@ -152,7 +153,7 @@ public class BTWRConventionalTags
          * >p> This tag only works in combination with the <@link>btwr.btwr_sl.tag.BTWRConventionalTags.Items</@link> </@link>**/
         public static final TagKey<Item> DAMAGE_ON_CRAFTING_TOOLS = createTag("damage_on_crafting_tools");
 
-        /** Items that are marked as tools that can be used in the BTWR:SL's CraftingWithToolShapeless/Shaped recipes.
+        /** Items that are marked as tools that can be used in the BTWR:SL's ExtendedShapeless/Shaped recipes.
          * <p>If you also want those tools to take damage on crafting then add them to the {@link btwr.btwr_sl.tag.BTWRConventionalTags.Items#DAMAGE_ON_CRAFTING_TOOLS} tag.
          */
         public static final TagKey<Item> CRAFTING_WITH_TOOLS_ITEMS = createTag("crafting_with_tools_items");

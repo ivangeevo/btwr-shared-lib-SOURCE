@@ -32,7 +32,7 @@ import net.minecraft.util.collection.DefaultedList;
 import java.util.List;
 import java.util.Objects;
 
-public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements AdditionalDropsRecipe, CraftingWithToolRecipe {
+public class ExtendedShapelessRecipe extends ShapelessRecipe implements AdditionalDropsRecipe, CraftingWithToolRecipe {
 
     /** Damage to apply to the tool used in crafting **/
     final int toolDamage;
@@ -40,7 +40,7 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
     /** List of stacks to drop in addition to the result **/
     final DefaultedList<ItemStack> additionalDrops;
 
-    public CraftingWithToolShapelessRecipe(String group, CraftingRecipeCategory category, ItemStack result, DefaultedList<Ingredient> ingredients, int toolDamage, DefaultedList<ItemStack> additionalDrops) {
+    public ExtendedShapelessRecipe(String group, CraftingRecipeCategory category, ItemStack result, DefaultedList<Ingredient> ingredients, int toolDamage, DefaultedList<ItemStack> additionalDrops) {
         super(group, category, result, ingredients);
         this.toolDamage = toolDamage;
         this.additionalDrops = additionalDrops;
@@ -48,12 +48,12 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
 
     @Override
     public RecipeType<?> getType() {
-        return BTWRSLRecipes.CRAFTING_WITH_TOOL_SHAPELESS_RECIPE_TYPE;
+        return BTWRSLRecipes.EXTENDED_SHAPELESS_RECIPE_TYPE;
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return BTWRSLRecipes.CRAFTING_WITH_TOOL_SHAPELESS_RECIPE_SERIALIZER;
+        return BTWRSLRecipes.EXTENDED_SHAPELESS_RECIPE_SERIALIZER;
     }
 
     @Override
@@ -92,8 +92,8 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
         return defaultedList;
     }
 
-    public static class Serializer implements RecipeSerializer<CraftingWithToolShapelessRecipe> {
-        private static final MapCodec<CraftingWithToolShapelessRecipe> CODEC = RecordCodecBuilder.mapCodec(
+    public static class Serializer implements RecipeSerializer<ExtendedShapelessRecipe> {
+        private static final MapCodec<ExtendedShapelessRecipe> CODEC = RecordCodecBuilder.mapCodec(
                 instance -> instance.group(
                                 Codec.STRING
                                         .optionalFieldOf("group", "")
@@ -104,7 +104,7 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
                                         .forGetter(ShapelessRecipe::getCategory),
                                 ItemStack.VALIDATED_CODEC
                                         .fieldOf("result")
-                                        .forGetter(CraftingWithToolShapelessRecipe::getResult),
+                                        .forGetter(ExtendedShapelessRecipe::getResult),
                                 Ingredient.DISALLOW_EMPTY_CODEC
                                         .listOf()
                                         .fieldOf("ingredients")
@@ -117,9 +117,9 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
                                         .listOf()
                                         .fieldOf("additional_drops")
                                         .flatXmap(Serializer::validateAdditionalDrops, DataResult::success)
-                                        .forGetter(CraftingWithToolShapelessRecipe::getAdditionalDrops)
+                                        .forGetter(ExtendedShapelessRecipe::getAdditionalDrops)
                         )
-                        .apply(instance, CraftingWithToolShapelessRecipe::new)
+                        .apply(instance, ExtendedShapelessRecipe::new)
         );
 
         private static DataResult<DefaultedList<Ingredient>> validateIngredients(List<Ingredient> ingredients) {
@@ -143,21 +143,21 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
             return DataResult.success(DefaultedList.copyOf(ItemStack.EMPTY, filtered));
         }
 
-        public static final PacketCodec<RegistryByteBuf, CraftingWithToolShapelessRecipe> PACKET_CODEC = PacketCodec.ofStatic(
-                CraftingWithToolShapelessRecipe.Serializer::write, CraftingWithToolShapelessRecipe.Serializer::read
+        public static final PacketCodec<RegistryByteBuf, ExtendedShapelessRecipe> PACKET_CODEC = PacketCodec.ofStatic(
+                ExtendedShapelessRecipe.Serializer::write, ExtendedShapelessRecipe.Serializer::read
         );
 
         @Override
-        public MapCodec<CraftingWithToolShapelessRecipe> codec() {
+        public MapCodec<ExtendedShapelessRecipe> codec() {
             return CODEC;
         }
 
         @Override
-        public PacketCodec<RegistryByteBuf, CraftingWithToolShapelessRecipe> packetCodec() {
+        public PacketCodec<RegistryByteBuf, ExtendedShapelessRecipe> packetCodec() {
             return PACKET_CODEC;
         }
 
-        private static CraftingWithToolShapelessRecipe read(RegistryByteBuf buf) {
+        private static ExtendedShapelessRecipe read(RegistryByteBuf buf) {
             String string = buf.readString();
             CraftingRecipeCategory craftingRecipeCategory = buf.readEnumConstant(CraftingRecipeCategory.class);
             int i = buf.readVarInt();
@@ -174,10 +174,10 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
             for (int d = 0; d < additionalDropsCount; d++) {
                 additionalDropsList.set(d, ItemStack.PACKET_CODEC.decode(buf));
             }
-            return new CraftingWithToolShapelessRecipe(string, craftingRecipeCategory, itemStack, defaultedList, toolDamage, additionalDropsList);
+            return new ExtendedShapelessRecipe(string, craftingRecipeCategory, itemStack, defaultedList, toolDamage, additionalDropsList);
         }
 
-        private static void write(RegistryByteBuf buf, CraftingWithToolShapelessRecipe recipe) {
+        private static void write(RegistryByteBuf buf, ExtendedShapelessRecipe recipe) {
             buf.writeString(recipe.getGroup());
             buf.writeEnumConstant(recipe.getCategory());
             buf.writeVarInt(recipe.getIngredients().size());
@@ -252,7 +252,7 @@ public class CraftingWithToolShapelessRecipe extends ShapelessRecipe implements 
                     .rewards(AdvancementRewards.Builder.recipe(recipeId))
                     .criteriaMerger(AdvancementRequirements.CriterionMerger.OR);
             accessor.getAdvancementBuilder().forEach(builder::criterion);
-            CraftingWithToolShapelessRecipe recipe = new CraftingWithToolShapelessRecipe(
+            ExtendedShapelessRecipe recipe = new ExtendedShapelessRecipe(
                     Objects.requireNonNullElse(accessor.getGroup(), ""),
                     CraftingRecipeJsonBuilder.toCraftingCategory(accessor.getCategory()),
                     new ItemStack(accessor.getOutput(), accessor.getCount()),

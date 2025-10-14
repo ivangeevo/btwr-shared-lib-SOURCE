@@ -23,7 +23,7 @@ import java.util.function.Supplier;
 
 public class BTWRSLEmiPlugin implements EmiPlugin
 {
-    public static EmiRecipeCategory CRAFTING_SHAPELESS_WITH_TOOL = category("crafting_shapeless_extended", EmiStack.of(Blocks.CRAFTING_TABLE));
+    public static EmiRecipeCategory CRAFTING_SHAPELESS_EXTENDED = category("crafting_shapeless_extended", EmiStack.of(Blocks.CRAFTING_TABLE));
 
 
     public static EmiRecipeCategory category(String id, EmiStack icon) {
@@ -32,13 +32,13 @@ public class BTWRSLEmiPlugin implements EmiPlugin
 
     @Override
     public void register(EmiRegistry registry) {
-        this.registerCraftingShapelessWithTool(registry);
+        this.registerCraftingShapelessExtended(registry);
     }
 
-    private void registerCraftingShapelessWithTool(EmiRegistry registry) {
-        registry.addCategory(CRAFTING_SHAPELESS_WITH_TOOL);
+    private void registerCraftingShapelessExtended(EmiRegistry registry) {
+        registry.addCategory(CRAFTING_SHAPELESS_EXTENDED);
 
-        registry.addWorkstation(CRAFTING_SHAPELESS_WITH_TOOL, EmiStack.of(Blocks.CRAFTING_TABLE));
+        registry.addWorkstation(CRAFTING_SHAPELESS_EXTENDED, EmiStack.of(Blocks.CRAFTING_TABLE));
         registry.addRecipeHandler(ScreenHandlerType.CRAFTING, new CraftingRecipeHandler());
 
         for (ExtendedShapelessRecipe recipe : getRecipes(registry, BTWRSLRecipes.EXTENDED_SHAPELESS_RECIPE_TYPE)) {

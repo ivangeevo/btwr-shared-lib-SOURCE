@@ -42,7 +42,7 @@ public class CraftingResultSlotModHandler {
 
     }
 
-    public void setRemainderForTools(PlayerEntity player, ItemStack stack, RecipeInputInventory input) {
+    public void setRemainderForTools(PlayerEntity player, RecipeInputInventory input) {
         CraftingRecipeInput.Positioned positioned = input.createPositionedRecipeInput();
         CraftingRecipeInput craftingRecipeInput = positioned.input();
         int i = positioned.left();

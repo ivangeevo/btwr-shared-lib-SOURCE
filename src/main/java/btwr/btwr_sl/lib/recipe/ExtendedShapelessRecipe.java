@@ -72,24 +72,31 @@ public class ExtendedShapelessRecipe extends ShapelessRecipe implements Addition
 
     @Override
     public DefaultedList<ItemStack> getRemainder(CraftingRecipeInput input) {
-        DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(input.getSize(), ItemStack.EMPTY);
+        DefaultedList<ItemStack> remainders = DefaultedList.ofSize(input.getSize(), ItemStack.EMPTY);
 
-        for (int i = 0; i < defaultedList.size(); i++) {
+        for (int i = 0; i < remainders.size(); i++) {
             ItemStack stack = input.getStackInSlot(i);
+
             if (stack.isIn(BTWRConventionalTags.Items.CRAFTING_WITH_TOOLS_ITEMS)) {
-                ItemStack copiedStack = stack.copy();
+                ItemStack tool = stack.copy();
 
                 if (stack.isIn(BTWRConventionalTags.Items.DAMAGE_ON_CRAFTING_TOOLS)) {
-                    if (stack.getDamage() < stack.getMaxDamage() - this.getToolDamage()) {
-                        copiedStack.setDamage(stack.getDamage() + this.getToolDamage());
+                    int newDamage = stack.getDamage() + this.getToolDamage();
+
+                    // If it breaks or exceeds max durability, destroy it
+                    if (newDamage >= tool.getMaxDamage()) {
+                        remainders.set(i, ItemStack.EMPTY);
+                        continue;
                     }
+
+                    tool.setDamage(newDamage);
                 }
 
-                defaultedList.set(i, copiedStack);
+                remainders.set(i, tool);
             }
         }
 
-        return defaultedList;
+        return remainders;
     }
 
     public static class Serializer implements RecipeSerializer<ExtendedShapelessRecipe> {

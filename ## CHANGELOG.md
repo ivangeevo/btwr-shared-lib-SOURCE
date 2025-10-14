@@ -1,3 +1,8 @@
+## v0.61(dev)
++ Fixed a bug that would increment item stack count of ingredients used in ExtendedShapelessRecipe when crafting
++ Fixed a bug that made tools not get destroyed when their durability reaches 0 with the ExtendedShapelessRecipe
++ Updated the mod to Fabric API 0.116.7
+
 ## v0.60
 + Renamed the CraftingWithTool Recipe to ExtendedShapelessRecipe to better represent what it does
 + Added EMI support for extended shapeless recipes to properly show up and also show what additional drops there are if present

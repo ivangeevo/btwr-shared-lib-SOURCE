@@ -1,5 +1,6 @@
 package btwr.btwr_sl.lib.mixin.recipe;
 
+import btwr.btwr_sl.lib.recipe.BTWRSLRecipes;
 import btwr.btwr_sl.lib.util.CraftingResultSlotModHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.RecipeInputInventory;
@@ -31,11 +32,29 @@ public abstract class CraftingResultSlotMixin {
         player.setTimesCraftedThisTick(player.timesCraftedThisTick() + 1);
     }
 
-    // Add additional logic after the onCrafted() method call and cancel the original logic for RecipeType.CRAFTING
-    @Inject(method = "onTakeItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/slot/CraftingResultSlot;onCrafted(Lnet/minecraft/item/ItemStack;)V", shift = At.Shift.AFTER), cancellable = true)
+    @Inject(
+            method = "onTakeItem",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/screen/slot/CraftingResultSlot;onCrafted(Lnet/minecraft/item/ItemStack;)V",
+                    shift = At.Shift.AFTER
+            ),
+            cancellable = true
+    )
     protected void addRemainderOnTake(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
-        CraftingResultSlotModHandler.getInstance().setRemainderForTools(player, stack, this.input);
-        ci.cancel();
+        var server = player.getWorld().getServer();
+        if (server == null) return;
+
+        var positioned = this.input.createPositionedRecipeInput();
+        var craftingInput = positioned.input();
+
+        var optional = server.getRecipeManager()
+                .getFirstMatch(BTWRSLRecipes.EXTENDED_SHAPELESS_RECIPE_TYPE, craftingInput, player.getWorld());
+
+        if (optional.isPresent()) {
+            CraftingResultSlotModHandler.getInstance().setRemainderForTools(player, this.input);
+            ci.cancel(); // skip vanilla remainder logic
+        }
     }
 }
 

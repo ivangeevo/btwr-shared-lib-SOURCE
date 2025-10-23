@@ -33,7 +33,6 @@
   },
   "custom": {
     "loom:injected_interfaces": {
-      "net/minecraft/class_1429": ["btwr/btwr_sl/lib/interfaces/added/AnimalEntityAdded"],
       "net/minecraft/class_1657": ["btwr/btwr_sl/lib/interfaces/added/PlayerEntityAdded"],
       "net/minecraft/class_2248": ["btwr/btwr_sl/lib/interfaces/added/BlockAdded"]
     }

@@ -5,12 +5,10 @@ import btwr.btwr_sl.lib.block.StackDroppingManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.GrassBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -51,6 +49,45 @@ public abstract class BlockMixin implements BlockAdded {
 
     @Override
     public void removeWeeds(World world, BlockPos pos) {}
+
+    @Override
+    public boolean canBeGrazedOn(WorldAccess worldAccess, BlockPos pos, AnimalEntity byAnimal) {
+        return false;
+    }
+
+    @Override
+    public void onGrazed(World world, BlockPos pos, AnimalEntity animal) {
+        world.setBlockState(pos, Blocks.AIR.getDefaultState());
+
+        Block blockBelow = world.getBlockState(pos.down()).getBlock();
+
+        if (blockBelow != null) {
+            blockBelow.onVegetationAboveGrazed(world, pos.down(), animal);
+        }
+    }
+
+    @Override
+    public void onVegetationAboveGrazed(World world, BlockPos pos, AnimalEntity animal) {}
+
+    @Override
+    public void notifyNeighborsBlockDisrupted(World world, BlockPos pos) {
+        BlockPos tempPos = new BlockPos(pos);
+
+        for (int facingId = 0; facingId <= 5; facingId++) {
+            Direction facing = Direction.byId(facingId);
+
+            tempPos.offset(facing);
+
+            Block tempBlock = world.getBlockState(tempPos).getBlock();
+
+            if (tempBlock != null) {
+                tempBlock.onNeighborDisrupted(world, tempPos, facing.getOpposite());
+            }
+        }
+    }
+
+    @Override
+    public void onNeighborDisrupted(World world, BlockPos pos, Direction facing) {}
 
     @Override
     public boolean isBlockAttachedToFacing(WorldAccess blockAccess, BlockPos pos, Direction direction) {

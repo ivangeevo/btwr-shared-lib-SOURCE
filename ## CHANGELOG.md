@@ -1,3 +1,6 @@
+## v0.62(dev)
+
+
 ## v0.61
 + Fixed a bug that would increment item stack count of ingredients used in ExtendedShapelessRecipe when crafting
 + Fixed a bug that made tools not get destroyed when their durability reaches 0 with the ExtendedShapelessRecipe

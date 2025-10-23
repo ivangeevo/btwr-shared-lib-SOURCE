@@ -1,6 +1,7 @@
 package btwr.btwr_sl.lib.interfaces.added;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -39,5 +40,17 @@ public interface BlockAdded
     default boolean isBlockAttachedToFacing(WorldAccess blockAccess, BlockPos pos, Direction direction) {
         return false;
     }
+
+    default boolean canBeGrazedOn(WorldAccess worldAccess, BlockPos pos, AnimalEntity byAnimal) {
+        return false;
+    }
+
+    default void onGrazed(World world, BlockPos pos, AnimalEntity animal) {}
+
+    default void onVegetationAboveGrazed(World world, BlockPos pos, AnimalEntity animal) {}
+
+    default void notifyNeighborsBlockDisrupted(World world, BlockPos pos) {}
+
+    default void onNeighborDisrupted(World world, BlockPos pos, Direction facing) {}
 
 }

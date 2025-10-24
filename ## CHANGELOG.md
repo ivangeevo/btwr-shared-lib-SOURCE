@@ -1,5 +1,6 @@
-## v0.62(dev)
-
+## v0.62
++ Added methods in Block.class related to animal graze functionality for usage in other mods from the BTWR Project or any other mods that might want to use them
++ Updated the mod to Fabric Loader 0.17.3
 
 ## v0.61
 + Fixed a bug that would increment item stack count of ingredients used in ExtendedShapelessRecipe when crafting

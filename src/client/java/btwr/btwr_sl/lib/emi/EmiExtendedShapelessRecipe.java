@@ -37,32 +37,11 @@ public class EmiExtendedShapelessRecipe extends EmiShapelessRecipe {
     private final int toolDamage;
     private final DefaultedList<ItemStack> additionalDrops;
 
-    // You can replace this with your own green cross texture if you have one.
-    private static final EmiTexture GREEN_PLUS = new EmiTexture(EmiPort.id("textures/gui/green_plus.png"),
-            0, 0, 8, 8);
-
     public EmiExtendedShapelessRecipe(ExtendedShapelessRecipe recipe) {
-        // CraftingWithToolShapelessRecipe extends ShapelessRecipe so EmiShapelessRecipe ctor works
-        super((ShapelessRecipe) recipe);
+        super(recipe);
         this.recipe = recipe;
         this.toolDamage = recipe.getToolDamage();
         this.additionalDrops = recipe.getAdditionalDrops();
-    }
-
-    /**
-     * Return the configured tool damage amount.
-     */
-    public int getToolDamage() {
-        return toolDamage;
-    }
-
-    /**
-     * Return a copy of additional drops list (ItemStack copies) so callers can't mutate original list.
-     */
-    public List<ItemStack> getAdditionalDrops() {
-        List<ItemStack> copies = new ArrayList<>(additionalDrops.size());
-        for (ItemStack s : additionalDrops) copies.add(s.copy());
-        return copies;
     }
 
     @Override
@@ -118,33 +97,6 @@ public class EmiExtendedShapelessRecipe extends EmiShapelessRecipe {
             if (s != null && !s.isEmpty()) outs.add(EmiStack.of(s));
         }
         return outs;
-    }
-
-    /**
-     * Helper to programmatically apply configured tool damage to a tool ItemStack.
-     * Returns the post-damage ItemStack (may be EMPTY if broken).
-     *
-     * Note: your recipe's getRemainder already implements remainder/damage logic for crafting.
-     * This helper can be used in other contexts where you want to apply the same damage behavior.
-     */
-    public ItemStack applyToolDamage(ItemStack toolStack) {
-        if (toolStack == null || toolStack.isEmpty()) return ItemStack.EMPTY;
-
-        // If the tool is damageable we mutate its damage value, else return original.
-        if (toolStack.isDamageable() || toolStack.getMaxDamage() > 0) {
-            ItemStack copy = toolStack.copy();
-            int newDamage = copy.getDamage() + this.toolDamage;
-            if (newDamage >= copy.getMaxDamage()) {
-                // tool broken -> return empty
-                return ItemStack.EMPTY;
-            } else {
-                copy.setDamage(newDamage);
-                return copy;
-            }
-        }
-
-        // Not damageable / no-op
-        return toolStack.copy();
     }
 
     @Override

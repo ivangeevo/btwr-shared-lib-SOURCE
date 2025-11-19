@@ -4,4 +4,4 @@
 build
 run
 libs
-src/main/generated/.cache
+src/main/generated/.cache/

@@ -1,4 +1,10 @@
-## v???(dev)
+## v???(dev) 
++ Added Javadoc comments with explanations for many tags in BTWRConventionalTags
++ Added several new common tags for items and blocks in BTWRConventionalTags for strata and tool-based checks.
++ Added authors(ivangeevo, jeffinitup) to the mod files, so they should display properly in launchers
++ Changed mod license in the source code and in public releases to be MIT
++ Refactored pretty much the whole code; mainly for readability, and so it's more in order with other mods from the BTWR project
++ Removed unused item and block tags in BTWRConventionalTags
 
 ## v0.62
 + Added methods in Block.class related to animal graze functionality for usage in other mods from the BTWR Project or any other mods that might want to use them

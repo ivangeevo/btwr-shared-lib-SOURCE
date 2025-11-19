@@ -136,7 +136,6 @@ tasks.register('gitPushArtifacts') {
     }
 }
 
-
 tasks.register('gitPushSource') {
     doLast {
         // Initialize a new git repository
@@ -160,26 +159,25 @@ tasks.register('gitPushSource') {
     }
 }
 
-
 // configure the maven publication
-    publishing {
-        publications {
-            create("mavenJava", MavenPublication) {
-                artifactId = project.archives_base_name
-                from components.java
-            }
-        }
-
-        // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-        repositories {
-
-            maven {
-                // Set the custom directory for local publishing
-                url = uri('./maven')
-            }
-        }
-
-        loom {
-            accessWidenerPath = file("src/main/resources/btwr_sl.accesswidener")
+publishing {
+    publications {
+        create("mavenJava", MavenPublication) {
+            artifactId = project.archives_base_name
+            from components.java
         }
     }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+
+        maven {
+            // Set the custom directory for local publishing
+            url = uri('./maven')
+        }
+    }
+
+    loom {
+        accessWidenerPath = file("src/main/resources/btwr_sl.accesswidener")
+    }
+}

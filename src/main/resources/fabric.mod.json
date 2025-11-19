@@ -4,17 +4,20 @@
   "version": "${version}",
   "name": "BTWR: Shared Library",
   "description": "",
-  "authors": [],
+  "authors": [
+    "ivangeevo",
+    "jeffinitup"
+  ],
   "contact": {},
-  "license": "All-Rights-Reserved",
+  "license": "MIT",
   "icon": "assets/btwr_sl/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": ["btwr.btwr_sl.lib.BTWRSLModClient"],
-    "main": ["btwr.btwr_sl.BTWRSLMod"],
-    "fabric-datagen": ["btwr.btwr_sl.BTWRSLDataGenerator"],
-    "modmenu": ["btwr.btwr_sl.lib.config.BTWRSLConfig"],
-    "emi": ["btwr.btwr_sl.lib.emi.BTWRSLEmiPlugin"]
+    "client": ["org.btwr.shared_library.BTWRSLModClient"],
+    "main": ["org.btwr.shared_library.BTWRSLMod"],
+    "fabric-datagen": ["org.btwr.shared_library.datagen.BTWRSLDataGenerator"],
+    "modmenu": ["org.btwr.shared_library.config.BTWRSLConfig"],
+    "emi": ["org.btwr.shared_library.emi.BTWRSLEmiPlugin"]
   },
   "mixins": [
     "btwr_sl.mixins.json",
@@ -33,10 +36,9 @@
   },
   "custom": {
     "loom:injected_interfaces": {
-      "net/minecraft/class_1657": ["btwr/btwr_sl/lib/interfaces/added/PlayerEntityAdded"],
-      "net/minecraft/class_2248": ["btwr/btwr_sl/lib/interfaces/added/BlockAdded"]
+      "net/minecraft/class_1657": ["org/btwr/shared_library/interfaces/added/PlayerEntityAdded"],
+      "net/minecraft/class_2248": ["org/btwr/shared_library/interfaces/added/BlockAdded"]
     }
   },
-
   "accessWidener" : "btwr_sl.accesswidener"
 }

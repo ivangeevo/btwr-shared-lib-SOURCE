@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -60,7 +59,6 @@ public class BTWRSL_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
                 .add(Items.NETHERITE_PICKAXE)
                 .add(Items.DIAMOND_PICKAXE);
-
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.PRIMITIVE_AXES)
                 .add(Items.WOODEN_AXE)
@@ -133,6 +131,24 @@ public class BTWRSL_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.NETHERITE_SHOVEL)
                 .add(Items.NETHERITE_SWORD)
                 .add(Items.NETHERITE_HOE);
+        
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.PRIMITIVE_TOOLS)
+                .forceAddTag(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES)
+                .forceAddTag(BTWRConventionalTags.Items.PRIMITIVE_AXES)
+                .forceAddTag(BTWRConventionalTags.Items.PRIMITIVE_SHOVELS)
+                .forceAddTag(BTWRConventionalTags.Items.PRIMITIVE_HOES);
+        
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.MODERN_TOOLS)
+                .forceAddTag(BTWRConventionalTags.Items.MODERN_PICKAXES)
+                .forceAddTag(BTWRConventionalTags.Items.MODERN_AXES)
+                .forceAddTag(BTWRConventionalTags.Items.MODERN_SHOVELS)
+                .forceAddTag(BTWRConventionalTags.Items.MODERN_HOES);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.ADVANCED_TOOLS)
+                .forceAddTag(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
+                .forceAddTag(BTWRConventionalTags.Items.ADVANCED_AXES)
+                .forceAddTag(BTWRConventionalTags.Items.ADVANCED_SHOVELS)
+                .forceAddTag(BTWRConventionalTags.Items.ADVANCED_HOES);
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_WOODEN_SOUND)
                 .forceAddTag(ItemTags.PLANKS)

@@ -1,7 +1,7 @@
 package org.btwr.shared_library.mixin.client;
 
 import org.btwr.shared_library.event.EventHUDInitialized;
-import org.btwr.shared_library.gui.PenaltyDisplayManager;
+import org.btwr.shared_library.gui.hud.PenaltyDisplayManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;

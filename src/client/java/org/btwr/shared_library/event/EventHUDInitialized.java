@@ -1,8 +1,8 @@
 package org.btwr.shared_library.event;
 
 import org.btwr.shared_library.BTWRSLMod;
-import org.btwr.shared_library.gui.HUDInitializeListener;
-import org.btwr.shared_library.gui.PenaltyDisplayManager;
+import org.btwr.shared_library.gui.hud.HUDInitializeListener;
+import org.btwr.shared_library.gui.hud.PenaltyDisplayManager;
 import net.minecraft.client.MinecraftClient;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package org.btwr.shared_library.gui;
+package org.btwr.shared_library.gui.hud;
 
 import net.minecraft.client.MinecraftClient;
 

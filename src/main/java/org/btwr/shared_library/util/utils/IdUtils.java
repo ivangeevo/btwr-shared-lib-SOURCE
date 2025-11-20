@@ -7,14 +7,33 @@ import net.minecraft.util.Identifier;
 
 public class IdUtils {
 
-    public static Identifier ofMC(String item) { return Identifier.ofVanilla(item); }
-    public static Identifier ofDS(String item) { return Identifier.of("btwr_ds", item); }
-    public static Identifier ofBTWR(String item) { return Identifier.of("org/btwr", item); }
-    public static Identifier ofBWT(String item) { return Identifier.of("bwt", item); }
-    public static Identifier ofTE(String item) { return Identifier.of("tough_environment", item); }
-    public static Identifier ofST(String item) { return Identifier.of("sturdy_trees", item); }
-    public static Identifier ofSS(String item) { return Identifier.of("self_sustainable", item); }
-    public static Identifier ofVG(String item) { return Identifier.of("vegehenna", item); }
+    public static Identifier ofMC(String path) {
+        return Identifier.ofVanilla(path);
+    }
+    public static Identifier ofSL(String path) {
+        return Identifier.of("btwr_sl", path);
+    }
+    public static Identifier ofDS(String path) {
+        return Identifier.of("btwr_ds", path);
+    }
+    public static Identifier ofBTWR(String path) {
+        return Identifier.of("btwr", path);
+    }
+    public static Identifier ofBWT(String path) {
+        return Identifier.of("bwt", path);
+    }
+    public static Identifier ofTE(String path) {
+        return Identifier.of("tough_environment", path);
+    }
+    public static Identifier ofST(String path) {
+        return Identifier.of("sturdy_trees", path);
+    }
+    public static Identifier ofSS(String path) {
+        return Identifier.of("self_sustainable", path);
+    }
+    public static Identifier ofVG(String path) {
+        return Identifier.of("vegehenna", path);
+    }
 
     /**
      * Utility methods to fetch registry entries.

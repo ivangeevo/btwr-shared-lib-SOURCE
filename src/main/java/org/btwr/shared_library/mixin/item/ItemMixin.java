@@ -1,6 +1,6 @@
 package org.btwr.shared_library.mixin.item;
 
-import org.btwr.shared_library.util.CraftingSoundHandler;
+import org.btwr.shared_library.sound.CraftingSoundHandler;
 import org.btwr.shared_library.util.PlaceableAsBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.entity.player.PlayerEntity;

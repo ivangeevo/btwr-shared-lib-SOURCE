@@ -36,7 +36,7 @@ repositories {
     maven { url "https://maven.shedaniel.me/" }
     maven { url "https://maven.terraformersmc.com/releases/" }
     maven { url "https://api.modrinth.com/maven" }
-
+    maven { url "https://maven.ladysnake.org/releases" }
 }
 
 dependencies {
@@ -53,6 +53,43 @@ dependencies {
 
     // Mod Menu
     modApi "com.terraformersmc:modmenu:${project.mod_menu_version}"
+
+
+    // --- COMPAT --- //
+    // Im 'movens (for testing penalties)
+    //modImplementation "maven.modrinth:im-movens:${project.im_movens_version}"
+    //modCompileOnly files("libs/im-movens-${project.im_movens_version}-1.21.1.jar")
+    // Leave My Bars Alone - LMBA
+    modCompileOnly "maven.modrinth:leave-my-bars-alone:${project.leave_my_bars_alone_version}"
+    modLocalRuntime "maven.modrinth:leave-my-bars-alone:${project.leave_my_bars_alone_version}"
+    // Tough As Nails
+    modCompileOnly "maven.modrinth:tough-as-nails:${project.tough_as_nails_version}"
+    modLocalRuntime "maven.modrinth:tough-as-nails:${project.tough_as_nails_version}"
+    // Heart Meals
+    //modCompileOnly "maven.modrinth:hearty-meals:${project.hearty_meals_version}"
+    //modLocalRuntime "maven.modrinth:hearty-meals:${project.hearty_meals_version}"
+    // Forge Config API Port - LMBA required
+    modCompileOnly "maven.modrinth:forge-config-api-port:${project.forge_config_api_port_version}"
+    modLocalRuntime "maven.modrinth:forge-config-api-port:${project.forge_config_api_port_version}"
+    // Puzzles Lib - LMBA required
+    modCompileOnly "maven.modrinth:puzzles-lib:${project.puzzles_lib_version}"
+    modLocalRuntime "maven.modrinth:puzzles-lib:${project.puzzles_lib_version}"
+    // Night Config - LMBA required
+    modCompileOnly "com.electronwill.night-config:toml:${project.night_config_version}"
+    modLocalRuntime "com.electronwill.night-config:toml:${project.night_config_version}"
+    // Glitch Core - Tough As Nails required
+    modCompileOnly "maven.modrinth:glitchcore:${project.glitch_core_version}"
+    modLocalRuntime "maven.modrinth:glitchcore:${project.glitch_core_version}"
+    // Cardinal Components API - Hearty Meals required
+    modCompileOnly "org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cardinal_components_api_version}"
+    modLocalRuntime "org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cardinal_components_api_version}"
+    modCompileOnly "org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cardinal_components_api_version}"
+    modLocalRuntime "org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cardinal_components_api_version}"
+    // MidnightLib
+    modCompileOnly "maven.modrinth:midnightlib:${project.midnightlib_version}"
+    modLocalRuntime "maven.modrinth:midnightlib:${project.midnightlib_version}"
+
+    // ------------- //
 
     // EMI
     modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"

@@ -1,9 +1,12 @@
-package org.btwr.shared_library.gui;
+package org.btwr.shared_library.gui.hud;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.JumpingMount;
+import net.minecraft.entity.Tameable;
+import net.minecraft.entity.passive.HorseEntity;
 import org.btwr.shared_library.BTWRSLMod;
 import org.btwr.shared_library.BTWRSLModClient;
 import org.btwr.shared_library.config.BTWRSLSettings;
-import org.btwr.shared_library.config.PenaltyDrawMode;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -11,6 +14,8 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 
 /**
@@ -36,11 +41,6 @@ public class PenaltyDisplayManager {
      * List of current penalties to be rendered
      */
     private static TreeMap<Integer,Penalty> penalties = new TreeMap<>();
-
-    /**
-     * Indicates if the hunger bar is currently rendered
-     */
-    private static boolean isRenderingFood = false;
 
     public static PenaltyDisplayManager getInstance() {
         return INSTANCE;
@@ -175,7 +175,7 @@ public class PenaltyDisplayManager {
         }
 
         // Set render boolean to false in-case of HUD changes at runtime
-        setRenderingFood(false);
+        StatusBarRenderInfo.getInstance().setRenderingFood(false);
     }
 
     private void renderPenaltiesAnchored(DrawContext context, TextRenderer renderer, PlayerEntity player) {
@@ -216,35 +216,12 @@ public class PenaltyDisplayManager {
      */
     private int getTextY(PlayerEntity player, int hungerBarY) {
         // Get additional context
-        boolean isRenderingAir = player.getAir() != player.getMaxAir();
-        boolean isRenderingArmor = player.getArmor() > 0;
+        HudRenderInfo info = HudRenderInfo.createDefault(hungerBarY);
 
         // Default Y position (above the hunger bar, alternatively above hot-bar)
-        int textY = isRenderingFood ? hungerBarY - 10 : hungerBarY;
+        int baseY = StatusBarRenderInfo.getInstance().getRenderingFood() ? hungerBarY - 10 : hungerBarY;
 
-        // Adjust the Y position under certain conditions
-        if (
-            (isRenderingAir && isRenderingFood) ||  // Player is underwater and food is rendered
-            (isRenderingArmor && !isRenderingFood)) // Player is wearing armor and food is NOT rendered
-            // Future explicit compatibility checks could be done here
-        {
-            textY -= 10;
-        }
-
-        return textY;
-    }
-
-    /**
-     * Sets indicator for whether food bar is rendering or not
-     */
-    public void setRenderingFood(boolean value) {
-        isRenderingFood = value;
-        if (
-                // Explicit compat checks here
-                FabricLoader.getInstance().isModLoaded("granular-hunger") ||
-                BTWRSLModClient.getSettings().isHungerOffsetEnabled()
-        )
-            isRenderingFood = true;
+        return baseY + HudYOffsetRegistry.computeTotalYOffset(player, info);
     }
 
     /**
@@ -298,6 +275,53 @@ public class PenaltyDisplayManager {
      */
     private PenaltyDrawMode getDrawMode() {
         return BTWRSLModClient.getSettings().getDrawMode();
+    }
+
+    /**
+     * Register dynamic changes to the Penalty texts displayed by {@link org.btwr.shared_library.gui.hud.PenaltyDisplayManager}
+     */
+    public static final class HudYOffsetRegistry {
+        private static final List<HudYOffsetRule> RULES = new ArrayList<>();
+
+        public static void register(HudYOffsetRule rule) {
+            RULES.add(rule);
+        }
+
+        // Default rules for offsetting the text
+        public static void registerDefaults() {
+            // Player is underwater and food is rendered
+            register((player, info) ->
+                    StatusBarRenderInfo.getInstance().getRenderingAir(player) && StatusBarRenderInfo.getInstance().getRenderingFood() ? -10 : 0
+            );
+            // Player is wearing armor and food is NOT rendered
+            register((player, info) ->
+                    StatusBarRenderInfo.getInstance().getRenderingArmor(player) && !StatusBarRenderInfo.getInstance().getRenderingFood() ? -10 : 0
+            );
+        }
+
+        public static int computeTotalYOffset(PlayerEntity player, HudRenderInfo info) {
+            int offset = 0;
+            for (HudYOffsetRule rule : RULES) {
+                offset += rule.getYOffset(player, info);
+            }
+            return offset;
+        }
+
+        @FunctionalInterface
+        public interface HudYOffsetRule {
+            /**
+             * @return The vertical offset this rule wants to apply (can be 0).
+             */
+            int getYOffset(PlayerEntity player, HudRenderInfo info);
+        }
+
+    }
+
+    /** Context record for keeping track of what the current hunger bar Y is and whether {@link org.btwr.shared_library.gui.hud.PenaltyDisplayManager} is rendering food **/
+    public record HudRenderInfo(int hungerBarY, boolean renderingFood) {
+        public static HudRenderInfo createDefault(int hungerBarY) {
+            return new HudRenderInfo(hungerBarY, StatusBarRenderInfo.getInstance().getRenderingFood());
+        }
     }
 
 }

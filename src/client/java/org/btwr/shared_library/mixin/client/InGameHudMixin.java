@@ -7,6 +7,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.entity.player.PlayerEntity;
+import org.btwr.shared_library.gui.hud.StatusBarRenderInfo;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,8 +25,38 @@ public abstract class InGameHudMixin {
      */
     @Inject(method = "renderFood", at = @At("TAIL"))
     private void renderFoodCheck(DrawContext context, PlayerEntity player, int top, int right, CallbackInfo ci) {
-        PenaltyDisplayManager dm = PenaltyDisplayManager.getInstance();
-        dm.setRenderingFood(true);
+        StatusBarRenderInfo info = StatusBarRenderInfo.getInstance();
+        info.setRenderingFood(true);
+    }
+
+    /**
+     * Checks to see if renderMountHealth was called and not intercepted,
+     * indicating that mount health has been successfully rendered
+     */
+    @Inject(method = "renderMountHealth", at = @At("TAIL"))
+    private void renderMountHealthCheck(DrawContext context, CallbackInfo ci) {
+        StatusBarRenderInfo info = StatusBarRenderInfo.getInstance();
+        info.setRenderingMountHealth(true);
+    }
+
+    /**
+     * Checks to see if renderArmor was called and not intercepted,
+     * indicating that armor has been successfully rendered
+     */
+    @Inject(method = "renderArmor", at = @At("TAIL"))
+    private static void renderArmorCheck(DrawContext context, PlayerEntity player, int i, int j, int k, int x, CallbackInfo ci) {
+        StatusBarRenderInfo info = StatusBarRenderInfo.getInstance();
+        info.setRenderingArmor(true);
+    }
+
+    /**
+     * Checks to see if renderStatusBars after the air texture check was called and not intercepted,
+     * indicating that air has been successfully rendered
+     */
+    @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;disableBlend()V", shift = At.Shift.AFTER))
+    private void renderAirCheck(DrawContext context, CallbackInfo ci) {
+        StatusBarRenderInfo info = StatusBarRenderInfo.getInstance();
+        info.setRenderingAir(true);
     }
 
     /**

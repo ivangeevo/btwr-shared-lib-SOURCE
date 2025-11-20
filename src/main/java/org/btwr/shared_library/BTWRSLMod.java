@@ -2,6 +2,7 @@ package org.btwr.shared_library;
 
 import org.btwr.shared_library.recipe.BTWRSLRecipes;
 import net.fabricmc.api.ModInitializer;
+import org.btwr.shared_library.sound.BTWRSounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +20,7 @@ public class BTWRSLMod implements ModInitializer
 
     @Override
     public void onInitialize() {
+        //BTWRSounds.register();
         BTWRSLRecipes.register();
         INSTANCE = this;
     }

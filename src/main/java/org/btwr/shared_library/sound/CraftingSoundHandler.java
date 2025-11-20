@@ -1,4 +1,4 @@
-package org.btwr.shared_library.util;
+package org.btwr.shared_library.sound;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

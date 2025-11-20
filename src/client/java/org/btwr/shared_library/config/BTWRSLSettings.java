@@ -1,5 +1,7 @@
 package org.btwr.shared_library.config;
 
+import org.btwr.shared_library.gui.hud.PenaltyDrawMode;
+
 public class BTWRSLSettings {
 
     protected boolean doHungerOffsetOverride = true;

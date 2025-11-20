@@ -1,11 +1,11 @@
-package org.btwr.shared_library.config;
+package org.btwr.shared_library.gui.hud;
 
 import net.minecraft.client.gui.DrawContext;
 
-import static org.btwr.shared_library.gui.PenaltyDisplayManager.RIGHT;
-import static org.btwr.shared_library.gui.PenaltyDisplayManager.LEFT;
-import static org.btwr.shared_library.gui.PenaltyDisplayManager.BOTTOM;
-import static org.btwr.shared_library.gui.PenaltyDisplayManager.TOP;
+import static org.btwr.shared_library.gui.hud.PenaltyDisplayManager.RIGHT;
+import static org.btwr.shared_library.gui.hud.PenaltyDisplayManager.LEFT;
+import static org.btwr.shared_library.gui.hud.PenaltyDisplayManager.BOTTOM;
+import static org.btwr.shared_library.gui.hud.PenaltyDisplayManager.TOP;
 
 /**
  * Holds translation key and x + y offset for penalties

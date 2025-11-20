@@ -1,5 +1,8 @@
 package org.btwr.shared_library.util.utils;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.registry.tag.TagKey;
 import org.btwr.shared_library.recipe.DisabledRecipe;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.ItemConvertible;
@@ -64,4 +67,19 @@ public interface RecipeExporterUtils {
         disableRecipe(exporter, namespace, path);
     }
 
+    /** Helper method to extract wood type from an item's translation key **/
+    default String extractName(Item item) {
+        String[] parts = item.getTranslationKey().split("\\.");
+        return parts[parts.length - 1];
+    }
+    /** Helper method to extract wood type from a block's translation key **/
+    default String extractName(Block block) {
+        String[] parts = block.getTranslationKey().split("\\.");
+        return parts[parts.length - 1];
+    }
+
+    default String extractName(TagKey<?> tag) {
+        String[] parts = tag.getTranslationKey().split("\\.");
+        return parts[parts.length - 1];
+    }
 }

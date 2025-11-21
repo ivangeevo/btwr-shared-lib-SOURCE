@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
  */
 @Mixin(ProtoChunk.class)
 public abstract class ProtoChunkMixin {
-
     @Redirect(method = "setBlockState", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/chunk/ChunkSection;setBlockState(IIILnet/minecraft/block/BlockState;)Lnet/minecraft/block/BlockState;")
     )
@@ -37,5 +36,4 @@ public abstract class ProtoChunkMixin {
 
         return chunkSection.setBlockState(x, y, z, state);
     }
-
 }

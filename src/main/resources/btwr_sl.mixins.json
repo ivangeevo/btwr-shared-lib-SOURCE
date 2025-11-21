@@ -11,7 +11,7 @@
     "added.BlockAddedMixin",
     "added.PlayerEntityAddedMixin",
     "block.BlockMixin",
-    "block.FarmlandBlockMixin",
+    "added.FarmlandBlockAddedMixin",
     "item.ItemMixin",
     "item.ShearsItemMixin",
     "recipe.CraftingResultSlotMixin"

@@ -987,7 +987,6 @@ public class BTWREffectManager {
     private static void effectAnimalBirth(World world, PlayerEntity player, BlockPos pos, BlockState state) {
         world.playSound(null, pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.NEUTRAL, 1.0F, rand(world, 1.0F, 0.2F));
 
-
         /**
         particles(world, "reddust", 10,
                 () -> x + world.rand.nextDouble(),

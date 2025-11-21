@@ -11,7 +11,6 @@ import java.util.Map;
  */
 public class BlockReplacementRegistry
 {
-
     private record ReplacementInfo(Block block, boolean copyProperties) {}
     private static final Map<Block, ReplacementInfo> REPLACEMENTS = new HashMap<>();
 
@@ -51,5 +50,4 @@ public class BlockReplacementRegistry
     public static boolean shouldCopyProperties(Block original) {
         return getReplacementInfo(original).copyProperties();
     }
-
 }

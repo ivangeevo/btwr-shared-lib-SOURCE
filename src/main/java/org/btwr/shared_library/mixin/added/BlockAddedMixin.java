@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(Block.class)
 public abstract class BlockAddedMixin implements BlockAdded {
-
     //----------- Plant related functionality ----------//
 
     @Override
@@ -85,5 +84,4 @@ public abstract class BlockAddedMixin implements BlockAdded {
     public boolean btwr$isBlockAttachedToFacing(WorldAccess blockAccess, BlockPos pos, Direction direction) {
         return false;
     }
-
 }

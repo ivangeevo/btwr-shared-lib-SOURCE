@@ -1,4 +1,4 @@
-package org.btwr.shared_library.mixin.block;
+package org.btwr.shared_library.mixin.added;
 
 import org.btwr.shared_library.interfaces.added.BlockAdded;
 import net.minecraft.block.FarmlandBlock;
@@ -9,11 +9,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import static net.minecraft.block.FarmlandBlock.MOISTURE;
 
 @Mixin(FarmlandBlock.class)
-public abstract class FarmlandBlockMixin implements BlockAdded {
-
+public abstract class FarmlandBlockAddedMixin implements BlockAdded {
     @Override
     public boolean btwr$isBlockHydratedForPlantGrowthOn(World world, BlockPos pos) {
         return world.getBlockState(pos).get(MOISTURE) == 7;
     }
-
 }

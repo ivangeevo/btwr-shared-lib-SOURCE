@@ -63,5 +63,4 @@ public enum CraftingSoundConfig {
     public float getPitchVariance() {
         return pitchVariance;
     }
-
 }

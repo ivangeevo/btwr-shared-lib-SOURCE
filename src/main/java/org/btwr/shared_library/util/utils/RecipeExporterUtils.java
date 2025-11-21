@@ -13,7 +13,6 @@ import net.minecraft.util.Identifier;
  * <p> Implement this class into your recipe provider/generator class if you want to access the helper methods
  * */
 public interface RecipeExporterUtils {
-
     /**
      * Simplified wrappers for common namespaces.
      */

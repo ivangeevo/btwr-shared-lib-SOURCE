@@ -15,7 +15,6 @@ import java.util.Map;
 
 @Mixin(ShapelessRecipeJsonBuilder.class)
 public interface ShapelessRecipeJsonBuilderAccessorMixin {
-
     @Accessor RecipeCategory getCategory();
     @Accessor Item getOutput();
     @Accessor int getCount();
@@ -23,5 +22,4 @@ public interface ShapelessRecipeJsonBuilderAccessorMixin {
     @Accessor String getGroup();
     @Accessor Map<String, AdvancementCriterion<?>> getAdvancementBuilder();
     @Invoker("validate") void accessValidate(Identifier recipeId);
-
 }

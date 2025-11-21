@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CraftingResultSlot.class)
 public abstract class CraftingResultSlotMixin {
-    
     @Shadow @Final private RecipeInputInventory input;
 
     @Inject(method = "onTakeItem", at = @At("HEAD"))
@@ -56,5 +55,4 @@ public abstract class CraftingResultSlotMixin {
             ci.cancel(); // skip vanilla remainder logic
         }
     }
-
 }

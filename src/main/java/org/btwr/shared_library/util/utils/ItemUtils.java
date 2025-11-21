@@ -21,7 +21,6 @@ import java.util.function.Supplier;
 
 public class ItemUtils
 {
-
     static public void ejectStackWithRandomOffset(World world, BlockPos pos, ItemStack stack) {
         float xOffset = world.getRandom().nextFloat() * 0.7F + 0.15F;
         float yOffset = world.getRandom().nextFloat() * 0.2F + 0.1F;
@@ -137,5 +136,4 @@ public class ItemUtils
             world.spawnEntity(itemEntity);
         }
     }
-
 }

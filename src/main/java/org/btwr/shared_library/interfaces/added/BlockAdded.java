@@ -9,7 +9,6 @@ import net.minecraft.world.WorldAccess;
 
 public interface BlockAdded
 {
-
     /**
      * Called when a plant hits a full growth stage, like wheat fully grown,
      * or each full block of Hemp.  Used to clear fertilizer.
@@ -70,5 +69,4 @@ public interface BlockAdded
     default void btwr$onNeighborDisrupted(World world, BlockPos pos, Direction facing) {
         throw new UnsupportedOperationException();
     }
-
 }

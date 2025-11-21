@@ -18,9 +18,12 @@ public abstract class ShearsItemMixin extends Item {
         super(settings);
     }
 
+    // TODO: Add these changes with the DefaultItemComponentEvents Fabric class instead of modifying this
+    //  With that change we will likely not need the SHEARS_EFFICIENT tag anymore
     @Inject(method = "createToolComponent", at = @At("HEAD"), cancellable = true)
     private static void onCreateToolComponent(CallbackInfoReturnable<ToolComponent> cir) {
         cir.setReturnValue(new ToolComponent(MODIFIED_SHEARS_COMPONENT_LIST, 1.0f, 1));
+
     }
 
     @Unique

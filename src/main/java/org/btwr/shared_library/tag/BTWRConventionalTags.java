@@ -69,7 +69,6 @@ public class BTWRConventionalTags
         private static TagKey<Block> createTag(String tagId) {
             return TagRegistration.BLOCK_TAG.registerC(tagId);
         }
-
     }
 
     public static class Items {
@@ -170,5 +169,4 @@ public class BTWRConventionalTags
             return TagRegistration.ITEM_TAG.registerC(tagId);
         }
     }
-
 }

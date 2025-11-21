@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public record DisabledRecipe(String group) implements Recipe<RecipeInput> {
-
     public DisabledRecipe() {
         this("");
     }
@@ -103,9 +102,4 @@ public record DisabledRecipe(String group) implements Recipe<RecipeInput> {
             buf.writeString(recipe.group);
         }
     }
-
-    public interface RecipeFactory<T extends DisabledRecipe> {
-        T create(String group);
-    }
-
 }

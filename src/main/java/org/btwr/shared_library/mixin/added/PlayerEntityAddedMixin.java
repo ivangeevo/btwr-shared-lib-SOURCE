@@ -7,7 +7,6 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityAddedMixin implements PlayerEntityAdded {
-
     @Unique private int timesCraftedThisTick = 0;
 
     @Override
@@ -19,5 +18,4 @@ public abstract class PlayerEntityAddedMixin implements PlayerEntityAdded {
     public void btwr$setTimesCraftedThisTick(int value) {
         timesCraftedThisTick = value;
     }
-
 }

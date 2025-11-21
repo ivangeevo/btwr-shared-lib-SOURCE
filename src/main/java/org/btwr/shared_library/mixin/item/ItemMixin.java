@@ -2,7 +2,6 @@ package org.btwr.shared_library.mixin.item;
 
 import org.btwr.shared_library.sound.CraftingSoundHandler;
 import org.btwr.shared_library.util.PlaceableAsBlock;
-import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ActionResult;
@@ -15,10 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Item.class)
-public abstract class ItemMixin implements FabricItem {
-
-    @Unique
-    private static final PlaceableAsBlock item = PlaceableAsBlock.getInstance();
+public abstract class ItemMixin {
+    @Unique private static final PlaceableAsBlock item = PlaceableAsBlock.getInstance();
 
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void injectedUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
@@ -29,5 +26,4 @@ public abstract class ItemMixin implements FabricItem {
     private void onOnCraftByPlayer(ItemStack stack, World world, PlayerEntity player, CallbackInfo ci) {
         CraftingSoundHandler.getInstance().playCraftingSound(stack, world, player);
     }
-
 }

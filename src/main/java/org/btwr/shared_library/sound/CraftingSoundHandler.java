@@ -8,7 +8,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class CraftingSoundHandler {
-
     private static final CraftingSoundHandler INSTANCE = new CraftingSoundHandler();
 
     private CraftingSoundHandler() {}
@@ -38,5 +37,4 @@ public class CraftingSoundHandler {
             world.playSound(player, thisPos, sound, SoundCategory.BLOCKS, volume, pitch);
         }
     }
-
 }

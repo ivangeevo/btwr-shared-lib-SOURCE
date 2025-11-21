@@ -33,7 +33,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class ExtendedShapelessRecipe extends ShapelessRecipe implements AdditionalDropsRecipe, CraftingWithToolRecipe {
-
     /** Damage to apply to the tool used in crafting **/
     final int toolDamage;
 
@@ -270,5 +269,4 @@ public class ExtendedShapelessRecipe extends ShapelessRecipe implements Addition
             exporter.accept(recipeId, recipe, builder.build(recipeId.withPrefixedPath("recipes/" + accessor.getCategory().getName() + "/")));
         }
     }
-
 }

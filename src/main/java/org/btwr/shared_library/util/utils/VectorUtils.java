@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 
 public class VectorUtils
 {
-
     /**
      * Determines the direction in which the block is being mined.
      *
@@ -113,5 +112,4 @@ public class VectorUtils
         return new Vec3d(x, y, z);
 
     }
-
 }

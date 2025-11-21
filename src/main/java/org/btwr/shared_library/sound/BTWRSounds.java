@@ -8,8 +8,7 @@ import org.btwr.shared_library.BTWRSLMod;
 import org.btwr.shared_library.util.utils.IdUtils;
 
 public class BTWRSounds {
-
-    public static final SoundEvent PLAYER_HURT = register("player_hurt");
+    //public static final SoundEvent PLAYER_HURT = register("player_hurt");
     public static final SoundEvent BLOOD_WOOD_BREAK = register("block/blood_wood/break", 6);
     public static final SoundEvent BLOOD_WOOD_STEP = register("block/blood_wood/step", 6);
 

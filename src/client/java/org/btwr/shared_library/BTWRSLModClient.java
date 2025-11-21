@@ -14,7 +14,6 @@ import java.io.IOException;
 
 public class BTWRSLModClient implements ClientModInitializer
 {
-
     public BTWRSLSettings settings;
     private static BTWRSLModClient instance;
 
@@ -42,10 +41,8 @@ public class BTWRSLModClient implements ClientModInitializer
         // Default status bar offset conditions for penalty text
         PenaltyDisplayManager.HudYOffsetRegistry.registerDefaults();
 
-        // Leave My Bars Alone compat with penalty text;
+        // Compatibility modules
         LeaveMyBarsAloneCompat.init();
-
-        // Tough As Nails compat with penalty text;
         ToughAsNailsCompat.init();
     }
 
@@ -65,7 +62,7 @@ public class BTWRSLModClient implements ClientModInitializer
                 fileReader.close();
             }
             catch (IOException e) {
-                BTWRSLMod.LOGGER.warn("Could not load BTWRSL settings: {}", e.getLocalizedMessage());
+                BTWRSLMod.LOGGER.warn("Could not load BTWR: Shared Library settings: {}", e.getLocalizedMessage());
             }
         }
         else {
@@ -85,8 +82,7 @@ public class BTWRSLModClient implements ClientModInitializer
             fileWriter.close();
         }
         catch (IOException e) {
-            BTWRSLMod.LOGGER.warn("Could not save BTWRSL settings: {}", e.getLocalizedMessage());
+            BTWRSLMod.LOGGER.warn("Could not save BTWR: Shared Library settings: {}", e.getLocalizedMessage());
         }
     }
-
 }

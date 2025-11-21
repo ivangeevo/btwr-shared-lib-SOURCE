@@ -278,7 +278,7 @@ public class PenaltyDisplayManager {
     }
 
     /**
-     * Register dynamic changes to the Penalty texts displayed by {@link org.btwr.shared_library.gui.hud.PenaltyDisplayManager}
+     * Register dynamic changes to the default Y position of Penalty texts displayed by {@link org.btwr.shared_library.gui.hud.PenaltyDisplayManager}
      */
     public static final class HudYOffsetRegistry {
         private static final List<HudYOffsetRule> RULES = new ArrayList<>();

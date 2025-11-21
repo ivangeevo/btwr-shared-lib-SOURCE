@@ -54,7 +54,6 @@ dependencies {
     // Mod Menu
     modApi "com.terraformersmc:modmenu:${project.mod_menu_version}"
 
-
     // --- COMPAT --- //
     // Im 'movens (for testing penalties)
     //modImplementation "maven.modrinth:im-movens:${project.im_movens_version}"
@@ -65,7 +64,7 @@ dependencies {
     // Tough As Nails
     modCompileOnly "maven.modrinth:tough-as-nails:${project.tough_as_nails_version}"
     modLocalRuntime "maven.modrinth:tough-as-nails:${project.tough_as_nails_version}"
-    // Heart Meals
+    // Heart Meals (for compatibility checking)
     //modCompileOnly "maven.modrinth:hearty-meals:${project.hearty_meals_version}"
     //modLocalRuntime "maven.modrinth:hearty-meals:${project.hearty_meals_version}"
     // Forge Config API Port - LMBA required

@@ -1,4 +1,5 @@
-## v???(dev) 
+## v1.0(dev) 
++ The mod is officially in Beta!
 + Added Javadoc comments with explanations for many tags in BTWRConventionalTags
 + Added penalty text compatibility from PenaltyDisplayManager with the "Leave My Bars Alone" mod
 + Added penalty text compatibility from PenaltyDisplayManager with the "Tough As Nails" mod
@@ -6,8 +7,14 @@
 + Added several new common tags for items and blocks in BTWRConventionalTags for strata and tool-based checks.
 + Added authors(ivangeevo, jeffinitup) to the mod files, so they should display properly in places where they should be displayed
 + Changed mod license in the source code and in public releases to be MIT
-+ Refactored pretty much the whole code; mainly for readability, and so it's more in order with other mods from the BTWR project
++ Refactored pretty much the whole code; mainly for readability and cleaning up, but also so it's more in order with other mods from the BTWR project
 + Removed unused item and block tags in BTWRConventionalTags
+
+# Start of beta versions
+
+---
+
+# End of alpha versions
 
 ## v0.62
 + Added methods in Block.class related to animal graze functionality for usage in other mods from the BTWR Project or any other mods that might want to use them
@@ -60,11 +67,7 @@
 + Fix game breaking error with CraftingResultSlotMixin (jeffyjamzhd)
 
 ## v0.50
-
-
 ### Penalty Display System (jeffyjamzhd)
-
-
 
 + Added a unified penalty registration system to standardize rendering across mods.
 + Introduced HUDInitializeListener for registering penalties via EventHUDInitialized.register(listener).
@@ -168,7 +171,7 @@ exclusive items/block were left in the BTWR: core mod
 - Added more methods to RecipeProviderUtils class
 
 ## v0.12-SNAPSHOT
--Reworked the directional dropping injection code to be less intrusive
+- Reworked the directional dropping injection code to be less intrusive
 
 
 ## v0.11-SNAPSHOT
@@ -188,3 +191,5 @@ exclusive items/block were left in the BTWR: core mod
 Initial release
 - Added BlockAdded interface
 - Added PlayerEntityAdded interface
+
+# Start of alpha versions

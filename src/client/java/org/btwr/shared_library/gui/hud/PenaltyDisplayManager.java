@@ -1,18 +1,13 @@
 package org.btwr.shared_library.gui.hud;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.JumpingMount;
-import net.minecraft.entity.Tameable;
-import net.minecraft.entity.passive.HorseEntity;
 import org.btwr.shared_library.BTWRSLMod;
 import org.btwr.shared_library.BTWRSLModClient;
-import org.btwr.shared_library.config.BTWRSLSettings;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
+import org.btwr.shared_library.config.BTWRSLSettings;
 
 import java.util.ArrayList;
 import java.util.List;

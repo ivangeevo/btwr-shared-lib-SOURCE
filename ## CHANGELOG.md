@@ -1,4 +1,4 @@
-## v1.0(dev) 
+## v0.63
 + The mod is now officially in Beta!
 + Added comments with explanations for many tags in BTWRConventionalTags
 + Added penalty text compatibility from PenaltyDisplayManager with the "Leave My Bars Alone" mod

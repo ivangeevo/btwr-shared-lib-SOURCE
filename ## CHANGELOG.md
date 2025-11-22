@@ -7,6 +7,7 @@
 + Added several new common tags for items and blocks in BTWRConventionalTags for strata and tool-based checks
 + Added a new interface class "EntityAttachmentBase" which provides default methods to implement when attaching data to entities
 + Added authors(ivangeevo, jeffinitup) to the mod files, so they should display properly in places where they should be displayed
++ Added a new class "SimpleEvent" which allows easier creation of custom events
 + Changed mod license in the source code and in public releases to be MIT
 + Refactored pretty much the whole code; mainly for readability and cleaning up, but also so it's more in order with other mods from the BTWR project
 + Removed unused item and block tags in BTWRConventionalTags

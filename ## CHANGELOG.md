@@ -3,12 +3,12 @@
 + Added comments with explanations for many tags in BTWRConventionalTags
 + Added penalty text compatibility from PenaltyDisplayManager with the "Leave My Bars Alone" mod
 + Added penalty text compatibility from PenaltyDisplayManager with the "Tough As Nails" mod
-+ Added a new HudYOffsetRegistry class in PenaltyDisplayManager which can be used to specify what Y offset of the penalty text should be. This is useful for addon authors if they want to add compatibility with their mods
 + Added several new common tags for items and blocks in BTWRConventionalTags for strata and tool-based checks
++ Added a new HudYOffsetRegistry class in PenaltyDisplayManager which can be used to specify what Y offset of the penalty text should be. This is useful for addon authors if they want to add compatibility with their mods
 + Added a new interface class "EntityAttachmentBase" which provides default methods to implement when attaching data to entities
 + Added a new class "UpdateRequiringData" which makes easier the process of adding data attachments which need to be marked for update (marked dirty) 
-+ Added authors(ivangeevo, jeffinitup) to the mod files, so they should display properly in places where they should be displayed
 + Added a new class "SimpleEvent" which allows easier creation of custom events
++ Added authors(ivangeevo, jeffinitup) to the mod files, so they should display properly in places where they should be displayed
 + Changed mod license in the source code and in public releases to be MIT
 + Refactored pretty much the whole code; mainly for readability and cleaning up, but also so it's more in order with other mods from the BTWR project
 + Removed unused item and block tags in BTWRConventionalTags

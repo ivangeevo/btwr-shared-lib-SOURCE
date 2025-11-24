@@ -1,2 +1,7 @@
-Copyright (c) 2024 
-All rights reserved.
+This project is licensed under the MIT License.
+
+You can use, copy, modify, merge, publish, distribute, sublicense, and sell the software.
+Your only obligations: include this license with any copies, and understand the software comes as-is with no warranty.
+
+Full legal text (the official version you agree to by using this project):
+https://opensource.org/licenses/MIT

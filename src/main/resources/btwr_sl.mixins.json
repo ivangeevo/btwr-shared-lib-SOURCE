@@ -6,12 +6,11 @@
   "mixins": [
     "CraftingScreenHandlerMixin",
     "PlayerEntityMixin",
-    "ProtoChunkMixin",
     "accessors.ShapelessRecipeJsonBuilderAccessorMixin",
     "added.BlockAddedMixin",
+    "added.FarmlandBlockAddedMixin",
     "added.PlayerEntityAddedMixin",
     "block.BlockMixin",
-    "added.FarmlandBlockAddedMixin",
     "item.ItemMixin",
     "item.ShearsItemMixin",
     "recipe.CraftingResultSlotMixin"

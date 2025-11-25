@@ -79,5 +79,4 @@ public class PlaceableAsBlock {
     private boolean isLeavesBlock(BlockState state) {
       return state.isIn(BlockTags.LEAVES) || state.getBlock() instanceof LeavesBlock;
     }
-
 }

@@ -1,6 +1,9 @@
-## v???(dev)
+## v0.6.4(dev)
++ Added a new class "ServerChunkGenerateEvents" which has block replacement events on chunk generation.
++ Changed the mod versioning scheme from "0.xx" to "0.x.x" for the new beta releases. This should help translate naturally into the 1.0.0 numbering scheme once the mod is ready for "Release" versioning
++ Removed the old "BlockReplacementRegistry" class because it wasn't working properly. This is now handled with the "ServerChunkGenerateEvents" which is properly using Fabric API events instead.
 
-## v0.63
+## v0.63(or 0.6.3)
 + The mod is now officially in Beta!
 + Added comments with explanations for many tags in BTWRConventionalTags
 + Added penalty text compatibility from PenaltyDisplayManager with the "Leave My Bars Alone" mod

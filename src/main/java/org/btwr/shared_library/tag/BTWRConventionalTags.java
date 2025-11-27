@@ -66,6 +66,12 @@ public class BTWRConventionalTags
         public static final TagKey<Block> ORE_STRATA2 = createTag("ore_strata2");
         public static final TagKey<Block> ORE_STRATA3 = createTag("ore_strata3");
 
+        // /** Custom falling blocks that are registered with {@link org.btwr.shared_library.api.FallingBlockRegistry} **/
+        public static final TagKey<Block> TURNED_TO_FALLING_BLOCKS = createTag("turned_to_falling_blocks");
+        public static final TagKey<Block> CAN_FALL_IN_OVERWORLD = createTag("can_fall_in_overworld");
+        public static final TagKey<Block> CAN_FALL_IN_THE_NETHER = createTag("can_fall_in_the_nether");
+        public static final TagKey<Block> CAN_FALL_IN_THE_END = createTag("can_fall_in_the_end");
+
         private static TagKey<Block> createTag(String tagId) {
             return TagRegistration.BLOCK_TAG.registerC(tagId);
         }

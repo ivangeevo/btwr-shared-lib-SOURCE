@@ -26,12 +26,6 @@ loom {
 }
 
 repositories {
-    // Add repositories to retrieve artifacts from in here.
-    // You should only use this when depending on other mods because
-    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-    // for more information about repositories.
-
     maven { url "https://ivangeevo.github.io/btwr-shared-lib/" }
     maven { url "https://maven.shedaniel.me/" }
     maven { url "https://maven.terraformersmc.com/releases/" }
@@ -93,9 +87,7 @@ dependencies {
     // EMI
     modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
     modCompileOnly "dev.emi:emi-fabric:${emi_version}"
-
     modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
-
 }
 
 processResources {
@@ -140,61 +132,6 @@ jar {
     }
 }
 
-tasks.register('gitPushArtifacts') {
-    // Ensure the build and then publish task run first
-    dependsOn 'build'
-    dependsOn 'publish'
-
-    doLast {
-        // Initialize a new git repository
-        exec {
-            workingDir 'maven' // Set the working directory to 'maven'
-            commandLine 'git', 'init'
-        }
-
-        // Go to the artifacts folder (use workingDir to change the directory)
-        exec {
-            workingDir 'maven' // Set the working directory to 'maven'
-            commandLine 'git', 'add', '.' // Run 'git add .' in the 'maven' folder
-        }
-
-        // Commit changes with a message
-        exec {
-            workingDir 'maven' // Make sure we're in the correct directory
-            commandLine 'git', 'commit', '-m', '"update artifacts for next version"'
-        }
-
-        // Push the changes to the Maven repository (or master branch)
-        exec {
-            workingDir 'maven' // Stay in the 'maven' directory
-            commandLine 'git', 'push', 'maven', 'master'
-        }
-    }
-}
-
-tasks.register('gitPushSource') {
-    doLast {
-        // Initialize a new git repository
-        exec {
-            commandLine 'git', 'init'
-        }
-
-        exec {
-            commandLine 'git', 'add', '.' // Run 'git add .'
-        }
-
-        // Commit changes with a message
-        exec {
-            commandLine 'git', 'commit', '-m', '"update source for next version"'
-        }
-
-        // Push the changes to the Maven repository (or master branch)
-        exec {
-            commandLine 'git', 'push', 'source', 'master'
-        }
-    }
-}
-
 // configure the maven publication
 publishing {
     publications {
@@ -206,7 +143,6 @@ publishing {
 
     // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     repositories {
-
         maven {
             // Set the custom directory for local publishing
             url = uri('./maven')

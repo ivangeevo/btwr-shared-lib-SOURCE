@@ -1,4 +1,5 @@
-## v???(dev)
+## v0.6.5
++ Added a few new classes in the .api package for creating configuration library settings via TOML
 
 ## v0.6.4(0.64)
 + Added a new class "ServerChunkGenerateEvents" which has block replacement events on chunk generation.

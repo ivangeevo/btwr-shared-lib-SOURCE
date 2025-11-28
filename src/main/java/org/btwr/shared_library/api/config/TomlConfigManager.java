@@ -103,4 +103,8 @@ public final class TomlConfigManager {
         }
     }
 
+    public static List<ConfigGroup> getAllGroups() {
+        return Collections.unmodifiableList(GROUPS);
+    }
+
 }

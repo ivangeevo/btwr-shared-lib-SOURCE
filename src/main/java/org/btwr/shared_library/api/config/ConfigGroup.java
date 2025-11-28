@@ -38,20 +38,26 @@ public class ConfigGroup {
         initialized = true;
 
         try {
-            load(); // always attempt to load values from the existing file
-            if (!getFile().exists()) {
-                save(); // save defaults if the file missing
+            File file = getFile();
+            File parent = file.getParentFile();
+            if (!parent.exists() && !parent.mkdirs()) {
+                System.err.println("[BTWR ConfigLib] Failed to create parent directories: " + parent.getAbsolutePath());
             }
+
+            load(); // load existing values
+            if (!file.exists()) save(); // save defaults
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
+
     public void save() {
         try {
             TomlConfigManager.writeConfigFile(this);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -59,7 +65,8 @@ public class ConfigGroup {
     public void load() {
         try {
             TomlConfigManager.readConfigFile(this);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
     }

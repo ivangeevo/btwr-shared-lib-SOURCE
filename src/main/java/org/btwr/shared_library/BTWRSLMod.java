@@ -1,5 +1,8 @@
 package org.btwr.shared_library;
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import org.btwr.shared_library.api.config.ConfigGroup;
+import org.btwr.shared_library.api.config.TomlConfigManager;
 import org.btwr.shared_library.recipe.BTWRSLRecipes;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -18,6 +21,14 @@ public class BTWRSLMod implements ModInitializer {
     @Override
     public void onInitialize() {
         instance = this;
+
+        // Reload all configs when a server instance starts (SP or dedicated)
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> {
+            for (ConfigGroup group : TomlConfigManager.getAllGroups()) {
+                group.load();
+            }
+        });
+
         //BTWRSounds.register();
         BTWRSLRecipes.register();
     }

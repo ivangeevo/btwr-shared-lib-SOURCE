@@ -37,7 +37,7 @@ public class ConfigSetting<T> {
         if (maxValue != null && compare(newValue, maxValue) > 0) newValue = maxValue;
         this.value = newValue;
         if (onChange != null) onChange.accept(this, newValue);
-        if (parentGroup != null) parentGroup.save(); // autosave immediately
+        if (parentGroup != null) parentGroup.save();
     }
 
     public String getKey() { return key; }

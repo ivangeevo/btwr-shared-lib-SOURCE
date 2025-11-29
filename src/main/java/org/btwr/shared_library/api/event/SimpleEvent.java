@@ -1,4 +1,4 @@
-package org.btwr.shared_library.event;
+package org.btwr.shared_library.api.event;
 
 import java.util.ArrayList;
 import java.util.List;

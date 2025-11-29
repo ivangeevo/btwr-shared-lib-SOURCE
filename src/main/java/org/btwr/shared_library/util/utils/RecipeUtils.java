@@ -29,7 +29,7 @@ public interface RecipeUtils {
     }
 
     default void disableBTWR(RecipeExporter exporter, String recipeId) {
-        disableRecipe(exporter, "org/btwr", recipeId);
+        disableRecipe(exporter, "btwr", recipeId);
     }
 
     default void disableBWT(RecipeExporter exporter, String recipeId) {

@@ -1,8 +1,8 @@
 ## v???(dev)
++ Added a new class BTWREvents which holds common use cases events. Right now it only has the LIVING_TICK event which adds a hook for adding tick specific code to all living entities
 
 ## v0.6.5
 + Added a few new classes in the .api package for creating configuration library settings via TOML
-+ Added a new class BTWREvents which holds common use cases events. Right now it only has the LIVING_TICK event which adds a hook for adding tick specific code to all living entities
 
 ## v0.6.4(0.64)
 + Added a new class "ServerChunkGenerateEvents" which has block replacement events on chunk generation.

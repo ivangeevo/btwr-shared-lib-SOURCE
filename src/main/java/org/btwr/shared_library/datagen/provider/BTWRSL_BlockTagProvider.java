@@ -1,6 +1,6 @@
 package org.btwr.shared_library.datagen.provider;
 
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 
@@ -32,7 +32,6 @@ public class BTWRSL_BlockTagProvider extends FabricTagProvider.BlockTagProvider 
     }
 
     private void addToConventionalTags() {
-
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.FARMLAND_VIABLE_DIRT)
                 .add(Blocks.DIRT);
 

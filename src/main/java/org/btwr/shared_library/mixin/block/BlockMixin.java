@@ -1,6 +1,6 @@
 package org.btwr.shared_library.mixin.block;
 
-import org.btwr.shared_library.block.StackDroppingManager;
+import org.btwr.shared_library.api.block.StackDroppingManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

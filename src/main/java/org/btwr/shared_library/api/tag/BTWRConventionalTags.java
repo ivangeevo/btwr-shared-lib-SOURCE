@@ -1,12 +1,12 @@
-package org.btwr.shared_library.tag;
+package org.btwr.shared_library.api.tag;
 
 import net.fabricmc.fabric.impl.tag.convention.v2.TagRegistration;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.registry.tag.TagKey;
 
-public class BTWRConventionalTags
-{
+public class BTWRConventionalTags {
+
     public static class Blocks {
         /** Vanilla blocks that can convert to another state on break **/
         public static final TagKey<Block> VANILLA_CONVERTING_BLOCKS = createTag("vanilla_converting_blocks");
@@ -175,4 +175,5 @@ public class BTWRConventionalTags
             return TagRegistration.ITEM_TAG.registerC(tagId);
         }
     }
+
 }

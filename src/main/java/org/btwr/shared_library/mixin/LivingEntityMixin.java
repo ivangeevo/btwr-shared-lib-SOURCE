@@ -1,7 +1,7 @@
 package org.btwr.shared_library.mixin;
 
 import net.minecraft.entity.LivingEntity;
-import org.btwr.shared_library.event.BTWREvents;
+import org.btwr.shared_library.api.event.BTWREvents;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

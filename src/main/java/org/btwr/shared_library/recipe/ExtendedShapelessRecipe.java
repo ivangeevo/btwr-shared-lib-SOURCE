@@ -3,7 +3,7 @@ package org.btwr.shared_library.recipe;
 import org.btwr.shared_library.mixin.accessors.ShapelessRecipeJsonBuilderAccessorMixin;
 import org.btwr.shared_library.recipe.capability.AdditionalDropsRecipe;
 import org.btwr.shared_library.recipe.capability.CraftingWithToolRecipe;
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
@@ -269,4 +269,5 @@ public class ExtendedShapelessRecipe extends ShapelessRecipe implements Addition
             exporter.accept(recipeId, recipe, builder.build(recipeId.withPrefixedPath("recipes/" + accessor.getCategory().getName() + "/")));
         }
     }
+
 }

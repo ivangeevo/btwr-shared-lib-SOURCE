@@ -1,4 +1,4 @@
-package org.btwr.shared_library.data;
+package org.btwr.shared_library.api.data;
 
 import net.minecraft.entity.Entity;
 
@@ -10,6 +10,7 @@ import net.minecraft.entity.Entity;
  * <p>Useful for attachments that only need to signal “something changed since last check”.
  */
 public class UpdateRequiringData<T extends Entity> implements EntityAttachmentBase<T> {
+
     // True when the attachment has been modified and requires processing/sync.
     private boolean updated;
 
@@ -34,4 +35,5 @@ public class UpdateRequiringData<T extends Entity> implements EntityAttachmentBa
         this.updated = false;
         return true;
     }
+
 }

@@ -1,6 +1,6 @@
 package org.btwr.shared_library.mixin.item;
 
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import net.minecraft.component.type.ToolComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ShearsItem;
@@ -14,6 +14,7 @@ import java.util.List;
 
 @Mixin(ShearsItem.class)
 public abstract class ShearsItemMixin extends Item {
+
     public ShearsItemMixin(Settings settings) {
         super(settings);
     }

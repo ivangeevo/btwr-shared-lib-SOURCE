@@ -1,4 +1,4 @@
-package org.btwr.shared_library.api;
+package org.btwr.shared_library.api.event;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
 import net.minecraft.block.Block;
@@ -28,4 +28,5 @@ public class ServerChunkGenerateEvents {
             }
         });
     }
+
 }

@@ -1,4 +1,4 @@
-package org.btwr.shared_library.data;
+package org.btwr.shared_library.api.data;
 
 import net.minecraft.entity.Entity;
 
@@ -31,6 +31,5 @@ public interface EntityAttachmentBase<T extends Entity> {
      */
     default void tick(T entity) {
     }
-
 
 }

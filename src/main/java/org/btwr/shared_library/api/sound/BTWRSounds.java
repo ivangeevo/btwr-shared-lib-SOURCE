@@ -1,4 +1,4 @@
-package org.btwr.shared_library.sound;
+package org.btwr.shared_library.api.sound;
 
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

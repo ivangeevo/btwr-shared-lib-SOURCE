@@ -1,11 +1,11 @@
-package org.btwr.shared_library.sound;
+package org.btwr.shared_library.api.sound;
 
 import net.minecraft.item.Item;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundEvent;
 
 import static net.minecraft.sound.SoundEvents.*;
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.*;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Items.*;
 
 public enum CraftingSoundConfig {
     WOODEN_SOUND(

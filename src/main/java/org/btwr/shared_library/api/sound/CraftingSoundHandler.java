@@ -1,4 +1,4 @@
-package org.btwr.shared_library.sound;
+package org.btwr.shared_library.api.sound;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class CraftingSoundHandler {
+
     private static final CraftingSoundHandler INSTANCE = new CraftingSoundHandler();
 
     private CraftingSoundHandler() {}
@@ -37,4 +38,5 @@ public class CraftingSoundHandler {
             world.playSound(player, thisPos, sound, SoundCategory.BLOCKS, volume, pitch);
         }
     }
+
 }

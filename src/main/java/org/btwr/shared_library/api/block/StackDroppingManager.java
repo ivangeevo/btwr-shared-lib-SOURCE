@@ -1,8 +1,8 @@
-package org.btwr.shared_library.block;
+package org.btwr.shared_library.api.block;
 
 import org.btwr.shared_library.util.utils.ItemUtils;
 import org.btwr.shared_library.util.utils.VectorUtils;
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -16,10 +16,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS;
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Blocks.VANILLA_CONVERTING_BLOCKS;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Blocks.VANILLA_CONVERTING_BLOCKS;
 
 public class StackDroppingManager {
+
     private static final StackDroppingManager instance = new StackDroppingManager();
 
     // Directional dropping mod IDs

@@ -1,7 +1,6 @@
-package org.btwr.shared_library.event;
+package org.btwr.shared_library.api.event;
 
 import net.minecraft.entity.LivingEntity;
-import org.btwr.shared_library.api.event.SimpleEvent;
 
 import java.util.function.Consumer;
 

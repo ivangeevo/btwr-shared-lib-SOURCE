@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CraftingResultSlot.class)
 public abstract class CraftingResultSlotMixin {
+
     @Shadow @Final private RecipeInputInventory input;
 
     @Inject(method = "onTakeItem", at = @At("HEAD"))
@@ -31,15 +32,9 @@ public abstract class CraftingResultSlotMixin {
         player.btwr$setTimesCraftedThisTick(player.btwr$timesCraftedThisTick() + 1);
     }
 
-    @Inject(
-            method = "onTakeItem",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/screen/slot/CraftingResultSlot;onCrafted(Lnet/minecraft/item/ItemStack;)V",
-                    shift = At.Shift.AFTER
-            ),
-            cancellable = true
-    )
+    @Inject(method = "onTakeItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/slot/CraftingResultSlot;onCrafted(Lnet/minecraft/item/ItemStack;)V",
+            shift = At.Shift.AFTER
+    ), cancellable = true)
     protected void addRemainderOnTake(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
         var server = player.getWorld().getServer();
         if (server == null) return;
@@ -55,4 +50,5 @@ public abstract class CraftingResultSlotMixin {
             ci.cancel(); // skip vanilla remainder logic
         }
     }
+
 }

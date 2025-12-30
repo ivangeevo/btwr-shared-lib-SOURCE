@@ -1,6 +1,6 @@
 ## v???(dev)
 + Added a new class BTWREvents which holds common use cases events. Right now it only has the LIVING_TICK event which adds a hook for adding tick-specific code to all living entities
-+ Fixed an issue with RecipeUtils where the ofBTWR method was not working properly
++ Fixed an issue with RecipeUtils where the ofBTWR() method was not working properly
 
 ## v0.6.5
 + Added a few new classes in the .api package for creating configuration library settings via TOML

@@ -2,6 +2,7 @@ package org.btwr.shared_library.util.utils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -16,6 +17,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 
 import java.util.function.Supplier;
 
@@ -94,21 +96,28 @@ public class ItemUtils
     }
 
     // TODO: Fix stacks dropping in random places sometimes when broken.
-    static public void ejectStackFromBlockTowardsFacing(World world, Entity entity, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, Direction direction) {
-
-
+    static public void ejectStackFromBlockTowardsFacing(
+            World world, Entity entity, BlockPos pos,
+            BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, Direction direction
+    ) {
         for (ItemStack droppedItems : Block.getDroppedStacks(state, (ServerWorld) world, pos, blockEntity, entity, stack))
         {
-            dropInDirection(world, pos, direction, droppedItems);
+            if (state.isOf(Blocks.IRON_ORE)) {
+                dropInDirection(world, pos, direction, droppedItems);
+            }
+
+            if (state.isOf(Blocks.DEEPSLATE_IRON_ORE)) {
+                dropInDirection(world, pos, direction, droppedItems);
+            }
         }
 
         state.onStacksDropped((ServerWorld) world, pos, stack, true);
     }
 
     public static void dropInDirection(World world, BlockPos pos, Direction direction, ItemStack stack) {
-        int i = direction.getOffsetX(); // X offset based on direction
-        int j = direction.getOffsetY(); // Y offset based on direction
-        int k = direction.getOffsetZ(); // Z offset based on direction
+        int i = direction.getOffsetX();
+        int j = direction.getOffsetY();
+        int k = direction.getOffsetZ();
 
         double d = (double) EntityType.ITEM.getWidth() / 2.0;
         double e = (double)EntityType.ITEM.getHeight() / 2.0;

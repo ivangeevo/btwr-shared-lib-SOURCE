@@ -50,8 +50,8 @@ dependencies {
 
     // --- COMPAT --- //
     // Tough Environment (for testing directional drops)
-    modLocalRuntime "maven.modrinth:tough-environment:${project.tough_environment_version}"
-
+    //modLocalRuntime "maven.modrinth:tough-environment:${project.tough_environment_version}"
+    //modLocalRuntime files("libs/tough-environment-${project.tough_environment_version}-1.21.1.jar")
     // Im 'movens (for testing penalties)
     //modImplementation "maven.modrinth:im-movens:${project.im_movens_version}"
     //modCompileOnly files("libs/im-movens-${project.im_movens_version}-1.21.1.jar")

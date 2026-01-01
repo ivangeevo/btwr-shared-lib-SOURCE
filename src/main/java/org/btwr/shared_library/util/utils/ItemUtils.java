@@ -97,18 +97,12 @@ public class ItemUtils
 
     // TODO: Fix stacks dropping in random places sometimes when broken.
     static public void ejectStackFromBlockTowardsFacing(
-            World world, Entity entity, BlockPos pos,
-            BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, Direction direction
+            World world, Entity entity, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity,
+            ItemStack stack, Direction direction
     ) {
         for (ItemStack droppedItems : Block.getDroppedStacks(state, (ServerWorld) world, pos, blockEntity, entity, stack))
         {
-            if (state.isOf(Blocks.IRON_ORE)) {
-                dropInDirection(world, pos, direction, droppedItems);
-            }
-
-            if (state.isOf(Blocks.DEEPSLATE_IRON_ORE)) {
-                dropInDirection(world, pos, direction, droppedItems);
-            }
+            dropInDirection(world, pos, direction.getOpposite(), droppedItems);
         }
 
         state.onStacksDropped((ServerWorld) world, pos, stack, true);

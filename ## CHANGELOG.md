@@ -1,3 +1,5 @@
+## v???(dev)
+
 ## v0.7
 + Added a new class BTWREvents which holds common use cases events. Right now it only has the LIVING_TICK event which adds a hook for adding tick-specific code to all living entities
 + Changed how directional drops are handled. Each mod that uses directional drops must now register their use cases per ItemStack used and BlockState used against via the DirectionalDropConditions registry class.

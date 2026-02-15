@@ -1,4 +1,6 @@
-## v???(dev)
+## v0.7.1(dev)
++ Added a bunch of new methods from BTW into Block.class for hardpoint & fire-related functionalities
++ Added a new WorldUtils class for utility methods related to the world and a few methods in it related to current functionality at the time of development
 
 ## v0.7
 + Added a new class BTWREvents which holds common use cases events. Right now it only has the LIVING_TICK event which adds a hook for adding tick-specific code to all living entities

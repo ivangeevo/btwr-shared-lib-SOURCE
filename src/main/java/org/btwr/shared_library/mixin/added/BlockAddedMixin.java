@@ -8,10 +8,114 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import org.btwr.shared_library.util.utils.WorldUtils;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(Block.class)
 public abstract class BlockAddedMixin implements BlockAdded {
+
+    //------------ Hard Point related functionality ----------//
+
+
+    @Override
+    public boolean btwr$hasSmallCenterHardPointToFacing(WorldAccess world, BlockPos pos, Direction facing, boolean ignoreTransparency) {
+        return btwr$hasCenterHardPointToFacing(world, pos, facing, ignoreTransparency);
+    }
+
+    @Override
+    public boolean btwr$hasSmallCenterHardPointToFacing(WorldAccess world, BlockPos pos, Direction facing) {
+        return btwr$hasCenterHardPointToFacing(world, pos, facing, false);
+    }
+
+    @Override
+    public boolean btwr$hasCenterHardPointToFacing(WorldAccess world, BlockPos pos, Direction facing, boolean ignoreTransparency) {
+        return btwr$hasLargeCenterHardPointToFacing(world, pos, facing, ignoreTransparency);
+    }
+
+    @Override
+    public boolean btwr$hasCenterHardPointToFacing(WorldAccess world, BlockPos pos, Direction facing) {
+        return btwr$hasCenterHardPointToFacing(world, pos, facing, false);
+    }
+
+    @Override
+    public boolean btwr$hasLargeCenterHardPointToFacing(WorldAccess world, BlockPos pos, Direction facing, boolean ignoreTransparency) {
+        return world.getBlockState(pos).isFullCube(world, pos);
+    }
+
+    @Override
+    public boolean btwr$hasLargeCenterHardPointToFacing(WorldAccess world, BlockPos pos, Direction facing) {
+        return btwr$hasLargeCenterHardPointToFacing(world, pos, facing, false);
+    }
+
+    @Override
+    public boolean btwr$isBlockRestingOnThatBelow(WorldAccess world, BlockPos pos) {
+        return false;
+    }
+
+    @Override
+    public boolean btwr$isBlockAttachedToFacing(WorldAccess world, BlockPos pos, Direction facing) {
+        return false;
+    }
+
+    @Override
+    public void btwr$attachToFacing(World world, BlockPos pos, Direction facing) {}
+
+    @Override
+    public boolean btwr$hasContactPointToFullFace(WorldAccess world, BlockPos pos, Direction facing) {
+        return world.getBlockState(pos).isFullCube(world, pos);
+    }
+
+    @Override
+    public boolean btwr$hasContactPointToSlabSideFace(WorldAccess world, BlockPos pos, Direction facing, boolean isSlabUpsideDown) {
+        return btwr$hasContactPointToFullFace(world, pos, facing);
+    }
+
+    @Override
+    public boolean btwr$hasContactPointToStairShapedFace(WorldAccess world, BlockPos pos, Direction facing) {
+        return btwr$hasContactPointToFullFace(world, pos, facing);
+    }
+
+    @Override
+    public boolean btwr$hasContactPointToStairNarrowVerticalFace(WorldAccess world, BlockPos pos, Direction facing, int stairFacing) {
+        return btwr$hasContactPointToFullFace(world, pos, facing);
+    }
+
+    @Override
+    public boolean btwr$onMortarApplied(World world, BlockPos pos) {
+        return false;
+    }
+
+    @Override
+    public boolean btwr$hasMortar(WorldAccess world, BlockPos pos) {
+        return false;
+    }
+
+    @Override
+    public boolean btwr$hasNeighborWithMortarInContact(World world, BlockPos pos) {
+        for (Direction facing : Direction.values()) {
+            if (WorldUtils.hasNeighborWithMortarInFullFaceContactToFacing(world, pos, facing)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean btwr$isStickyToSnow(WorldAccess world, BlockPos pos) {
+        return false;
+    }
+
+    @Override
+    public boolean btwr$hasStickySnowNeighborInContact(World world, BlockPos pos) {
+        for (Direction facing : Direction.values()) {
+            if (WorldUtils.hasStickySnowNeighborInFullFaceContactToFacing(world, pos, facing)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     //----------- Plant related functionality ----------//
 
@@ -38,7 +142,7 @@ public abstract class BlockAddedMixin implements BlockAdded {
     @Override
     public void btwr$removeWeeds(World world, BlockPos pos) {}
 
-    //---------- Grazing related functionality ----------//
+    //------------- Grazing Functionality -------------//
 
     @Override
     public boolean btwr$canBeGrazedOn(WorldAccess worldAccess, BlockPos pos, AnimalEntity byAnimal) {
@@ -79,11 +183,5 @@ public abstract class BlockAddedMixin implements BlockAdded {
     @Override
     public void btwr$onNeighborDisrupted(World world, BlockPos pos, Direction facing) {}
 
-    //---------- General block related functionality ----------//
-
-    @Override
-    public boolean btwr$isBlockAttachedToFacing(WorldAccess blockAccess, BlockPos pos, Direction direction) {
-        return false;
-    }
 
 }

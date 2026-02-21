@@ -1,6 +1,11 @@
 package org.btwr.shared_library.mixin.added;
 
-import org.btwr.shared_library.interfaces.added.BlockAdded;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.FireBlock;
+import net.minecraft.entity.Entity;
+import org.btwr.shared_library.api.block.util.FireBlockUtils;
+import org.btwr.shared_library.api.block.util.Flammability;
+import org.btwr.shared_library.api.block.interfaces.added.BlockAdded;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -8,8 +13,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import org.btwr.shared_library.api.crafting.FurnaceBurnTime;
+import org.btwr.shared_library.mixin.accessors.FireBlockAccessor;
 import org.btwr.shared_library.util.utils.WorldUtils;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(Block.class)
 public abstract class BlockAddedMixin implements BlockAdded {
@@ -117,6 +125,142 @@ public abstract class BlockAddedMixin implements BlockAdded {
         return false;
     }
 
+    //--------------- Fire related functionality -------------//
+
+    @Unique
+    private int defaultFurnaceBurnTime = 0;
+
+    @Override
+    public int btwr$getFurnaceBurnTime(int itemDamage)
+    {
+        return defaultFurnaceBurnTime;
+    }
+
+    @Override
+    public void btwr$setFurnaceBurnTime(int burnTime)
+    {
+        defaultFurnaceBurnTime = burnTime;
+    }
+
+    @Override
+    public void btwr$setFurnaceBurnTime(FurnaceBurnTime burnTime)
+    {
+        btwr$setFurnaceBurnTime(burnTime.burnTime);
+    }
+
+    @Override
+    public boolean btwr$doesInfiniteBurnToFacing(WorldAccess world, BlockPos pos, Direction facing) {
+        return false;
+    }
+
+    @Override
+    public boolean btwr$doesExtinguishFireAbove(World world, BlockPos pos)
+    {
+        return false;
+    }
+
+    @Override
+    public void btwr$onDestroyedByFire(World world, BlockPos pos, int fireAge, boolean forcedFireSpread) {
+        if (forcedFireSpread || (world.getRandom().nextInt(fireAge + 10) < 5 && !world.hasRain(pos))) {
+            int newFireAge = fireAge + world.getRandom().nextInt( 5 ) / 4;
+
+            if (newFireAge > 15) {
+                newFireAge = 15;
+            }
+
+            world.setBlockState(pos, Blocks.FIRE.getDefaultState().with(FireBlock.AGE, newFireAge));
+        }
+        else {
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
+        }
+    }
+
+    @Override
+    public Block btwr$setFireProperties(int chanceToEncourageFire, int abilityToCatchFire) {
+        if (Blocks.FIRE instanceof FireBlock fireBlock) {
+            FireBlockAccessor accessor = (FireBlockAccessor) fireBlock;
+
+            Block self = (Block)(Object)this;
+
+            // BTW: chanceToEncourageFire == spreadChance
+            accessor.btwr$getSpreadChances().put(self, chanceToEncourageFire);
+
+            // BTW: abilityToCatchFire == burnChance
+            accessor.btwr$getBurnChances().put(self, abilityToCatchFire);
+        }
+
+        return (Block)(Object)this;
+    }
+
+    @Override
+    public Block btwr$setFireProperties(Flammability flammability) {
+        return btwr$setFireProperties(flammability.chanceToEncourageFire, flammability.abilityToCatchFire);
+    }
+
+    /**
+     * Whether the block itself can be set on fire, rather than a neighboring block being set to a fire block
+     */
+    @Override
+    public boolean btwr$getCanBeSetOnFireDirectly(WorldAccess world, BlockPos pos) {
+        return false;
+    }
+
+    @Override
+    public boolean btwr$getCanBeSetOnFireDirectlyByItem(WorldAccess world, BlockPos pos) {
+        return btwr$getCanBeSetOnFireDirectly(world, pos);
+    }
+
+    @Override
+    public boolean btwr$setOnFireDirectly(World world, BlockPos pos) {
+        return false;
+    }
+
+    @Override
+    public int btwr$getChanceOfFireSpreadingDirectlyTo(WorldAccess world, BlockPos pos) {
+        return 0;
+    }
+
+    @Override
+    public boolean btwr$getCanBlockLightItemOnFire(WorldAccess world, BlockPos pos) {
+        return false;
+    }
+
+    @Override
+    public boolean btwr$getDoesFireDamageToEntities(World world, BlockPos pos, Entity entity) {
+        return btwr$getDoesFireDamageToEntities(world, pos);
+    }
+
+    @Override
+    public boolean btwr$getDoesFireDamageToEntities(World world, BlockPos pos) {
+        return false;
+    }
+
+    /**
+     * Used by Hibachi to determine if it can remove the block above it when lit
+     */
+    @Override
+    public boolean btwr$getCanBlockBeIncinerated(World world, BlockPos pos) {
+        BlockState state = world.getBlockState(pos);
+
+        // Modern replacement for "!blockMaterial.blocksMovement()":
+        boolean doesNotBlockMovement = state.getCollisionShape(world, pos).isEmpty();
+
+        return FireBlockUtils.canBlockCatchFire(world, pos) || doesNotBlockMovement;
+    }
+
+    /**
+     * Whether a fire block can be directly placed over this one, without first burning or catching fire, as if it were air.
+     */
+    @Override
+    public boolean btwr$getCanBlockBeReplacedByFire(World world, BlockPos pos) {
+        return world.getBlockState(pos).isAir();
+    }
+
+    @Override
+    public boolean btwr$isIncineratedInCrucible() {
+        return FireBlockUtils.canBlockBeDestroyedByFire((Block)(Object)this);
+    }
+
     //----------- Plant related functionality ----------//
 
     @Override
@@ -183,5 +327,82 @@ public abstract class BlockAddedMixin implements BlockAdded {
     @Override
     public void btwr$onNeighborDisrupted(World world, BlockPos pos, Direction facing) {}
 
+    //------------- Ground cover related functionality ------------//
 
+    public boolean btwr$canGroundCoverRestOnBlock(World world, BlockPos pos) {
+        return world.btwr$doesBlockHaveSolidTopSurface(pos);
+    }
+
+    public float btwr$groundCoverRestingOnVisualOffset(WorldAccess world, BlockPos pos)
+    {
+        return 0F;
+    }
+
+    public boolean btwr$isGroundCover()
+    {
+        return false;
+    }
+
+    public boolean btwr$getCanGrassSpreadToBlock(World world, BlockPos pos)
+    {
+        return false;
+    }
+
+    public boolean btwr$spreadGrassToBlock(World world, BlockPos pos)
+    {
+        return false;
+    }
+
+    public boolean btwr$getCanGrassGrowUnderBlock(World world, BlockPos pos, boolean grassOnHalfSlab) {
+        if (!grassOnHalfSlab) {
+            return !btwr$hasLargeCenterHardPointToFacing(world, pos, Direction.DOWN);
+        }
+
+        return true;
+    }
+
+    public boolean btwr$getCanMyceliumSpreadToBlock(World world, BlockPos pos)
+    {
+        return false;
+    }
+
+    public boolean btwr$spreadMyceliumToBlock(World world, BlockPos pos)
+    {
+        return false;
+    }
+
+    public boolean btwr$getCanBlightSpreadToBlock(World world, BlockPos pos, int blightLevel)
+    {
+        return false;
+    }
+
+    /**
+     * Used by blocks like grass and mycellium to determine if they should use a snow side
+     * texture.  Note that this refers to the top visible surface, not just the top facing,
+     * which means that stuff like half-slabs should only return true if they have ground cover
+     * actually on the top surface halfway up the block vertically.
+     */
+    public boolean btwr$isSnowCoveringTopSurface(WorldAccess world, BlockPos pos) {
+        BlockState stateAbove = world.getBlockState(pos.up());
+
+        if (!stateAbove.isAir()) {
+            Block blockAbove = stateAbove.getBlock();
+
+            if (stateAbove.isOf(Blocks.SNOW) || stateAbove.isOf(Blocks.SNOW_BLOCK) &&
+                    blockAbove.btwr$hasCenterHardPointToFacing( world, pos.up(), Direction.DOWN))
+            {
+                return true;
+            }
+            else if (
+                    blockAbove.btwr$groundCoverRestingOnVisualOffset(world, pos.up()) < -0.99F &&
+                            world.getBlockState(pos.up(2)).isOf(Blocks.SNOW))
+            {
+                // consider snow resting on tall grass and such
+
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

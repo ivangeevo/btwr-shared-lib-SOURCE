@@ -36,8 +36,9 @@
   },
   "custom": {
     "loom:injected_interfaces": {
-      "net/minecraft/class_1657": ["org/btwr/shared_library/interfaces/added/PlayerEntityAdded"],
-      "net/minecraft/class_2248": ["org/btwr/shared_library/interfaces/added/BlockAdded"]
+      "net/minecraft/class_1657": ["org/btwr/shared_library/api/entity/interfaces/added/PlayerEntityAdded"],
+      "net/minecraft/class_2248": ["org/btwr/shared_library/api/block/interfaces/added/BlockAdded"],
+      "net/minecraft/class_1937": ["org/btwr/shared_library/api/world/interfaces/added/WorldAdded"]
     }
   },
   "accessWidener" : "btwr_sl.accesswidener"

@@ -1,6 +1,6 @@
 package org.btwr.shared_library.mixin.added;
 
-import org.btwr.shared_library.interfaces.added.BlockAdded;
+import org.btwr.shared_library.api.block.interfaces.added.BlockAdded;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

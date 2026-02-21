@@ -7,14 +7,18 @@
     "CraftingScreenHandlerMixin",
     "LivingEntityMixin",
     "PlayerEntityMixin",
+    "accessors.FireBlockAccessor",
     "accessors.ShapelessRecipeJsonBuilderAccessorMixin",
     "added.BlockAddedMixin",
     "added.FarmlandBlockAddedMixin",
     "added.PlayerEntityAddedMixin",
     "block.BlockMixin",
+    "block.FireBlockMixin",
+    "entity.FallingBlockEntityMixin",
     "item.ItemMixin",
     "item.ShearsItemMixin",
-    "recipe.CraftingResultSlotMixin"
+    "recipe.CraftingResultSlotMixin",
+    "world.WorldMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,6 +1,6 @@
 package org.btwr.shared_library.mixin;
 
-import org.btwr.shared_library.interfaces.added.PlayerEntityAdded;
+import org.btwr.shared_library.api.entity.interfaces.added.PlayerEntityAdded;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

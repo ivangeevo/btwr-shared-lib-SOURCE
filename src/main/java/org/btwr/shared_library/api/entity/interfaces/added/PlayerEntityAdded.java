@@ -1,4 +1,4 @@
-package org.btwr.shared_library.interfaces.added;
+package org.btwr.shared_library.api.entity.interfaces.added;
 
 public interface PlayerEntityAdded {
 

@@ -1,6 +1,7 @@
 package org.btwr.shared_library;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import org.btwr.shared_library.api.block.util.OnFireConversionBlockMappings;
 import org.btwr.shared_library.api.config.ConfigGroup;
 import org.btwr.shared_library.api.config.TomlConfigManager;
 import org.btwr.shared_library.recipe.BTWRSLRecipes;
@@ -31,6 +32,7 @@ public class BTWRSLMod implements ModInitializer {
 
         //BTWRSounds.register();
         BTWRSLRecipes.register();
+        OnFireConversionBlockMappings.register();
     }
 
 }

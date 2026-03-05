@@ -51,7 +51,6 @@ public class BTWRSL_LangGenerator extends FabricLanguageProvider {
         addTagName(BTWRConventionalTags.Items.PRIMITIVE_HOES, "Primitive Hoes", tb);
         addTagName(BTWRConventionalTags.Items.MODERN_HOES, "Modern Hoes", tb);
         addTagName(BTWRConventionalTags.Items.ADVANCED_HOES, "Advanced Hoes", tb);
-        addTagName(BTWRConventionalTags.Items.SPIT_CAMPFIRE_ITEMS, "Spit Campfire Items", tb);
         addTagName(BTWRConventionalTags.Items.SHEARS, "Shears", tb);
         addTagName(BTWRConventionalTags.Items.CHICKEN_TEMPT_ITEMS, "Chicken Tempt Items", tb);
         addTagName(BTWRConventionalTags.Items.STRING_TOOL_MATERIALS, "String Tool Materials", tb);

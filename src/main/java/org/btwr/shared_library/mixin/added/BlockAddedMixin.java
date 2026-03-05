@@ -3,6 +3,7 @@ package org.btwr.shared_library.mixin.added;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FireBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.world.BlockView;
 import org.btwr.shared_library.api.block.util.FireBlockUtils;
 import org.btwr.shared_library.api.block.util.Flammability;
 import org.btwr.shared_library.api.block.interfaces.added.BlockAdded;
@@ -160,9 +161,14 @@ public abstract class BlockAddedMixin implements BlockAdded {
     }
 
     @Override
+    public boolean btwr$hasCustomFireDestructionBehavior() {
+        return false;
+    }
+
+    @Override
     public void btwr$onDestroyedByFire(World world, BlockPos pos, int fireAge, boolean forcedFireSpread) {
         if (forcedFireSpread || (world.getRandom().nextInt(fireAge + 10) < 5 && !world.hasRain(pos))) {
-            int newFireAge = fireAge + world.getRandom().nextInt( 5 ) / 4;
+            int newFireAge = fireAge + world.getRandom().nextInt(5) / 4;
 
             if (newFireAge > 15) {
                 newFireAge = 15;
@@ -333,7 +339,7 @@ public abstract class BlockAddedMixin implements BlockAdded {
         return world.btwr$doesBlockHaveSolidTopSurface(pos);
     }
 
-    public float btwr$groundCoverRestingOnVisualOffset(WorldAccess world, BlockPos pos)
+    public float btwr$groundCoverRestingOnVisualOffset(BlockView world, BlockPos pos)
     {
         return 0F;
     }
@@ -395,7 +401,8 @@ public abstract class BlockAddedMixin implements BlockAdded {
             }
             else if (
                     blockAbove.btwr$groundCoverRestingOnVisualOffset(world, pos.up()) < -0.99F &&
-                            world.getBlockState(pos.up(2)).isOf(Blocks.SNOW))
+                            world.getBlockState(pos.up(2)).isOf(Blocks.SNOW)
+            )
             {
                 // consider snow resting on tall grass and such
 

@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.btwr.shared_library.api.block.util.Flammability;
@@ -193,6 +194,11 @@ public interface BlockAdded {
         throw new UnsupportedOperationException();
     }
 
+    /** Whether the targeted block on fire should use the BTWR fire destruction behavior or default to the vanilla one **/
+    default boolean btwr$hasCustomFireDestructionBehavior() {
+        throw new UnsupportedOperationException();
+    }
+
     default void btwr$onDestroyedByFire(World world, BlockPos pos, int fireAge, boolean forcedFireSpread) {
         throw new UnsupportedOperationException();
     }
@@ -263,7 +269,7 @@ public interface BlockAdded {
         throw new UnsupportedOperationException();
     }
 
-    default float btwr$groundCoverRestingOnVisualOffset(WorldAccess world, BlockPos pos) {
+    default float btwr$groundCoverRestingOnVisualOffset(BlockView world, BlockPos pos) {
         throw new UnsupportedOperationException();
     }
 

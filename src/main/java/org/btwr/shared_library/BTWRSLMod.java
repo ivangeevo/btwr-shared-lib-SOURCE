@@ -4,8 +4,10 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import org.btwr.shared_library.api.block.util.OnFireConversionBlockMappings;
 import org.btwr.shared_library.api.config.ConfigGroup;
 import org.btwr.shared_library.api.config.TomlConfigManager;
+import org.btwr.shared_library.api.item.ProgressiveCraftingItem;
 import org.btwr.shared_library.recipe.BTWRSLRecipes;
 import net.fabricmc.api.ModInitializer;
+import org.btwr.shared_library.util.RepairRecipeBlockedRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,6 +35,9 @@ public class BTWRSLMod implements ModInitializer {
         //BTWRSounds.register();
         BTWRSLRecipes.register();
         OnFireConversionBlockMappings.register();
+
+        // Block progressive crafting items recipes for all repair type recipes
+        RepairRecipeBlockedRegistry.registerClass(ProgressiveCraftingItem.class, RepairRecipeBlockedRegistry.BlockType.ALL);
     }
 
 }

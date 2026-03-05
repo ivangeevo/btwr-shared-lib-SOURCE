@@ -1,5 +1,6 @@
 package org.btwr.shared_library.recipe;
 
+import net.minecraft.inventory.CraftingInventory;
 import org.btwr.shared_library.mixin.accessors.ShapelessRecipeJsonBuilderAccessorMixin;
 import org.btwr.shared_library.recipe.capability.AdditionalDropsRecipe;
 import org.btwr.shared_library.recipe.capability.CraftingWithToolRecipe;
@@ -29,6 +30,7 @@ import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -96,6 +98,30 @@ public class ExtendedShapelessRecipe extends ShapelessRecipe implements Addition
         }
 
         return remainders;
+    }
+
+    public boolean matchesCraftingInventory(CraftingInventory inv) {
+        List<Ingredient> ingredients = this.getIngredients();
+        List<ItemStack> remaining = new ArrayList<>();
+
+        for (int i = 0; i < inv.size(); i++) {
+            ItemStack stack = inv.getStack(i);
+            if (!stack.isEmpty()) remaining.add(stack.copy());
+        }
+
+        for (Ingredient ingredient : ingredients) {
+            boolean matched = false;
+            for (int i = 0; i < remaining.size(); i++) {
+                if (ingredient.test(remaining.get(i))) {
+                    remaining.remove(i);
+                    matched = true;
+                    break;
+                }
+            }
+            if (!matched) return false;
+        }
+
+        return true;
     }
 
     public static class Serializer implements RecipeSerializer<ExtendedShapelessRecipe> {

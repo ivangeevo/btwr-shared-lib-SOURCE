@@ -1,10 +1,7 @@
 package org.btwr.shared_library.api.block.util;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FireBlock;
+import net.minecraft.block.*;
 import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;

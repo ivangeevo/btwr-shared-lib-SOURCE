@@ -20,7 +20,7 @@ public interface FireBlockAccessor {
 
     /**
      * Access to the "burn chances" table used by vanilla FireBlock.
-     * This is the closest analogue to BTW's abilityToCatchFire[].
+     * <p>This is the closest analogue to BTW's abilityToCatchFire[].
      */
     @Accessor("burnChances")
     Object2IntMap<Block> btwr$getBurnChances();

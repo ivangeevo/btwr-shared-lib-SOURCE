@@ -1,6 +1,19 @@
-## v0.7.1(dev)
-+ Added a bunch of new methods from BTW into Block.class for hardpoint & fire-related functionalities
-+ Added a new WorldUtils class for utility methods related to the world and a few methods in it related to current functionality at the time of development
+## v0.8(dev)
++ Added functionality for falling blocks which allow to calculate the distance a block would fall. They are accessed through the IFallingImpactData interface
++ Added a bunch of new methods from BTW into Block.class for hardpoint, ground cover and fire-related functionalities
++ Added a new method from BTW into World.class for checking if a block has a solid top surface
++ Added a new class "FireBlockUtils" which contains common utility methods related to fire blocks and similar functionality
++ Added a new WorldUtils class for utility methods related to the world for current functionality at the time of development
++ Added a green plus to show under the crafting result slot which shows additional drops when a recipe that has those is used
++ Added/moved a few mixin accessor classes for loot pool related methods from other mods into this one for shared usage
++ Added RepairRecipeBlockedRegistry — allows mods to block specific items or item classes from being combined/repaired in the crafting grid, grindstone, and/or anvil, with per-operation granularity.
++ Added a custom use action for progressive crafting items and its related rendering changes when an item with that use action is used
++ Added a new class "GroundCoverBlock". Currently this is used only in Sturdy Trees, but it might prove useful in the future for different cases in other mods
++ Added the ability for blocks to provide custom behavior when destroyed on fire via the "btwr_onDestroyedByFire" and the "btwr_hasCustomFireDestructionBehavior" methods
++ Added some new classes in the mod that aren't used currently but may prove useful in the feature
++ Moved the ProgressiveCraftingItem class from Self-Sustainable to this mod so it can be used for other mods which will provide other progressive crafting item implementations
++ Moved a bunch of classes and added methods to classes from Self-Sustainable in this mod for future-proofing use cases
++ Moved some loot pool accessor classes from other mods of mine in this mod for future-proofing use cases
 
 ## v0.7
 + Added a new class BTWREvents which holds common use cases events. Right now it only has the LIVING_TICK event which adds a hook for adding tick-specific code to all living entities

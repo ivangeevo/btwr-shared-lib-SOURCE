@@ -1,22 +1,25 @@
+## v0.8.1
++ Fixed progressive crafting items progress bar to fill up at the correct amounts
+
 ## v0.8
 ### Added
-- RepairRecipeBlockedRegistry — allows mods to block specific items or item classes from being combined/repaired in the crafting grid, grindstone, and/or anvil, with per-operation granularity
-- The ability for blocks to provide custom behavior when destroyed on fire via the "btwr_onDestroyedByFire" and the "btwr_hasCustomFireDestructionBehavior" methods
-- Functionality for falling blocks which allow to calculate the distance a block would fall. They are accessed through the IFallingImpactData interface
-- A bunch of new methods from BTW into Block.class for hardpoint, ground cover and fire-related functionalities
-- A new method from BTW into World.class for checking if a block has a solid top surface
-- A new class "FireBlockUtils" which contains common utility methods related to fire blocks and similar functionality
-- A new WorldUtils class for utility methods related to the world for current functionality at the time of development
-- A green plus to show under the crafting result slot which shows additional drops when a recipe that has those is used
-- A custom use action for progressive crafting items and its related rendering changes when an item with that use action is used
-- A new class "GroundCoverBlock". Currently this is used only in Sturdy Trees, but it might prove useful in the future for different cases in other mods
-- Some new classes in the mod that aren't used currently but may prove useful in the feature
++ RepairRecipeBlockedRegistry — allows mods to block specific items or item classes from being combined/repaired in the crafting grid, grindstone, and/or anvil, with per-operation granularity
++ The ability for blocks to provide custom behavior when destroyed on fire via the "btwr_onDestroyedByFire" and the "btwr_hasCustomFireDestructionBehavior" methods
++ Functionality for falling blocks which allow to calculate the distance a block would fall. They are accessed through the IFallingImpactData interface
++ A bunch of new methods from BTW into Block.class for hardpoint, ground cover and fire-related functionalities
++ A new method from BTW into World.class for checking if a block has a solid top surface
++ A new class "FireBlockUtils" which contains common utility methods related to fire blocks and similar functionality
++ A new WorldUtils class for utility methods related to the world for current functionality at the time of development
++ A green plus to show under the crafting result slot which shows additional drops when a recipe that has those is used
++ A custom use action for progressive crafting items and its related rendering changes when an item with that use action is used
++ A new class "GroundCoverBlock". Currently this is used only in Sturdy Trees, but it might prove useful in the future for different cases in other mods
++ Some new classes in the mod that aren't used currently but may prove useful in the feature
 
 ### Moved / Changed
-- Mixin accessor classes for loot pool related methods from other mods into this one for shared usage
-- The ProgressiveCraftingItem class from Self-Sustainable to this mod so it can be used for other mods which will provide other progressive crafting item implementations
-- A bunch of classes and added methods to classes from Self-Sustainable in this mod for future-proofing use cases
-- Some loot pool accessor classes from other mods of mine in this mod for future-proofing use cases
++ Mixin accessor classes for loot pool related methods from other mods into this one for shared usage
++ The ProgressiveCraftingItem class from Self-Sustainable to this mod so it can be used for other mods which will provide other progressive crafting item implementations
++ A bunch of classes and added methods to classes from Self-Sustainable in this mod for future-proofing use cases
++ Some loot pool accessor classes from other mods of mine in this mod for future-proofing use cases
 
 ## v0.7
 + Added a new class BTWREvents which holds common use cases events. Right now it only has the LIVING_TICK event which adds a hook for adding tick-specific code to all living entities

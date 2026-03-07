@@ -335,30 +335,36 @@ public abstract class BlockAddedMixin implements BlockAdded {
 
     //------------- Ground cover related functionality ------------//
 
+    @Override
     public boolean btwr$canGroundCoverRestOnBlock(World world, BlockPos pos) {
         return world.btwr$doesBlockHaveSolidTopSurface(pos);
     }
 
+    @Override
     public float btwr$groundCoverRestingOnVisualOffset(BlockView world, BlockPos pos)
     {
         return 0F;
     }
 
+    @Override
     public boolean btwr$isGroundCover()
     {
         return false;
     }
 
+    @Override
     public boolean btwr$getCanGrassSpreadToBlock(World world, BlockPos pos)
     {
         return false;
     }
 
+    @Override
     public boolean btwr$spreadGrassToBlock(World world, BlockPos pos)
     {
         return false;
     }
 
+    @Override
     public boolean btwr$getCanGrassGrowUnderBlock(World world, BlockPos pos, boolean grassOnHalfSlab) {
         if (!grassOnHalfSlab) {
             return !btwr$hasLargeCenterHardPointToFacing(world, pos, Direction.DOWN);
@@ -367,16 +373,19 @@ public abstract class BlockAddedMixin implements BlockAdded {
         return true;
     }
 
+    @Override
     public boolean btwr$getCanMyceliumSpreadToBlock(World world, BlockPos pos)
     {
         return false;
     }
 
+    @Override
     public boolean btwr$spreadMyceliumToBlock(World world, BlockPos pos)
     {
         return false;
     }
 
+    @Override
     public boolean btwr$getCanBlightSpreadToBlock(World world, BlockPos pos, int blightLevel)
     {
         return false;
@@ -388,6 +397,7 @@ public abstract class BlockAddedMixin implements BlockAdded {
      * which means that stuff like half-slabs should only return true if they have ground cover
      * actually on the top surface halfway up the block vertically.
      */
+    @Override
     public boolean btwr$isSnowCoveringTopSurface(WorldAccess world, BlockPos pos) {
         BlockState stateAbove = world.getBlockState(pos.up());
 

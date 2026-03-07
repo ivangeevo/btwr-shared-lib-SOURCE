@@ -51,7 +51,7 @@ public class ProgressiveCraftingItem extends Item {
                 playCraftingFX(stack, world, user);
             }
 
-            if (!world.isClient && (useCount & PROGRESS_TIME_INTERVAL) == 0) {
+            if (!world.isClient && useCount % PROGRESS_TIME_INTERVAL == 0) {
                 int damage = stack.getDamage();
 
                 damage -= 1;

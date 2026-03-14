@@ -1,3 +1,5 @@
+## v???(dev)
+
 ## v0.8.2
 + Added a new JsonBuilder class 'ShapedRecipeWithStackJsonBuilder' for easier creation of recipes that have itemstacks for their recipe results
 + Added methods to RecipeUtils for easier recipe removal of Animageddon and Self-Sustainable

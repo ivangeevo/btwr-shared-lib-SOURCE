@@ -1,4 +1,7 @@
-## v???(dev)
+## v0.8.2
++ Added a new JsonBuilder class 'ShapedRecipeWithStackJsonBuilder' for easier creation of recipes that have itemstacks for their recipe results
++ Added methods to RecipeUtils for easier recipe removal of Animageddon and Self-Sustainable
++ Updated the mod to Fabric API 0.116.9 & Fabric Loader 0.18.4
 
 ## v0.8.1
 + Fixed progressive crafting items progress bar to fill up at the correct amounts

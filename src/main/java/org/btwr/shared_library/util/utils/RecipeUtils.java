@@ -44,6 +44,13 @@ public interface RecipeUtils {
         disableRecipe(exporter, "vegehenna", recipeId);
     }
 
+    default void disableAG(RecipeExporter exporter, String recipeId) {
+        disableRecipe(exporter, "animageddon", recipeId);
+    }
+
+    default void disableSS(RecipeExporter exporter, String recipeId) {
+        disableRecipe(exporter, "self_sustainable", recipeId);
+    }
     /**
      * Disables a recipe by namespace and ID.
      */

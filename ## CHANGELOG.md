@@ -1,4 +1,5 @@
 ## v???(dev)
++ Added an item stack result builder in the ExtendedShapelessRecipe class for making results that have item stack data instead of just items
 
 ## v0.8.2
 + Added a new JsonBuilder class 'ShapedRecipeWithStackJsonBuilder' for easier creation of recipes that have itemstacks for their recipe results

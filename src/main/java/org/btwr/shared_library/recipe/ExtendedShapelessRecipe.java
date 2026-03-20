@@ -232,14 +232,15 @@ public class ExtendedShapelessRecipe extends ShapelessRecipe implements Addition
     }
 
     public static class JsonBuilder extends ShapelessRecipeJsonBuilder {
-
         /** The damage to apply on tool crafting if present **/
         private int toolDamage = 0;
-
         private final DefaultedList<ItemStack> additionalDrops = DefaultedList.of();
+        private ItemStack resultStack = null;
 
-        public JsonBuilder(RecipeCategory category, ItemConvertible output, int count) {
-            super(category, output, count);
+        public static JsonBuilder create(RecipeCategory category, ItemStack result) {
+            JsonBuilder builder = new JsonBuilder(category, result.getItem(), result.getCount());
+            builder.resultStack = result.copy();
+            return builder;
         }
 
         public static JsonBuilder create(RecipeCategory category, ItemConvertible output) {
@@ -248,6 +249,10 @@ public class ExtendedShapelessRecipe extends ShapelessRecipe implements Addition
 
         public static JsonBuilder create(RecipeCategory category, ItemConvertible output, int count) {
             return new JsonBuilder(category, output, count);
+        }
+
+        public JsonBuilder(RecipeCategory category, ItemConvertible output, int count) {
+            super(category, output, count);
         }
 
         /** Add tool damage if the tool used in crafting supports it **/
@@ -284,10 +289,16 @@ public class ExtendedShapelessRecipe extends ShapelessRecipe implements Addition
                     .rewards(AdvancementRewards.Builder.recipe(recipeId))
                     .criteriaMerger(AdvancementRequirements.CriterionMerger.OR);
             accessor.getAdvancementBuilder().forEach(builder::criterion);
+
+            // fallback for itemstack or simple item results
+            ItemStack result = this.resultStack != null
+                    ? this.resultStack.copy()
+                    : new ItemStack(accessor.getOutput(), accessor.getCount());
+
             ExtendedShapelessRecipe recipe = new ExtendedShapelessRecipe(
                     Objects.requireNonNullElse(accessor.getGroup(), ""),
                     CraftingRecipeJsonBuilder.toCraftingCategory(accessor.getCategory()),
-                    new ItemStack(accessor.getOutput(), accessor.getCount()),
+                    result,
                     accessor.getInputs(),
                     this.toolDamage,
                     this.additionalDrops

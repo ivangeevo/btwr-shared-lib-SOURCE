@@ -7,8 +7,8 @@ import org.btwr.shared_library.api.config.TomlConfigManager;
 import org.btwr.shared_library.api.item.ProgressiveCraftingItem;
 import org.btwr.shared_library.recipe.BTWRSLRecipes;
 import net.fabricmc.api.ModInitializer;
-import org.btwr.shared_library.util.HeadDropRegistry;
-import org.btwr.shared_library.util.RepairRecipeBlockedRegistry;
+import org.btwr.shared_library.api.registry.HeadDropRegistry;
+import org.btwr.shared_library.api.registry.RepairRecipeBlockedRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

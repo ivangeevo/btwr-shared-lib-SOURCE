@@ -1,4 +1,4 @@
-package org.btwr.shared_library.util;
+package org.btwr.shared_library.api.registry;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

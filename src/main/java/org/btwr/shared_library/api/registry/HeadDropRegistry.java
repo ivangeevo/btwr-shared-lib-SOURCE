@@ -1,4 +1,4 @@
-package org.btwr.shared_library.util;
+package org.btwr.shared_library.api.registry;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

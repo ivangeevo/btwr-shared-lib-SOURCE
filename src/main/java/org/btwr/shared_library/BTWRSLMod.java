@@ -7,6 +7,7 @@ import org.btwr.shared_library.api.config.TomlConfigManager;
 import org.btwr.shared_library.api.item.ProgressiveCraftingItem;
 import org.btwr.shared_library.recipe.BTWRSLRecipes;
 import net.fabricmc.api.ModInitializer;
+import org.btwr.shared_library.util.HeadDropRegistry;
 import org.btwr.shared_library.util.RepairRecipeBlockedRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,9 @@ public class BTWRSLMod implements ModInitializer {
 
         // Block progressive crafting items recipes for all repair type recipes
         RepairRecipeBlockedRegistry.registerClass(ProgressiveCraftingItem.class, RepairRecipeBlockedRegistry.BlockType.ALL);
+
+        // Register default pairs for head drops per entity type
+        HeadDropRegistry.registerDefaults();
     }
 
 }

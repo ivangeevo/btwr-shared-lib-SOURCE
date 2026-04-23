@@ -1,6 +1,7 @@
-## 0.8.4(dev)
+## 0.8.4
 + Added a new registry class "HeadDropRegistry". It's used for handling default mob head drop pairs of entity type and item (skull/head item), but can also be used by addon makers/modders to add compatibility for their custom mobs to drop custom skull items so they are compatible with BTWR's Head dropping logic which is mainly handled by BTWR: Core, but also for BWT: Hardcore Tweak's chopping block dropping mechanic too
 + Moved certain registry classes to the .api package
++ Updated the mod to Fabric API 0.116.11 & Fabric Loader 0.19.2
 
 ## v0.8.3
 + Added an item stack result builder in the ExtendedShapelessRecipe class for making results that have item stack data instead of just items

@@ -1,4 +1,5 @@
 ## v???(dev)
++ Added a new class "DisabledRecipeTypeRegistry" which allows specifying recipes by type or identifier to disable entirely. Works with vanilla and custom recipes as well
 
 ## v0.8.4
 + Added a new registry class "HeadDropRegistry". It's used for handling default mob head drop pairs of entity type and item (skull/head item), but can also be used by addon makers/modders to add compatibility for their custom mobs to drop custom skull items so they are compatible with BTWR's Head dropping logic which is mainly handled by BTWR: Core, but also for BWT: Hardcore Tweak's chopping block dropping mechanic too

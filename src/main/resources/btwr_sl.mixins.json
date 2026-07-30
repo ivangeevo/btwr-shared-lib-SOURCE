@@ -27,6 +27,7 @@
     "item.RepairItemRecipeMixin",
     "item.ShearsItemMixin",
     "recipe.CraftingResultSlotMixin",
+    "recipe.RecipeManagerMixin",
     "world.WorldMixin"
   ],
   "injectors": {

@@ -273,7 +273,7 @@ public class PenaltyDisplayManager {
     }
 
     /**
-     * Register dynamic changes to the default Y position of Penalty texts displayed by {@link org.btwr.shared_library.gui.hud.PenaltyDisplayManager}
+     * Register dynamic changes to the default Y position of Penalty texts displayed by {@link PenaltyDisplayManager}
      */
     public static final class HudYOffsetRegistry {
         private static final List<HudYOffsetRule> RULES = new ArrayList<>();
@@ -312,7 +312,7 @@ public class PenaltyDisplayManager {
 
     }
 
-    /** Context record for keeping track of what the current hunger bar Y is and whether {@link org.btwr.shared_library.gui.hud.PenaltyDisplayManager} is rendering food **/
+    /** Context record for keeping track of what the current hunger bar Y is and whether {@link PenaltyDisplayManager} is rendering food **/
     public record HudRenderInfo(int hungerBarY, boolean renderingFood) {
         public static HudRenderInfo createDefault(int hungerBarY) {
             return new HudRenderInfo(hungerBarY, StatusBarRenderInfo.getInstance().getRenderingFood());

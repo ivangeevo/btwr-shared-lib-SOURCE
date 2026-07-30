@@ -383,7 +383,7 @@ public class FireBlockUtils {
         Block belowBlock = belowState.getBlock();
 
         // If there's a solid-ish block below, that's fine.
-        if (belowState.isSideSolidFullSquare(world, belowPos, net.minecraft.util.math.Direction.UP)) {
+        if (belowState.isSideSolidFullSquare(world, belowPos, Direction.UP)) {
             return true;
         }
 

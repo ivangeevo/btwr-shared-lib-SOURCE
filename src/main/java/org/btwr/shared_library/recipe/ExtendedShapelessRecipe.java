@@ -176,7 +176,7 @@ public class ExtendedShapelessRecipe extends ShapelessRecipe implements Addition
         }
 
         public static final PacketCodec<RegistryByteBuf, ExtendedShapelessRecipe> PACKET_CODEC = PacketCodec.ofStatic(
-                ExtendedShapelessRecipe.Serializer::write, ExtendedShapelessRecipe.Serializer::read
+                Serializer::write, Serializer::read
         );
 
         @Override

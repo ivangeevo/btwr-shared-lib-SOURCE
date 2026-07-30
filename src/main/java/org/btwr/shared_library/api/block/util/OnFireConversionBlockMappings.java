@@ -26,7 +26,7 @@ import java.util.Map;
  * Usage:
  * <ul>
  *     <li>The library calls {@link #register()} during initialization to hook
- *         this mapping into {@link OnFireConversionResolver.Registry}.</li>
+ *         this mapping into {@link Registry}.</li>
  *     <li>Mods call {@link #addMapping(Block, Block)} to contribute their
  *         own conversion pairs.</li>
  * </ul>
@@ -48,7 +48,7 @@ public final class OnFireConversionBlockMappings implements OnFireConversionReso
      * Should be called once by the shared library during initialization.
      */
     public static void register() {
-        OnFireConversionResolver.Registry.register(INSTANCE);
+        Registry.register(INSTANCE);
     }
 
     /**

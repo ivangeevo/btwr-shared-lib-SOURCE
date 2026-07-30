@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 /**
  * Central registry for directional drop conditions.
  *
- * <p>Directional drops are drops whose resulting {@link net.minecraft.item.ItemStack}s
+ * <p>Directional drops are drops whose resulting {@link ItemStack}s
  * are emitted in the direction the block is mined from, rather than using
  * Minecraft's standard drop logic (which spawns items at or near the block
  * center with randomized motion).</p>
